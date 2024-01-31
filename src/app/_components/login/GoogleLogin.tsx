@@ -1,15 +1,14 @@
 "use client";
-
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
-import { auth } from "../firebase-config";
-
+import { auth } from "../../firebase-config";
+import { FcGoogle } from "react-icons/fc";
 interface User {
   displayName: string | null;
   email: string | null;
 }
 
-export default function Wrap() {
+export default function GoogleLogin() {
   const [userData, setUserData] = useState<User | null>();
 
   const handleGoogleLogin = () => {
@@ -24,16 +23,12 @@ export default function Wrap() {
         console.error(error);
       });
   };
-
   return (
-    <div className="text-center">
-      <button className="bg-[#333] text-[#fff]" onClick={handleGoogleLogin}>
-        구글 로그인
-      </button>
-      <p>
-        로그인 결과:
-        {userData?.displayName ? userData.displayName : "로그인해주세요"}
-      </p>
-    </div>
+    <button
+      className="bg-[#fff] mt-[10px] w-full  py-[10px] rounded-[8px] flex-center border-[1px] border-black-300"
+      onClick={handleGoogleLogin}
+    >
+      <FcGoogle className="text-[18px] mr-[4px]" /> 구글 로그인
+    </button>
   );
 }

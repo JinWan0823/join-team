@@ -23,6 +23,7 @@ export default function Input({
         placeholder={holder}
         id={id}
         className="w-full pb-[8px] pt-[4px] border-b-[1px] border-gray-400 focus:outline-0"
+        onChange={handleInput}
       />
     </>
   );

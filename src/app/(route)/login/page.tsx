@@ -9,7 +9,7 @@ export default function Wrap() {
       <Logo />
       <LoginForm />
       <GoogleLogin />
-      <Link href="/" className="underline mt-[10px]">
+      <Link href="/signup" className="underline mt-[10px]">
         회원가입
       </Link>
     </div>

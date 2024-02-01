@@ -10,5 +10,5 @@ export default function Layout(
     children: React.ReactNode;
   }>
 ) {
-  return <div className="h-full flex-center">{props.children}</div>;
+  return <div className="h-full flex-center relative">{props.children}</div>;
 }

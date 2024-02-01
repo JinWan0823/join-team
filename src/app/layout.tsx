@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html>
       <body className={noto.className}>
-        <div className="w-[420px] mx-auto h-screen min-h-screen bg-[#fff] p-[10px]">
+        <div className="w-[420px] mx-auto h-screen min-h-screen bg-[#fff] p-[10px] text-md">
           {children}
         </div>
       </body>

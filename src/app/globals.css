@@ -25,4 +25,16 @@ body {
     align-items: center;
     justify-content: center;
   }
+
+  .login-error-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .login-error-hidden {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
 }

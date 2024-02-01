@@ -1,9 +1,10 @@
 'use client';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import Input from './Input';
+import Input from './InputWrap';
 import { auth } from '@/app/firebase-config';
 import { useState } from 'react';
 import LoginError from './LoginError';
+import InputWrap from './InputWrap';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -50,18 +51,26 @@ export default function LoginForm() {
   return (
     <form className="mt-[12px] w-full" onSubmit={handleSubmit}>
       {loginFailed && <LoginError />}
-      <div>
-        <Input inputType="text" holder="ex) withgo@gmail.com" id="loginId" text="이메일" handleInput={handleMail} />
-        <p className={`text-sm text-red-300 ${isEmailValid(email) ? 'opacity-0' : 'opacity-1'}`}>
+      <InputWrap
+        inputType="text"
+        holder="ex) withgo@gmail.com"
+        id="loginId"
+        text="이메일"
+        handleInput={handleMail}
+        isTargetValid={isEmailValid(email)}
+        warning="이메일 형식을 입력해주세요."
+      />
+      {/* <p className={`text-sm text-red-300 ${isEmailValid(email) ? 'opacity-0' : 'opacity-1'}`}>
           * 이메일 형식을 입력해주세요.
-        </p>
-      </div>
-      <div className="mt-[4px]">
-        <Input inputType="password" id="passwordId" text="비밀번호" handleInput={handlePwd} />
-        <p className={`text-sm text-red-300 ${isPwdValid(pwd) ? 'opacity-0' : 'opacity-1'}`}>
-          * 영문,숫자,특수문자를 조합해주세요. (8 - 16 글자)
-        </p>
-      </div>
+        </p> */}
+      <InputWrap
+        inputType="password"
+        id="passwordId"
+        text="비밀번호"
+        handleInput={handlePwd}
+        isTargetValid={isPwdValid(pwd)}
+        warning="영문,숫자,특수문자를 조합해주세요. (8 - 16 글자)"
+      />
       <button
         type="submit"
         className={`w-full text-[#fff] py-[10px] mt-[10px] rounded-[8px] ${

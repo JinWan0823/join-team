@@ -1,15 +1,21 @@
-'use client';
-import { useState } from 'react';
-import { FaChevronDown } from 'react-icons/fa6';
-import SelectInterest from './SelectInterest';
-import InputWrap from './InputWrap';
+"use client";
+import { useState } from "react";
+import { FaChevronDown } from "react-icons/fa6";
+import SelectInterest from "./SelectInterest";
+import InputWrap from "./InputWrap";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "@/app/firebase-config";
 
 export default function SignUpForm() {
-  const [mail, setMail] = useState('');
-  const [pwd, setPwd] = useState('');
-  const [name, setName] = useState('');
+  const [mail, setMail] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [name, setName] = useState("");
 
-  const [mailValid, setMailValid] = useState(true);
+  const [interestList, setInterestList] = useState<string[]>([]);
 
   const [selectMenu, setSelectMenu] = useState<boolean>(false);
 
@@ -29,12 +35,25 @@ export default function SignUpForm() {
   };
 
   const isPwdValid = (pwd: string) => {
-    const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
+    const pwdRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
     return pwdRegex.test(pwd);
   };
 
   const isNameValid = (name: string) => {
     return name.length > 1;
+  };
+
+  const handleSignUp = (e: React.FormEvent) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, mail, pwd)
+      .then((res) => {
+        updateProfile(res.user, { displayName: name });
+        console.log("회원가입");
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
 
   return (
@@ -75,17 +94,28 @@ export default function SignUpForm() {
             setSelectMenu(true);
           }}
         >
-          <p className="">등산,싸이클,수영</p>
+          <p className="">
+            {interestList.length > 0
+              ? interestList.join(",")
+              : "관심사를 설정해보세요."}
+          </p>
           <FaChevronDown />
         </div>
       </div>
       <button
         type="submit"
         className="absolute bottom-[10px] left-[50%] translate-x-[-50%] w-[calc(100%-10px)] text-[#fff] py-[10px] mt-[10px] rounded-[8px] bg-gray-300"
+        onClick={handleSignUp}
       >
         회원가입
       </button>
-      {selectMenu && <SelectInterest setSelectMenu={setSelectMenu} />}
+      {selectMenu && (
+        <SelectInterest
+          setSelectMenu={setSelectMenu}
+          setInterestList={setInterestList}
+          interestList={interestList}
+        />
+      )}
     </form>
   );
 }

@@ -1,14 +1,14 @@
-'use client';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import Input from './InputWrap';
-import { auth } from '@/app/firebase-config';
-import { useState } from 'react';
-import LoginError from './LoginError';
-import InputWrap from './InputWrap';
+"use client";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import Input from "./InputWrap";
+import { auth } from "@/app/firebase-config";
+import { useState } from "react";
+import LoginError from "./LoginError";
+import InputWrap from "./InputWrap";
 
 export default function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [pwd, setPwd] = useState('');
+  const [email, setEmail] = useState("");
+  const [pwd, setPwd] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
 
   const handleMail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,19 +20,30 @@ export default function LoginForm() {
   };
 
   const isEmailValid = (email: string) => {
+    if (email.length === 0) return true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
   const isPwdValid = (pwd: string) => {
-    const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
+    if (pwd.length === 0) return true;
+    const pwdRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
     return pwdRegex.test(pwd);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!(isEmailValid(email) && isPwdValid(pwd))) return;
+    if (
+      !(
+        isEmailValid(email) &&
+        isPwdValid(pwd) &&
+        email.length !== 0 &&
+        pwd.length !== 0
+      )
+    )
+      return;
 
     signInWithEmailAndPassword(auth, email, pwd)
       .then((data) => {
@@ -74,9 +85,12 @@ export default function LoginForm() {
       <button
         type="submit"
         className={`w-full text-[#fff] py-[10px] mt-[10px] rounded-[8px] ${
-          isEmailValid(email) && isPwdValid(pwd)
-            ? 'bg-green-300 pointer-events-auto'
-            : 'bg-gray-300 pointer-events-none'
+          isEmailValid(email) &&
+          isPwdValid(pwd) &&
+          email.length > 0 &&
+          pwd.length > 0
+            ? "bg-[#3D97FF] pointer-events-auto"
+            : "bg-gray-300 pointer-events-none"
         }`}
       >
         로그인

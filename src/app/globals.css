@@ -26,6 +26,16 @@ body {
     justify-content: center;
   }
 
+  .scroll-track::-webkit-scrollbar {
+    width: 2px;
+  }
+  .scroll-track::-webkit-scrollbar-thumb {
+    background: #333;
+  }
+  .scroll-track::-webkit-scrollbar-track {
+    background: #fff;
+  }
+
   .login-error-visible {
     opacity: 1;
     transform: translateY(0);

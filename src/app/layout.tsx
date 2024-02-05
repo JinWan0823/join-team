@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "@next/font/google";
 import "./globals.css";
+import Heather from "./_components/common/Heather";
+import TabMenu from "./_components/common/TabMenu";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,8 +19,10 @@ export default function RootLayout({
   return (
     <html>
       <body className={noto.className}>
-        <div className="w-[420px] mx-auto h-screen min-h-screen bg-[#fff]  text-md">
+        <div className="w-[420px] mx-auto h-screen min-h-screen bg-[#fff] text-md relative">
+          <Heather />
           {children}
+          <TabMenu />
         </div>
       </body>
     </html>

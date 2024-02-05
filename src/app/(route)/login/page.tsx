@@ -6,7 +6,9 @@ import Link from "next/link";
 export default function Wrap() {
   return (
     <div className=" flex-col flex-center w-full">
-      <Logo />
+      <div className="w-[260px]">
+        <Logo />
+      </div>
       <LoginForm />
       <GoogleLogin />
       <Link href="/signup" className="underline mt-[10px]">

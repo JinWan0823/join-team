@@ -4,6 +4,7 @@ import Logo from "../logo";
 import { GoBell } from "react-icons/go";
 import { GoHeart } from "react-icons/go";
 import { GoSearch } from "react-icons/go";
+import Link from "next/link";
 
 export default function Heather() {
   const pathName = usePathname();
@@ -13,9 +14,9 @@ export default function Heather() {
   } else {
     return (
       <div className="w-full sticky top-0 p-[10px] bg-[#fff] flex justify-between items-center shadow-lg">
-        <div className="logo_wrap w-[100px]">
+        <Link href={"/"} className="logo_wrap w-[100px]">
           <Logo />
-        </div>
+        </Link>
         <ul className="flex-center text-xl text-[#333]">
           <li className="mr-[14px]">
             <GoSearch />

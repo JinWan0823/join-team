@@ -75,6 +75,7 @@ export default function SignUpForm() {
       const userDoc = doc(USER_COLLECTION, uid);
       await setDoc(userDoc, {
         uid: uid,
+        email: mail,
         userName: name,
         interestList: [...interestList],
         joinTeam: [],

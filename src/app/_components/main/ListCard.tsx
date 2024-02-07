@@ -1,10 +1,18 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaMapMarkerAlt, FaRegCommentDots } from "react-icons/fa";
 
 export default function ListCard() {
+  const pathName = usePathname();
+
   return (
     <>
-      <li className="w-full bg-[#fff] rounded-[4px] mt-[10px]">
+      <li
+        className={`w-full bg-[#fff]  ${
+          pathName === "/mypage" ? "border-b-[1px]" : "mt-[10px] rounded-[4px]"
+        }`}
+      >
         <Link
           href={"/team"}
           className="flex items-center justify-between py-[10px] px-[8px]"

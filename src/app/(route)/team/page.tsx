@@ -13,10 +13,10 @@ export default function Wrap() {
         <TeamInfoText />
         <TeamMember />
         <TeamActivity />
+        <button className="w-full text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF] ">
+          참가 신청하기
+        </button>
       </div>
-      {/* <button className="absolute bottom-[60px] w-[calc(100%-10px)] text-[#fff] py-[10px] mt-[10px] rounded-[8px] bg-[#3D97FF] left-[50%] translate-x-[-50%]">
-        참가 신청하기
-      </button> */}
     </div>
   );
 }

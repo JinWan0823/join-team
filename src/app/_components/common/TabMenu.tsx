@@ -44,7 +44,7 @@ export default function TabMenu() {
           </li>
           <li>
             <Link
-              href={"/login"}
+              href={"/mypage"}
               className="flex flex-col justify-center items-center"
             >
               <GoPerson />

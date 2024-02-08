@@ -6,7 +6,7 @@ import { IoCloseOutline } from "react-icons/io5";
 
 export default function Wrap() {
   return (
-    <div className="flex-col flex-center w-full">
+    <section className="flex-col flex-center w-full">
       <Link
         href={"/"}
         className="absolute right-[5px] top-[5px] text-[45px] text-[#333] text-gray-400"
@@ -21,6 +21,6 @@ export default function Wrap() {
       <Link href="/signup" className="underline mt-[10px]">
         회원가입
       </Link>
-    </div>
+    </section>
   );
 }

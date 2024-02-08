@@ -6,7 +6,7 @@ import TeamMember from "@/app/_components/team/TeamMember";
 
 export default function Wrap() {
   return (
-    <div className="max-h-[calc(100vh-66px)] h-[calc(100vh-66px)] overflow-y-auto bg-[#f1f1f1] pb-[56px] scroll-track relative">
+    <section className="max-h-[calc(100vh-66px)] h-[calc(100vh-66px)] overflow-y-auto bg-[#f1f1f1] pb-[56px] scroll-track relative">
       <TeamBanner />
       <TeamInfo />
       <div className="p-[10px]">
@@ -17,6 +17,6 @@ export default function Wrap() {
           참가 신청하기
         </button>
       </div>
-    </div>
+    </section>
   );
 }

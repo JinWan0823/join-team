@@ -1,14 +1,14 @@
 import SignUpForm from "@/app/_components/login/SignUpForm";
 import Link from "next/link";
-import { IoIosArrowRoundBack } from "react-icons/io";
+import { MdArrowBackIosNew } from "react-icons/md";
 export default function Wrap() {
   return (
-    <div className="w-full pt-[56px]">
-      <Link href={"/login"} className="absolute top-0 left-0">
-        <IoIosArrowRoundBack className="text-[60px]" />
+    <section className="w-full pt-[56px]">
+      <Link href={"/login"} className="absolute top-[10px] left-[4px]">
+        <MdArrowBackIosNew className="text-[32px]" />
       </Link>
       <h1 className="font-bold text-xl py-[4px]">회원가입</h1>
       <SignUpForm />
-    </div>
+    </section>
   );
 }

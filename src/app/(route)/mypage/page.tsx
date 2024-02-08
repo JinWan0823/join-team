@@ -5,7 +5,7 @@ import InfoTab from "@/app/_components/mypage/InfoTab";
 
 export default function Wrap() {
   return (
-    <div className="max-h-[calc(100vh-66px)] h-[calc(100vh-66px)] overflow-y-auto bg-[#f1f1f1] pb-[70px] scroll-track relative">
+    <div className="max-h-[calc(100vh-66px)] h-[calc(100vh-66px)] overflow-y-auto bg-[#f1f1f1] pb-[56px] scroll-track relative">
       <div className="p-[10px]">
         <MyInfo />
         <InfoComment />

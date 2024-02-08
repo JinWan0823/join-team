@@ -16,7 +16,7 @@ export default function TabMenu() {
         <ul className="w-full grid grid-cols-5 gap-2 text-center">
           <li>
             <Link
-              href={""}
+              href={"/"}
               className="flex flex-col justify-center items-center"
             >
               <GoHome />
@@ -25,7 +25,7 @@ export default function TabMenu() {
           </li>
           <li>
             <Link
-              href={""}
+              href={"/feed"}
               className="flex flex-col justify-center items-center"
             >
               <GoNote />

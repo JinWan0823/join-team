@@ -3,7 +3,7 @@ import ListCard from "./_components/main/ListCard";
 import { CiCirclePlus } from "react-icons/ci";
 export default function Home() {
   return (
-    <div className="max-h-[calc(100vh-66px)] overflow-y-auto p-[10px] bg-[#f1f1f1] pb-[70px] scroll-track">
+    <div className="max-h-[calc(100vh-66px)] overflow-y-auto p-[10px] bg-[#f1f1f1] pb-[56px] scroll-track">
       <Banner />
       <section className="interest-section mt-[20px]">
         <h2 className="font-bold text-lg">취향 저격 클럽</h2>

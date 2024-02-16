@@ -1,4 +1,5 @@
 import { FaAngleRight } from "react-icons/fa6";
+import Member from "./Member";
 
 export default function TeamMember() {
   return (
@@ -11,42 +12,14 @@ export default function TeamMember() {
         </button>
       </div>
       <ul className="mt-[10px] flex gap-4 overflow-x-scroll">
-        <li>
-          <div className="thumb w-[40px] h-[40px] rounded-[50%] bg-[#333]"></div>
-          <span className="text-sm">박진완</span>
-        </li>
-        <li>
-          <div className="thumb w-[40px] h-[40px] rounded-[50%] bg-[#333]"></div>
-          <span className="text-sm">박진완</span>
-        </li>
-        <li>
-          <div className="thumb w-[40px] h-[40px] rounded-[50%] bg-[#333]"></div>
-          <span className="text-sm">박진완</span>
-        </li>
-        <li>
-          <div className="thumb w-[40px] h-[40px] rounded-[50%] bg-[#333]"></div>
-          <span className="text-sm">박진완</span>
-        </li>
-        <li>
-          <div className="thumb w-[40px] h-[40px] rounded-[50%] bg-[#333]"></div>
-          <span className="text-sm">박진완</span>
-        </li>
-        <li>
-          <div className="thumb w-[40px] h-[40px] rounded-[50%] bg-[#333]"></div>
-          <span className="text-sm">박진완</span>
-        </li>
-        <li>
-          <div className="thumb w-[40px] h-[40px] rounded-[50%] bg-[#333]"></div>
-          <span className="text-sm">박진완</span>
-        </li>{" "}
-        <li>
-          <div className="thumb w-[40px] h-[40px] rounded-[50%] bg-[#333]"></div>
-          <span className="text-sm">박진완</span>
-        </li>
-        <li>
-          <div className="thumb w-[40px] h-[40px] rounded-[50%] bg-[#333]"></div>
-          <span className="text-sm">박진완</span>
-        </li>
+        <Member />
+        <Member />
+        <Member />
+        <Member />
+        <Member />
+        <Member />
+        <Member />
+        <Member />
       </ul>
     </div>
   );

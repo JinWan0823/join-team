@@ -1,8 +1,9 @@
 "use client";
-import Link from "next/link";
+
 import React, { SetStateAction, useState, Dispatch } from "react";
 import { GoSearch } from "react-icons/go";
 import { MdArrowBackIosNew } from "react-icons/md";
+import BackBtn from "../common/BackBtn";
 
 interface SearchHeaderProps {
   setSearchList: Dispatch<SetStateAction<string[]>>;
@@ -10,6 +11,8 @@ interface SearchHeaderProps {
 
 export default function SearchHeader({ setSearchList }: SearchHeaderProps) {
   const [searchValue, setSearchValue] = useState("");
+
+  const handleBackClick = () => {};
 
   const handleSearch = (searchItem: string) => {
     let searchList = localStorage.getItem("latestSearch");
@@ -33,9 +36,7 @@ export default function SearchHeader({ setSearchList }: SearchHeaderProps) {
 
   return (
     <div className="flex-center p-[10px]">
-      <Link href={"/login"}>
-        <MdArrowBackIosNew className="text-xl" />
-      </Link>
+      <BackBtn />
       <div className="input w-full mx-[12px] relative p-[10px] px-[14px] bg-[#f1f1f1] rounded-[20px] flex-center">
         <GoSearch className="text-[#a1a8b3]" />
         <form

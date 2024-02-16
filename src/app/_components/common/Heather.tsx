@@ -23,7 +23,9 @@ export default function Heather() {
         </Link>
         <ul className="flex-center text-xl text-[#333]">
           <li className="mr-[14px]">
-            <GoSearch />
+            <Link href={"/search"}>
+              <GoSearch />
+            </Link>
           </li>
           <li className="mr-[14px]">
             <GoHeart />

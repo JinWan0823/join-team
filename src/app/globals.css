@@ -20,6 +20,12 @@ body {
   line-height: 1.3;
 }
 
+ul,
+li,
+ol {
+  list-style: none;
+}
+
 @layer utilities {
   .flex-center {
     display: flex;

@@ -3,6 +3,7 @@ import { Noto_Sans_KR } from "@next/font/google";
 import "./globals.css";
 import Heather from "./_components/common/Heather";
 import TabMenu from "./_components/common/TabMenu";
+import RecoilRootProvider from "./_components/RecoilRootProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,11 +20,13 @@ export default function RootLayout({
   return (
     <html>
       <body className={noto.className}>
-        <div className="w-[420px] mx-auto h-screen min-h-screen bg-[#fff] text-md relative">
-          <Heather />
-          {children}
-          <TabMenu />
-        </div>
+        <RecoilRootProvider>
+          <div className="w-[420px] mx-auto h-screen min-h-screen bg-[#fff] text-md relative">
+            <Heather />
+            {children}
+            <TabMenu />
+          </div>
+        </RecoilRootProvider>
       </body>
     </html>
   );

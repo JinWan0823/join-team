@@ -5,11 +5,16 @@ import { auth } from "@/app/firebase-config";
 import { useState } from "react";
 import LoginError from "./LoginError";
 import InputWrap from "./InputWrap";
+import { useSetRecoilState } from "recoil";
+import { accessTokenState, refreshTokenState } from "@/app/_state/recoil";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
+
+  const setAccessToken = useSetRecoilState(accessTokenState);
+  const setRefreshToken = useSetRecoilState(refreshTokenState);
 
   const handleMail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -32,7 +37,7 @@ export default function LoginForm() {
     return pwdRegex.test(pwd);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (
@@ -42,21 +47,23 @@ export default function LoginForm() {
         email.length !== 0 &&
         pwd.length !== 0
       )
-    )
+    ) {
       return;
+    }
 
-    signInWithEmailAndPassword(auth, email, pwd)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((e) => {
-        console.error(e);
-        setLoginFailed(true);
+    try {
+      const data = await signInWithEmailAndPassword(auth, email, pwd);
+      const idToken = await data.user.getIdToken();
+      setAccessToken(idToken);
+      setRefreshToken(data.user.refreshToken);
+    } catch (error) {
+      console.error("Data Fetching Error : ", error);
+      setLoginFailed(true);
 
-        setTimeout(() => {
-          setLoginFailed(false);
-        }, 2000);
-      });
+      setTimeout(() => {
+        setLoginFailed(false);
+      }, 2000);
+    }
   };
 
   return (

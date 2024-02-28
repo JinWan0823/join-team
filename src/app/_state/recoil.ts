@@ -13,3 +13,9 @@ export const refreshTokenState = atom({
   default: null,
   effects_UNSTABLE: [persistAtom],
 });
+
+export const userLoginState = atom({
+  key: "userLoginState",
+  default: false,
+  effects_UNSTABLE: [persistAtom],
+});

@@ -6,7 +6,11 @@ import { useState } from "react";
 import LoginError from "./LoginError";
 import InputWrap from "./InputWrap";
 import { useSetRecoilState } from "recoil";
-import { accessTokenState, refreshTokenState } from "@/app/_state/recoil";
+import {
+  accessTokenState,
+  refreshTokenState,
+  userLoginState,
+} from "@/app/_state/recoil";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -15,6 +19,7 @@ export default function LoginForm() {
 
   const setAccessToken = useSetRecoilState(accessTokenState);
   const setRefreshToken = useSetRecoilState(refreshTokenState);
+  const setLoginInfo = useSetRecoilState(userLoginState);
 
   const handleMail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -56,6 +61,7 @@ export default function LoginForm() {
       const idToken = await data.user.getIdToken();
       setAccessToken(idToken);
       setRefreshToken(data.user.refreshToken);
+      setLoginInfo(true);
     } catch (error) {
       console.error("Data Fetching Error : ", error);
       setLoginFailed(true);

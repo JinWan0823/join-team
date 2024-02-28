@@ -1,10 +1,22 @@
+"use client";
 import GoogleLogin from "@/app/_components/login/GoogleLogin";
 import Logo from "../../_components/logo";
 import LoginForm from "@/app/_components/login/LoginForm";
 import Link from "next/link";
 import { IoCloseOutline } from "react-icons/io5";
+import { useEffect } from "react";
+import { checkIfLoggedIn } from "@/app/_utils/authUtils";
+import { useRouter } from "next/navigation";
 
-export default function Wrap() {
+export default function LoginPage() {
+  const router = useRouter();
+  useEffect(() => {
+    const isLoggedIn = checkIfLoggedIn();
+    if (isLoggedIn) {
+      router.replace("/");
+    }
+  }, [router]);
+
   return (
     <section className="flex-col flex-center w-full">
       <Link

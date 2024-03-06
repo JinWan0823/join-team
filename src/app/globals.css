@@ -18,6 +18,10 @@ body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
   line-height: 1.3;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 ul,
@@ -113,5 +117,19 @@ ol {
     position: absolute;
     bottom: -2px;
     left: 0;
+  }
+
+  .row-scroll {
+    padding-bottom: 4px;
+  }
+  .row-scroll::-webkit-scrollbar {
+    height: 4px;
+  }
+  .row-scroll::-webkit-scrollbar-thumb {
+    background: #b0d5ff;
+    border-radius: 4px;
+  }
+  .row-scroll::-webkit-scrollbar-track {
+    background: #fff;
   }
 }

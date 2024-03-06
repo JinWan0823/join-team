@@ -1,7 +1,49 @@
+"use client";
 import { FaAngleRight } from "react-icons/fa6";
 import Member from "./Member";
+import { useRef, useState } from "react";
 
 export default function TeamMember() {
+  const ref = useRef<HTMLUListElement>(null);
+  const div = ref.current;
+  const refId = useRef<number | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [previousX, SetPreviousX] = useState(0);
+  const tickEvent = useRef<{ start: Date; tickCnt: number }>({
+    start: new Date(),
+    tickCnt: 0,
+  });
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLUListElement>) => {
+    setIsDragging(true);
+    SetPreviousX(e.clientX);
+    tickEvent.current = { start: new Date(), tickCnt: 0 };
+  };
+
+  const handleMouseUp = (e: React.MouseEvent<HTMLUListElement>) => {
+    setIsDragging(false);
+    console.log(
+      `${(+new Date() - +tickEvent.current.start) / 1000}초`,
+      tickEvent.current.tickCnt
+    );
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLUListElement>) => {
+    if (!isDragging || !div || refId.current) {
+      return;
+    }
+
+    refId.current = requestAnimationFrame(() => {
+      if (div) {
+        const delta = e.clientX - previousX;
+        div.scrollLeft -= delta;
+        SetPreviousX(e.clientX);
+      }
+      refId.current = null;
+      tickEvent.current.tickCnt += 1;
+    });
+  };
+
   return (
     <div className="mt-[20px]">
       <div className="flex justify-between items-center">
@@ -11,7 +53,16 @@ export default function TeamMember() {
           <FaAngleRight />
         </button>
       </div>
-      <ul className="mt-[10px] flex gap-4 overflow-x-scroll">
+      <ul
+        ref={ref}
+        className="list mt-[10px] flex gap-4 overflow-x-auto row-scroll"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+      >
+        <Member />
+        <Member />
+        <Member />
         <Member />
         <Member />
         <Member />

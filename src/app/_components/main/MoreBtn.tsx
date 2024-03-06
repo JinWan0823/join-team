@@ -6,7 +6,7 @@ export default function MoreBtn() {
     <>
       <Link
         href={"/"}
-        className="w-full text-[#333] py-[10px] mt-[10px] rounded-[8px] bg-[#fff] flex-center"
+        className="w-full text-[#fff] py-[10px] mt-[10px] rounded-[8px] bg-[#3D97FF] flex-center"
       >
         <CiCirclePlus />
         더보기

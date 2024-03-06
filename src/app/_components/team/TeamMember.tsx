@@ -2,8 +2,13 @@
 import { FaAngleRight } from "react-icons/fa6";
 import Member from "./Member";
 import { useRef, useState } from "react";
+import { MemberData } from "@/app/_utils/Interface";
 
-export default function TeamMember() {
+interface TeamMemberProps {
+  member: MemberData[];
+}
+
+export default function TeamMember({ member }: TeamMemberProps) {
   const ref = useRef<HTMLUListElement>(null);
   const div = ref.current;
   const refId = useRef<number | null>(null);
@@ -60,17 +65,14 @@ export default function TeamMember() {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
       >
-        <Member />
-        <Member />
-        <Member />
-        <Member />
-        <Member />
-        <Member />
-        <Member />
-        <Member />
-        <Member />
-        <Member />
-        <Member />
+        {member.map((item, idx) => (
+          <Member
+            key={idx}
+            memberId={item.memberId}
+            thumbnail={item.thumbnail}
+            name={item.name}
+          />
+        ))}
       </ul>
     </div>
   );

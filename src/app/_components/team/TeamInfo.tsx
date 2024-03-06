@@ -1,19 +1,28 @@
 import { FaMapMarkerAlt, FaRegCommentDots } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa";
 import { FaRegChartBar } from "react-icons/fa";
-export default function TeamInfo() {
+interface TeamInfoProps {
+  title: string;
+  location: string;
+  joinedMember: number;
+  maximumMember: number;
+}
+export default function TeamInfo({
+  title,
+  location,
+  joinedMember,
+  maximumMember,
+}: TeamInfoProps) {
   return (
     <div className="px-[10px] pt-[16px] rounded-t-[10px] w-full translate-y-[-10px] bg-[#f1f1f1]">
       <div className="flex justify-between items-center">
         <div className="thumb w-[65px] h-[65px] rounded-[50%] bg-[#333]"></div>
         <div className=" w-[calc(100%-76px)]">
-          <h2 className="font-bold text-lg text-line-2">
-            내향인들을 위한 러닝크루 🏃‍♂️
-          </h2>
+          <h2 className="font-bold text-lg text-line-2">{title}</h2>
           <p className="flex text-sm items-center text-[#878787] mt-[4px]">
             <span className="flex items-center mr-[6px]">
               <FaMapMarkerAlt />
-              용산구
+              {location}
             </span>
             <span className="flex items-center mr-[6px]">
               <FaRegChartBar />
@@ -21,7 +30,7 @@ export default function TeamInfo() {
             </span>
             <span className="flex items-center mr-[6px]">
               <FaUsers />
-              22/50
+              {joinedMember}/{maximumMember}
             </span>
             <span className="flex items-center text-[#b0d5ff]">
               <FaRegCommentDots />

@@ -1,11 +1,7 @@
-export default function TeamInfoText() {
-  return (
-    <p className="text-[#333] ">
-      안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구
-      지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장
-      박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다.
-      안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구
-      지역에서 러닝활동을 하고있습니다.{" "}
-    </p>
-  );
+interface textProps {
+  text?: string;
+}
+
+export default function TeamInfoText({ text }: textProps) {
+  return <p className="text-[#333] ">{text}</p>;
 }

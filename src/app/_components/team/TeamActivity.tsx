@@ -2,8 +2,13 @@
 import { FaAngleRight, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 import ActivityCard from "./ActivityCard";
 import { useRef, useState } from "react";
+import { ActivityInterface } from "@/app/_utils/Interface";
 
-export default function TeamActivity() {
+interface TeamActivityProps {
+  activity: ActivityInterface[];
+}
+
+export default function TeamActivity({ activity }: TeamActivityProps) {
   const ref = useRef<HTMLUListElement>(null);
   const div = ref.current;
   const refId = useRef<number | null>(null);
@@ -59,10 +64,9 @@ export default function TeamActivity() {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
       >
-        <ActivityCard />
-        <ActivityCard />
-        <ActivityCard />
-        <ActivityCard />
+        {activity.map((item, idx) => (
+          <ActivityCard key={idx} item={item} />
+        ))}
       </ul>
     </div>
   );

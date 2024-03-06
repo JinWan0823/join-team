@@ -19,7 +19,7 @@ export default function ListCard({ data }: ListCardProps) {
         }`}
       >
         <Link
-          href={"/team"}
+          href={`/team/${data.id}`}
           className="flex items-center justify-between py-[10px] px-[8px]"
         >
           <div className="lt w-[90px] h-[90px] rounded-[10px] bg-[#333]"></div>

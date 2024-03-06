@@ -6,16 +6,84 @@
       "category": "러닝",
       "thumbnail": "",
       "location": "용산구",
-      "infomation": "안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다.",
-      "joinedMember": 4,
+      "information": "안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다.",
+      "joinedMember": 13,
       "maximumMember": 20,
-      "member": [],
+      "member": [
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        },
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        },
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        },
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        },
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        },
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        },
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        },
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        },
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        },
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        },
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        },
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        },
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        }
+      ],
       "activity": [
         {
-          "id": "",
+          "id": 1,
+          "title": "제 1회 정기모임",
           "thumbnail": "",
-          "location": "",
-          "date": ""
+          "location": "용산구",
+          "date": "2.6 (화) 오후 5:00",
+          "category": "정기모임"
         }
       ],
       "activityCount": 3
@@ -26,16 +94,24 @@
       "thumbnail": "",
       "category": "수영",
       "location": "사당",
-      "infomation": "안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다.",
-      "joinedMember": 4,
+      "information": "안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다.",
+      "joinedMember": 1,
       "maximumMember": 20,
-      "member": [],
+      "member": [
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        }
+      ],
       "activity": [
         {
-          "id": "",
+          "id": 1,
+          "title": "제 1회 정기모임",
           "thumbnail": "",
-          "location": "",
-          "date": ""
+          "location": "용산구",
+          "date": "2.6 (화) 오후 5:00",
+          "category": "정기모임"
         }
       ],
       "activityCount": 3
@@ -46,16 +122,24 @@
       "thumbnail": "",
       "category": "러닝",
       "location": "용산구",
-      "infomation": "안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다.",
-      "joinedMember": 4,
+      "information": "안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다.",
+      "joinedMember": 1,
       "maximumMember": 20,
-      "member": [],
+      "member": [
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        }
+      ],
       "activity": [
         {
-          "id": "",
+          "id": 1,
+          "title": "제 1회 정기모임",
           "thumbnail": "",
-          "location": "",
-          "date": ""
+          "location": "용산구",
+          "date": "2.6 (화) 오후 5:00",
+          "category": "정기모임"
         }
       ],
       "activityCount": 3
@@ -66,16 +150,24 @@
       "thumbnail": "",
       "category": "러닝",
       "location": "용산구",
-      "infomation": "안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다.",
-      "joinedMember": 4,
+      "information": "안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다. 안녕하세요. 동네 러닝크루 클럽장 박진완입니다. 매주 수요일, 금요일 용산구 지역에서 러닝활동을 하고있습니다.",
+      "joinedMember": 1,
       "maximumMember": 20,
-      "member": [],
+      "member": [
+        {
+          "memberId": "dhksl823",
+          "thumbnail": "",
+          "name": "박진완"
+        }
+      ],
       "activity": [
         {
-          "id": "",
+          "id": 1,
+          "title": "제 1회 정기모임",
           "thumbnail": "",
-          "location": "",
-          "date": ""
+          "location": "용산구",
+          "date": "2.6 (화) 오후 5:00",
+          "category": "정기모임"
         }
       ],
       "activityCount": 3

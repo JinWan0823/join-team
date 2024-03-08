@@ -4,7 +4,7 @@ import ListCard from "./ListCard";
 import { getData } from "@/app/_utils/axios";
 
 export interface ClubData {
-  id: number;
+  _id: number;
   clubName: string;
   category: string;
   thumbnail: string;
@@ -16,7 +16,7 @@ export interface ClubData {
 
 export default function ListWrap() {
   const [data, setData] = useState<ClubData[]>([]);
-  const url = "http://localhost:9999/club";
+  const url = "http://localhost:8080/club";
 
   useEffect(() => {
     const fetchData = async () => {

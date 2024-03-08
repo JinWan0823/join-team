@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 export default function Wrap() {
   const [data, setData] = useState<ClubDetailData>();
   const params = useParams();
-  const url = `http://localhost:9999/club/${params.id}`;
+  const url = `http://localhost:8080/club/${params.id}`;
 
   useEffect(() => {
     const fetchData = async () => {

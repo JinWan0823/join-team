@@ -36,7 +36,7 @@ export default function FeedWriteImg() {
   };
 
   return (
-    <div className="file-upload w-full flex-center text-xl h-[310px] border-b-[1px] relative bg-[#fff]">
+    <div className="file-upload w-full flex-center text-xl h-[410px] border-b-[1px] relative bg-[#fff]">
       {showImages.length > 1 ? (
         <Swiper
           slidesPerView={1}
@@ -51,7 +51,7 @@ export default function FeedWriteImg() {
                   width={200}
                   height={200}
                   alt={"Upload-img"}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                 />
                 <button
                   className="text-sm flex-center bg-[#333] absolute top-[10px] right-[10px] text-[#fff] px-[10px] py-[6px] cursor-pointer rounded-[8px] z-50"
@@ -70,7 +70,7 @@ export default function FeedWriteImg() {
             width={200}
             height={200}
             alt={"Upload-img"}
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover"
           />
           <button
             className="text-sm flex-center bg-[#333] absolute top-[10px] right-[10px] text-[#fff] px-[10px] py-[6px] cursor-pointer rounded-[8px] z-50"

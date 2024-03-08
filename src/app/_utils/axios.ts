@@ -14,3 +14,16 @@ export const getData = <T>(url: string, token?: string): Promise<T> => {
       throw error;
     });
 };
+
+export const postData = async <T>(
+  url: string,
+  formData: object
+): Promise<T> => {
+  try {
+    const response = await axios.post<T>(url, formData);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -6,7 +6,7 @@ import { ClubData } from "../main/ListWrap";
 
 export default function ClubWrap() {
   const [data, setData] = useState<ClubData[]>([]);
-  const url = "http://localhost:9999/club";
+  const url = "http://localhost:8080/club";
 
   useEffect(() => {
     const fetchData = async () => {

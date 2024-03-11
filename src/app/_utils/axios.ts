@@ -27,3 +27,13 @@ export const postData = async <T>(
     throw error;
   }
 };
+
+export const putData = async <T>(url: string, formData: object): Promise<T> => {
+  try {
+    const response = await axios.put<T>(url, formData);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

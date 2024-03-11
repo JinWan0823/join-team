@@ -24,7 +24,7 @@ export default function FeedWriteTag({ tag, setTagInput, setTag }: FeedProps) {
   };
 
   const handleTagList = (tagItem: string) => {
-    if (tag.length > 10 || tagItem.length < 2 || tagItem.length > 9) return;
+    if (tag.length > 9 || tagItem.length < 2 || tagItem.length > 9) return;
     const filteredArray = tag.filter((item: string) => item !== tagItem);
     filteredArray.unshift(tagItem);
     setTag(filteredArray);

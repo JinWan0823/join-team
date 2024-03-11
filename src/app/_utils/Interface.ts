@@ -23,3 +23,8 @@ export interface MemberData {
   thumbnail: string;
   name: string;
 }
+
+export interface FeedData {
+  content: string;
+  hashTag: [];
+}

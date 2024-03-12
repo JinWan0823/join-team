@@ -1,5 +1,5 @@
 export interface ClubDetailData {
-  id: number;
+  _id: number;
   clubName: string;
   category: string;
   thumbnail: string;

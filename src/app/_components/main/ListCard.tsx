@@ -1,11 +1,11 @@
 "use client";
-import { ClubData } from "@/app/_utils/Interface";
+import { ClubData, ClubDetailData } from "@/app/_utils/Interface";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaMapMarkerAlt, FaRegCommentDots } from "react-icons/fa";
 
 interface ListCardProps {
-  data: ClubData;
+  data: ClubDetailData;
 }
 
 export default function ListCard({ data }: ListCardProps) {

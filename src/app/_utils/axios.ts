@@ -37,3 +37,13 @@ export const putData = async <T>(url: string, formData: object): Promise<T> => {
     throw error;
   }
 };
+
+export const deleteData = async <T>(url: string): Promise<T> => {
+  try {
+    const response = await axios.delete<T>(url);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

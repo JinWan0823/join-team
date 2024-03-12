@@ -3,13 +3,23 @@ import Link from "next/link";
 import { useState } from "react";
 import { TbMenuDeep, TbPencil, TbTrash } from "react-icons/tb";
 import DeleteModal from "../modal/DeleteModal";
+import { FeedHeaderProps } from "./FeedHeader";
+import { deleteData } from "@/app/_utils/axios";
 
-export default function BurgerMenu() {
+export default function BurgerMenu({ dataId }: FeedHeaderProps) {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
 
-  const handleDeleteData = () => {
+  const url = `http://localhost:8080/feed/${dataId}`;
+
+  const handleDeleteData = async () => {
     setDeleteModal(false);
+    try {
+      const result = await deleteData(url);
+      console.log(result);
+    } catch (error) {
+      console.error("Data Fetching Error : ", error);
+    }
   };
 
   return (
@@ -19,7 +29,7 @@ export default function BurgerMenu() {
         <div className="absolute bottom-[-4px] right-[0] text-sm translate-y-[100%] whitespace-nowrap shadow-xl tab-menu">
           <ul className="bg-[#ebebeb] rounded-[4px]">
             <li className="py-[4px] px-[10px]">
-              <Link href={""} className="flex-center">
+              <Link href={`/feed/update/${dataId}`} className="flex-center">
                 수정 <TbPencil className="ml-[4px] text-md" />
               </Link>
             </li>

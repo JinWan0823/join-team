@@ -5,7 +5,7 @@ export default function FeedThumb() {
     <>
       <li>
         <Link
-          href={"/feed"}
+          href={"/myfeed"}
           className="h-[140px] text-[#fff] bg-[#333] flex-center font-bold text-lg"
         >
           IMG

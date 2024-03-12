@@ -24,7 +24,10 @@ export default function DeleteModal({
           한번 삭제된 게시물은 복구가 불가능합니다.
         </span>
       </div>
-      <button className="w-full text-sm font-bold text-red-400 border-t-[1px] py-[8px]">
+      <button
+        className="w-full text-sm font-bold text-red-400 border-t-[1px] py-[8px]"
+        onClick={() => handleDeleteData()}
+      >
         삭제
       </button>
       <button

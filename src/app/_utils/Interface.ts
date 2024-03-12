@@ -1,5 +1,5 @@
 export interface ClubDetailData {
-  id: number;
+  _id: number;
   clubName: string;
   category: string;
   thumbnail: string;
@@ -25,6 +25,18 @@ export interface MemberData {
 }
 
 export interface FeedData {
+  _id: string;
   content: string;
   hashTag: [];
+}
+
+export interface ClubData {
+  _id: number;
+  clubName: string;
+  category: string;
+  thumbnail: string;
+  location: string;
+  information: string;
+  joinedMember: number;
+  maximumMember: number;
 }

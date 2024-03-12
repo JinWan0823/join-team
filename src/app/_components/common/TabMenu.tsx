@@ -29,7 +29,7 @@ export default function TabMenu() {
               className="flex flex-col justify-center items-center"
             >
               <GoNote />
-              <span className="text-sm">피드</span>
+              <span className="text-sm">탐색</span>
             </Link>
           </li>
           <li></li>

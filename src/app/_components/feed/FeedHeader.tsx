@@ -1,7 +1,12 @@
 "use client";
 import { usePathname } from "next/navigation";
 import BurgerMenu from "./BurgerMenu";
-export default function FeedHeader() {
+
+export interface FeedHeaderProps {
+  dataId: string;
+}
+
+export default function FeedHeader({ dataId }: FeedHeaderProps) {
   const pathName = usePathname();
 
   return (
@@ -19,7 +24,7 @@ export default function FeedHeader() {
             팔로우
           </button>
         ) : (
-          <BurgerMenu />
+          <BurgerMenu dataId={dataId} />
         )}
       </div>
     </>

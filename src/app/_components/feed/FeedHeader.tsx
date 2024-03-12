@@ -1,4 +1,9 @@
+"use client";
+import { usePathname } from "next/navigation";
+import BurgerMenu from "./BurgerMenu";
 export default function FeedHeader() {
+  const pathName = usePathname();
+
   return (
     <>
       <div className="bg-[#fff] flex items-center justify-between p-[10px]">
@@ -9,9 +14,13 @@ export default function FeedHeader() {
             <span className="text-[#878787] text-sm">2월 8일</span>
           </div>
         </div>
-        <button className="bg-[#3D97FF] text-[#fff]  py-[2px] px-[4px] rounded-[4px] text-sm">
-          팔로우
-        </button>
+        {pathName === "/feed" ? (
+          <button className="bg-[#3D97FF] text-[#fff]  py-[2px] px-[4px] rounded-[4px] text-sm">
+            팔로우
+          </button>
+        ) : (
+          <BurgerMenu />
+        )}
       </div>
     </>
   );

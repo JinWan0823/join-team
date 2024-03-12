@@ -37,6 +37,12 @@ ol {
     justify-content: center;
   }
 
+  .position-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   .scroll-track::-webkit-scrollbar {
     width: 2px;
   }
@@ -131,5 +137,17 @@ ol {
   }
   .row-scroll::-webkit-scrollbar-track {
     background: #fff;
+  }
+
+  .tab-menu::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    transform: rotate(45deg);
+    top: -4px;
+    right: 4px;
+    background: #ebebeb;
+    z-index: -1;
   }
 }

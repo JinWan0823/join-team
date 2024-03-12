@@ -1,5 +1,11 @@
 import { useRecoilState } from "recoil";
-import { accessTokenState, refreshTokenState, userLoginState } from "./recoil";
+import {
+  DataUpdate,
+  accessTokenState,
+  refreshTokenState,
+  userLoginState,
+} from "./recoil";
+import { useState } from "react";
 
 export const useAccessToken = () => {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
@@ -14,4 +20,9 @@ export const useRefreshToken = () => {
 export const useLoginInfo = () => {
   const [loginInfo, setLoginInfo] = useRecoilState(userLoginState);
   return [loginInfo, setLoginInfo];
+};
+
+export const useUpdateData = () => {
+  const [updateData, setUpdateData] = useState(DataUpdate);
+  return [updateData, setUpdateData];
 };

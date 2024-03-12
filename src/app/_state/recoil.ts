@@ -19,3 +19,8 @@ export const userLoginState = atom({
   default: false,
   effects_UNSTABLE: [persistAtom],
 });
+
+export const DataUpdate = atom({
+  key: "updateData",
+  default: true,
+});

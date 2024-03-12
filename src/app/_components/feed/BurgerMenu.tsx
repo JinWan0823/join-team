@@ -5,10 +5,14 @@ import { TbMenuDeep, TbPencil, TbTrash } from "react-icons/tb";
 import DeleteModal from "../modal/DeleteModal";
 import { FeedHeaderProps } from "./FeedHeader";
 import { deleteData } from "@/app/_utils/axios";
+import { useSetRecoilState } from "recoil";
+import { useUpdateData } from "@/app/_state/state";
+import { DataUpdate } from "@/app/_state/recoil";
 
 export default function BurgerMenu({ dataId }: FeedHeaderProps) {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
+  const setUpdateStatus = useSetRecoilState(DataUpdate);
 
   const url = `http://localhost:8080/feed/${dataId}`;
 
@@ -17,6 +21,7 @@ export default function BurgerMenu({ dataId }: FeedHeaderProps) {
     try {
       const result = await deleteData(url);
       console.log(result);
+      setUpdateStatus((prev) => !prev);
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }

@@ -13,8 +13,12 @@ export default function Wrap() {
 
   const url = "http://localhost:8080/feed";
 
-  const handleFeedData = () => {
-    postData(url, { content: text, hashTag: tag, img: "" });
+  const handleFeedData = async () => {
+    try {
+      await postData(url, { content: text, hashTag: tag, img: "" });
+    } catch (error) {
+      console.error("Data Fetching Error : ", error);
+    }
   };
 
   return (

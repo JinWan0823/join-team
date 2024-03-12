@@ -1,8 +1,8 @@
 "use client";
+import { ClubData } from "@/app/_utils/Interface";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaMapMarkerAlt, FaRegCommentDots } from "react-icons/fa";
-import { ClubData } from "./ListWrap";
 
 interface ListCardProps {
   data: ClubData;

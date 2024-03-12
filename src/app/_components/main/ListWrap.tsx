@@ -2,17 +2,7 @@
 import { useEffect, useState } from "react";
 import ListCard from "./ListCard";
 import { getData } from "@/app/_utils/axios";
-
-export interface ClubData {
-  _id: number;
-  clubName: string;
-  category: string;
-  thumbnail: string;
-  location: string;
-  information: string;
-  joinedMember: number;
-  maximumMember: number;
-}
+import { ClubData } from "@/app/_utils/Interface";
 
 export default function ListWrap() {
   const [data, setData] = useState<ClubData[]>([]);

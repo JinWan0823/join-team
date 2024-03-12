@@ -1,5 +1,5 @@
 "use client";
-import { ClubData, ClubDetailData } from "@/app/_utils/Interface";
+import { ClubDetailData } from "@/app/_utils/Interface";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaMapMarkerAlt, FaRegCommentDots } from "react-icons/fa";

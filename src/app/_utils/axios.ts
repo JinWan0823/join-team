@@ -20,7 +20,9 @@ export const postData = async <T>(
   formData: object
 ): Promise<T> => {
   try {
-    const response = await axios.post<T>(url, formData);
+    const response = await axios.post<T>(url, formData, {
+      withCredentials: true,
+    });
     console.log(response);
     return response.data;
   } catch (error) {

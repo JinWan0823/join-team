@@ -5,7 +5,7 @@ import FeedTagWrap from "@/app/_components/feed/write/FeedTagWrap";
 import { useEffect, useState } from "react";
 import { getData, putData } from "@/app/_utils/axios";
 import { FeedData } from "@/app/_utils/Interface";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 export default function Wrap() {
   const [tagInput, setTagInput] = useState(false);
@@ -13,10 +13,21 @@ export default function Wrap() {
   const [text, setText] = useState("");
 
   const params = useParams();
+  const router = useRouter();
   const url = `http://localhost:8080/feed/${params.id}`;
 
-  const handleUpdateData = () => {
-    putData(url, { content: text, hashTag: tag, img: "" });
+  const handleUpdateData = async () => {
+    try {
+      const result = await putData(url, {
+        content: text,
+        hashTag: tag,
+        img: "",
+      });
+      console.log(result);
+      router.push("/myfeed");
+    } catch (error) {
+      console.log("Data Update Error : ", error);
+    }
   };
 
   useEffect(() => {

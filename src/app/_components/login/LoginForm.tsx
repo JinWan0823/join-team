@@ -6,19 +6,15 @@ import { useState } from "react";
 import LoginError from "./LoginError";
 import InputWrap from "./InputWrap";
 import { useSetRecoilState } from "recoil";
-import {
-  accessTokenState,
-  refreshTokenState,
-  userLoginState,
-} from "@/app/_state/recoil";
+import { userLoginState } from "@/app/_state/recoil";
+import { postData } from "@/app/_utils/axios";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
+  const url = "http://localhost:8080/login";
 
-  const setAccessToken = useSetRecoilState(accessTokenState);
-  const setRefreshToken = useSetRecoilState(refreshTokenState);
   const setLoginInfo = useSetRecoilState(userLoginState);
 
   const handleMail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,10 +53,7 @@ export default function LoginForm() {
     }
 
     try {
-      const data = await signInWithEmailAndPassword(auth, email, pwd);
-      const idToken = await data.user.getIdToken();
-      setAccessToken(idToken);
-      setRefreshToken(data.user.refreshToken);
+      const data = await postData(url, { username: email, password: pwd });
       setLoginInfo(true);
     } catch (error) {
       console.error("Data Fetching Error : ", error);
@@ -84,9 +77,6 @@ export default function LoginForm() {
         isTargetValid={isEmailValid(email)}
         warning="이메일 형식을 입력해주세요."
       />
-      {/* <p className={`text-sm text-red-300 ${isEmailValid(email) ? 'opacity-0' : 'opacity-1'}`}>
-          * 이메일 형식을 입력해주세요.
-        </p> */}
       <InputWrap
         inputType="password"
         id="passwordId"

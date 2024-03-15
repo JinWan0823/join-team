@@ -3,14 +3,13 @@ import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
 import SelectInterest from "./SelectInterest";
 import InputWrap from "./InputWrap";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { USER_COLLECTION, auth } from "@/app/firebase-config";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { postData } from "@/app/_utils/axios";
 
 export default function SignUpForm() {
-  const [mail, setMail] = useState("");
+  const [email, setMail] = useState("");
   const [pwd, setPwd] = useState("");
   const [name, setName] = useState("");
+  const url = "http://localhost:8080/signup";
 
   const [interestList, setInterestList] = useState<string[]>([]);
 
@@ -47,42 +46,25 @@ export default function SignUpForm() {
   const handleSignUp = async (e: React.FormEvent) => {
     if (
       !(
-        isEmailValid(mail) &&
+        isEmailValid(email) &&
         isPwdValid(pwd) &&
-        mail.length !== 0 &&
+        email.length !== 0 &&
         pwd.length !== 0
       )
     )
       return;
     e.preventDefault();
-    // createUserWithEmailAndPassword(auth, mail, pwd)
-    //   .then((res) => {
-    //     updateProfile(res.user, { displayName: name });
-    //     console.log("회원가입");
-    //   })
-    //   .catch((e) => {
-    //     console.error(e);
-    //   });
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        mail,
-        pwd
-      );
-      updateProfile(userCredential.user, { displayName: name });
-      const uid = userCredential.user.uid;
 
-      const userDoc = doc(USER_COLLECTION, uid);
-      await setDoc(userDoc, {
-        uid: uid,
-        email: mail,
-        userName: name,
-        interestList: [...interestList],
-        joinTeam: [],
-        created_at: Date.now(),
+    try {
+      const data = await postData(url, {
+        username: email,
+        password: pwd,
+        name: name,
+        interestList: interestList.join("/"),
       });
+      console.log(data);
     } catch (error) {
-      console.error("SighUp Error");
+      console.error("Data Fetching Error : ", error);
     }
   };
 
@@ -95,7 +77,7 @@ export default function SignUpForm() {
         text="*이메일"
         handleInput={handleMail}
         warning="이메일 형식을 입력해주세요."
-        isTargetValid={isEmailValid(mail)}
+        isTargetValid={isEmailValid(email)}
       />
       <InputWrap
         inputType="password"
@@ -135,10 +117,10 @@ export default function SignUpForm() {
       <button
         type="submit"
         className={`absolute bottom-[10px] left-[50%] translate-x-[-50%] w-[calc(100%-10px)] text-[#fff] py-[10px] mt-[10px] rounded-[8px]  ${
-          isEmailValid(mail) &&
+          isEmailValid(email) &&
           isPwdValid(pwd) &&
           isNameValid(name) &&
-          mail.length > 0 &&
+          email.length > 0 &&
           pwd.length > 0 &&
           name.length > 0 &&
           interestList.length > 0

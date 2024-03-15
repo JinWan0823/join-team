@@ -32,7 +32,9 @@ export const postData = async <T>(
 
 export const putData = async <T>(url: string, formData: object): Promise<T> => {
   try {
-    const response = await axios.put<T>(url, formData);
+    const response = await axios.put<T>(url, formData, {
+      withCredentials: true,
+    });
     console.log(response);
     return response.data;
   } catch (error) {
@@ -42,7 +44,9 @@ export const putData = async <T>(url: string, formData: object): Promise<T> => {
 
 export const deleteData = async <T>(url: string): Promise<T> => {
   try {
-    const response = await axios.delete<T>(url);
+    const response = await axios.delete<T>(url, {
+      withCredentials: true,
+    });
     console.log(response);
     return response.data;
   } catch (error) {

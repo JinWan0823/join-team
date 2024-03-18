@@ -1,21 +1,18 @@
-import {
-  ChangeEvent,
-  ReactElement,
-  ReactHTML,
-  ReactHTMLElement,
-  useState,
-} from "react";
-import { GoFileMedia, GoTrash, GoAlert } from "react-icons/go";
-import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+import { ChangeEvent, SetStateAction, Dispatch } from 'react';
+import { GoFileMedia, GoTrash, GoAlert } from 'react-icons/go';
+import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
-export default function FeedWriteImg() {
-  const [showImages, setShowImages] = useState<string[]>([]);
+interface ImageProps {
+  images: string[];
+  setImages: Dispatch<SetStateAction<string[]>>;
+}
 
+export default function FeedWriteImg({ images, setImages }: ImageProps) {
   const handleAddImages = (e: ChangeEvent<HTMLInputElement>) => {
     const imageLists = e.target.files;
-    let imageUrlLists = [...showImages];
+    let imageUrlLists = [...images];
 
     if (imageLists) {
       for (let i = 0; i < imageLists.length; i++) {
@@ -28,31 +25,21 @@ export default function FeedWriteImg() {
       imageUrlLists = imageUrlLists.slice(0, 10);
     }
 
-    setShowImages(imageUrlLists);
+    setImages(imageUrlLists);
   };
 
   const handleDeleteImg = (id: number) => {
-    setShowImages(showImages.filter((_, idx) => idx !== id));
+    setImages(images.filter((_, idx) => idx !== id));
   };
 
   return (
     <div className="file-upload w-full flex-center text-xl h-[410px] border-b-[1px] relative bg-[#fff]">
-      {showImages.length > 1 ? (
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={0}
-          className="swiper-core h-full"
-        >
-          {showImages.map((image, idx) => (
+      {images.length > 1 ? (
+        <Swiper slidesPerView={1} spaceBetween={0} className="swiper-core h-full">
+          {images.map((image, idx) => (
             <SwiperSlide key={idx}>
               <div className="w-full h-full relative">
-                <Image
-                  src={image}
-                  width={200}
-                  height={200}
-                  alt={"Upload-img"}
-                  className="w-full h-full object-cover"
-                />
+                <Image src={image} width={200} height={200} alt={'Upload-img'} className="w-full h-full object-cover" />
                 <button
                   className="text-sm flex-center bg-[#333] absolute top-[10px] right-[10px] text-[#fff] px-[10px] py-[6px] cursor-pointer rounded-[8px] z-50"
                   onClick={() => handleDeleteImg(idx)}
@@ -63,15 +50,9 @@ export default function FeedWriteImg() {
             </SwiperSlide>
           ))}
         </Swiper>
-      ) : showImages.length === 1 ? (
+      ) : images.length === 1 ? (
         <div className="w-full h-full relative">
-          <Image
-            src={showImages[0]}
-            width={200}
-            height={200}
-            alt={"Upload-img"}
-            className="w-full h-full object-cover"
-          />
+          <Image src={images[0]} width={200} height={200} alt={'Upload-img'} className="w-full h-full object-cover" />
           <button
             className="text-sm flex-center bg-[#333] absolute top-[10px] right-[10px] text-[#fff] px-[10px] py-[6px] cursor-pointer rounded-[8px] z-50"
             onClick={() => handleDeleteImg(0)}
@@ -102,8 +83,8 @@ export default function FeedWriteImg() {
           />
         </label>
 
-        <div className="text-sm flex-center bg-[#333] text-[#fff] px-[10px] py-[6px] cursor-pointer rounded-[8px] z-50">
-          {showImages.length} / 10
+        <div className="text-sm flex-center bg-[#333] text-[#fff] px-[10px] py-[6px]  rounded-[8px] z-50">
+          {images.length} / 10
         </div>
       </div>
     </div>

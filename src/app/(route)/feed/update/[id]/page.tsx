@@ -1,16 +1,17 @@
-"use client";
-import FeedWriteTag from "@/app/_components/feed/write/FeedWriteTag";
-import FeedWriteImg from "@/app/_components/feed/write/FeedWriteImg";
-import FeedTagWrap from "@/app/_components/feed/write/FeedTagWrap";
-import { useEffect, useState } from "react";
-import { getData, putData } from "@/app/_utils/axios";
-import { FeedData } from "@/app/_utils/Interface";
-import { useParams, useRouter } from "next/navigation";
+'use client';
+import FeedWriteTag from '@/app/_components/feed/write/FeedWriteTag';
+import FeedWriteImg from '@/app/_components/feed/write/FeedWriteImg';
+import FeedTagWrap from '@/app/_components/feed/write/FeedTagWrap';
+import { useEffect, useState } from 'react';
+import { getData, putData } from '@/app/_utils/axios';
+import { FeedData } from '@/app/_utils/Interface';
+import { useParams, useRouter } from 'next/navigation';
 
 export default function Wrap() {
   const [tagInput, setTagInput] = useState(false);
   const [tag, setTag] = useState<string[]>([]);
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
+  const [images, setImages] = useState<string[]>([]);
 
   const params = useParams();
   const router = useRouter();
@@ -21,12 +22,12 @@ export default function Wrap() {
       const result = await putData(url, {
         content: text,
         hashTag: tag,
-        img: "",
+        img: '',
       });
       console.log(result);
-      router.push("/myfeed");
+      router.push('/myfeed');
     } catch (error) {
-      console.log("Data Update Error : ", error);
+      console.log('Data Update Error : ', error);
     }
   };
 
@@ -39,7 +40,7 @@ export default function Wrap() {
         console.log(result.hashTag);
         console.log(tag);
       } catch (error) {
-        console.error("Data Fetching Error : ", error);
+        console.error('Data Fetching Error : ', error);
       }
     };
     fetchData();
@@ -47,7 +48,7 @@ export default function Wrap() {
 
   return (
     <section className="max-h-[calc(100vh-66px)] h-[calc(100vh-66px)] overflow-y-auto  pb-[56px] scroll-track">
-      <FeedWriteImg />
+      <FeedWriteImg images={images} setImages={setImages} />
       <textarea
         name="feedWrite"
         className="w-full h-[180px] whitespace-pre-wrap resize-none p-[10px] border-b-[1px] outline-none"
@@ -63,9 +64,7 @@ export default function Wrap() {
         수정하기
       </button>
 
-      {tagInput && (
-        <FeedWriteTag tag={tag} setTag={setTag} setTagInput={setTagInput} />
-      )}
+      {tagInput && <FeedWriteTag tag={tag} setTag={setTag} setTagInput={setTagInput} />}
     </section>
   );
 }

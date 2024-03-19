@@ -1,30 +1,33 @@
-'use client';
-import FeedWriteTag from '@/app/_components/feed/write/FeedWriteTag';
-import FeedWriteImg from '@/app/_components/feed/write/FeedWriteImg';
-import FeedTagWrap from '@/app/_components/feed/write/FeedTagWrap';
-import { useState } from 'react';
-import { postImgData } from '@/app/_utils/axios';
+"use client";
+import FeedWriteTag from "@/app/_components/feed/write/FeedWriteTag";
+import FeedWriteImg from "@/app/_components/feed/write/FeedWriteImg";
+import FeedTagWrap from "@/app/_components/feed/write/FeedTagWrap";
+import { useState } from "react";
+import { postImgData } from "@/app/_utils/axios";
 
 export default function Wrap() {
   const [tagInput, setTagInput] = useState(false);
   const [tag, setTag] = useState<string[]>([]);
-  const [images, setImages] = useState<string[]>([]);
-  const [text, setText] = useState('');
+  const [images, setImages] = useState<File[]>([]);
+  const [text, setText] = useState("");
 
-  const url = 'http://localhost:8080/feed';
+  const url = "http://localhost:8080/feed";
 
   const handleFeedData = async () => {
-    console.log(images[0]);
+    console.log(images);
     try {
       const formData = new FormData();
-      formData.append('content', text); // 텍스트 데이터 추가
-      formData.append('hashTag', tag.join(',')); // 해시태그 데이터 추가
-      images.forEach((image) => {
-        formData.append('images', image); // 이미지 파일 데이터 추가
-      });
+      formData.append("content", text);
+      formData.append("hashTag", tag.join("\\"));
+      if (images !== null) {
+        images.forEach((image) => {
+          formData.append(`images`, image);
+        });
+      }
+
       await postImgData(url, formData);
     } catch (error) {
-      console.error('Data Fetching Error : ', error);
+      console.error("Data Fetching Error : ", error);
     }
   };
 
@@ -45,7 +48,9 @@ export default function Wrap() {
         공유하기
       </button>
 
-      {tagInput && <FeedWriteTag tag={tag} setTag={setTag} setTagInput={setTagInput} />}
+      {tagInput && (
+        <FeedWriteTag tag={tag} setTag={setTag} setTagInput={setTagInput} />
+      )}
     </section>
   );
 }

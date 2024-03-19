@@ -1,17 +1,17 @@
-'use client';
-import FeedWriteTag from '@/app/_components/feed/write/FeedWriteTag';
-import FeedWriteImg from '@/app/_components/feed/write/FeedWriteImg';
-import FeedTagWrap from '@/app/_components/feed/write/FeedTagWrap';
-import { useEffect, useState } from 'react';
-import { getData, putData } from '@/app/_utils/axios';
-import { FeedData } from '@/app/_utils/Interface';
-import { useParams, useRouter } from 'next/navigation';
+"use client";
+import FeedWriteTag from "@/app/_components/feed/write/FeedWriteTag";
+import FeedWriteImg from "@/app/_components/feed/write/FeedWriteImg";
+import FeedTagWrap from "@/app/_components/feed/write/FeedTagWrap";
+import { useEffect, useState } from "react";
+import { getData, putData } from "@/app/_utils/axios";
+import { FeedData } from "@/app/_utils/Interface";
+import { useParams, useRouter } from "next/navigation";
 
 export default function Wrap() {
   const [tagInput, setTagInput] = useState(false);
   const [tag, setTag] = useState<string[]>([]);
-  const [text, setText] = useState('');
-  const [images, setImages] = useState<string[]>([]);
+  const [text, setText] = useState("");
+  const [images, setImages] = useState<File[]>([]);
 
   const params = useParams();
   const router = useRouter();
@@ -21,13 +21,13 @@ export default function Wrap() {
     try {
       const result = await putData(url, {
         content: text,
-        hashTag: tag,
-        img: '',
+        hashTag: tag.join("\\"),
+        img: "",
       });
       console.log(result);
-      router.push('/myfeed');
+      router.push("/myfeed");
     } catch (error) {
-      console.log('Data Update Error : ', error);
+      console.log("Data Update Error : ", error);
     }
   };
 
@@ -36,11 +36,11 @@ export default function Wrap() {
       try {
         const result = await getData<FeedData>(url);
         setText(result.content);
-        setTag(result.hashTag);
+        setTag(result.hashTag.split("\\"));
         console.log(result.hashTag);
         console.log(tag);
       } catch (error) {
-        console.error('Data Fetching Error : ', error);
+        console.error("Data Fetching Error : ", error);
       }
     };
     fetchData();
@@ -64,7 +64,9 @@ export default function Wrap() {
         수정하기
       </button>
 
-      {tagInput && <FeedWriteTag tag={tag} setTag={setTag} setTagInput={setTagInput} />}
+      {tagInput && (
+        <FeedWriteTag tag={tag} setTag={setTag} setTagInput={setTagInput} />
+      )}
     </section>
   );
 }

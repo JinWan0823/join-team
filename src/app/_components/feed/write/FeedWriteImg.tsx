@@ -1,45 +1,61 @@
-import { ChangeEvent, SetStateAction, Dispatch } from 'react';
-import { GoFileMedia, GoTrash, GoAlert } from 'react-icons/go';
-import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import { ChangeEvent, SetStateAction, Dispatch, useState } from "react";
+import { GoFileMedia, GoTrash, GoAlert } from "react-icons/go";
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 interface ImageProps {
-  images: string[];
-  setImages: Dispatch<SetStateAction<string[]>>;
+  images: File[];
+  setImages: Dispatch<SetStateAction<File[] | []>>;
 }
 
 export default function FeedWriteImg({ images, setImages }: ImageProps) {
+  const [showImages, setShowImages] = useState<string[]>([]);
+  console.log(images);
   const handleAddImages = (e: ChangeEvent<HTMLInputElement>) => {
     const imageLists = e.target.files;
-    let imageUrlLists = [...images];
+    let imageUrlLists = [...showImages];
 
     if (imageLists) {
+      let newImages: File[] = images ? [...images] : []; // 기존 이미지 배열 복사
       for (let i = 0; i < imageLists.length; i++) {
         const currentImageUrl = URL.createObjectURL(imageLists[i]);
         imageUrlLists.push(currentImageUrl);
+        newImages = newImages.concat(imageLists[i]); // 새로운 이미지를 기존 배열에 추가
       }
-    }
 
-    if (imageUrlLists.length > 10) {
-      imageUrlLists = imageUrlLists.slice(0, 10);
+      if (newImages.length > 10) {
+        imageUrlLists = imageUrlLists.slice(0, 10);
+        newImages = newImages.slice(0, 10);
+      }
+      setShowImages(imageUrlLists);
+      setImages(newImages); // 기존 이미지 배열을 업데이트
     }
-
-    setImages(imageUrlLists);
   };
-
   const handleDeleteImg = (id: number) => {
+    console.log(images);
+    setShowImages(showImages.filter((_, idx) => idx !== id));
     setImages(images.filter((_, idx) => idx !== id));
   };
 
   return (
     <div className="file-upload w-full flex-center text-xl h-[410px] border-b-[1px] relative bg-[#fff]">
-      {images.length > 1 ? (
-        <Swiper slidesPerView={1} spaceBetween={0} className="swiper-core h-full">
-          {images.map((image, idx) => (
+      {showImages.length > 1 ? (
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={0}
+          className="swiper-core h-full"
+        >
+          {showImages.map((image, idx) => (
             <SwiperSlide key={idx}>
               <div className="w-full h-full relative">
-                <Image src={image} width={200} height={200} alt={'Upload-img'} className="w-full h-full object-cover" />
+                <Image
+                  src={image}
+                  width={200}
+                  height={200}
+                  alt={"Upload-img"}
+                  className="w-full h-full object-cover"
+                />
                 <button
                   className="text-sm flex-center bg-[#333] absolute top-[10px] right-[10px] text-[#fff] px-[10px] py-[6px] cursor-pointer rounded-[8px] z-50"
                   onClick={() => handleDeleteImg(idx)}
@@ -50,9 +66,15 @@ export default function FeedWriteImg({ images, setImages }: ImageProps) {
             </SwiperSlide>
           ))}
         </Swiper>
-      ) : images.length === 1 ? (
+      ) : showImages.length === 1 ? (
         <div className="w-full h-full relative">
-          <Image src={images[0]} width={200} height={200} alt={'Upload-img'} className="w-full h-full object-cover" />
+          <Image
+            src={showImages[0]}
+            width={200}
+            height={200}
+            alt={"Upload-img"}
+            className="w-full h-full object-cover"
+          />
           <button
             className="text-sm flex-center bg-[#333] absolute top-[10px] right-[10px] text-[#fff] px-[10px] py-[6px] cursor-pointer rounded-[8px] z-50"
             onClick={() => handleDeleteImg(0)}
@@ -84,7 +106,7 @@ export default function FeedWriteImg({ images, setImages }: ImageProps) {
         </label>
 
         <div className="text-sm flex-center bg-[#333] text-[#fff] px-[10px] py-[6px]  rounded-[8px] z-50">
-          {images.length} / 10
+          {showImages.length} / 10
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ interface FeedProps {
 }
 
 export default function FeedTagWrap({ setTagInput, tag }: FeedProps) {
+  const tagToArray = tag;
   return (
     <div
       onClick={() => setTagInput(true)}
@@ -14,7 +15,7 @@ export default function FeedTagWrap({ setTagInput, tag }: FeedProps) {
     >
       <p className="whitespace-nowrap">
         {tag.length > 0
-          ? tag.map((item, idx) => (
+          ? tagToArray.map((item, idx) => (
               <span className="mr-[4px]" key={idx}>
                 #{item}
               </span>

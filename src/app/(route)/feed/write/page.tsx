@@ -17,8 +17,8 @@ export default function Wrap() {
     console.log(images);
     try {
       const formData = new FormData();
-      formData.append("content", text); // 텍스트 데이터 추가
-      formData.append("hashTag", tag.join(",")); // 해시태그 데이터 추가
+      formData.append("content", text);
+      formData.append("hashTag", tag.join("\\"));
       if (images !== null) {
         images.forEach((image) => {
           formData.append(`images`, image);

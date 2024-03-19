@@ -27,7 +27,7 @@ export interface MemberData {
 export interface FeedData {
   _id: string;
   content: string;
-  hashTag: [];
+  hashTag: string;
 }
 
 export interface ClubData {

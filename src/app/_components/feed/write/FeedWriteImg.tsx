@@ -7,10 +7,16 @@ import "swiper/css";
 interface ImageProps {
   images: File[];
   setImages: Dispatch<SetStateAction<File[] | []>>;
+  showImages: string[];
+  setShowImages: Dispatch<SetStateAction<string[]>>;
 }
 
-export default function FeedWriteImg({ images, setImages }: ImageProps) {
-  const [showImages, setShowImages] = useState<string[]>([]);
+export default function FeedWriteImg({
+  images,
+  setImages,
+  showImages,
+  setShowImages,
+}: ImageProps) {
   console.log(images);
   const handleAddImages = (e: ChangeEvent<HTMLInputElement>) => {
     const imageLists = e.target.files;
@@ -21,7 +27,7 @@ export default function FeedWriteImg({ images, setImages }: ImageProps) {
       for (let i = 0; i < imageLists.length; i++) {
         const currentImageUrl = URL.createObjectURL(imageLists[i]);
         imageUrlLists.push(currentImageUrl);
-        newImages = newImages.concat(imageLists[i]); // 새로운 이미지를 기존 배열에 추가
+        newImages.push(imageLists[i]);
       }
 
       if (newImages.length > 10) {
@@ -40,7 +46,7 @@ export default function FeedWriteImg({ images, setImages }: ImageProps) {
 
   return (
     <div className="file-upload w-full flex-center text-xl h-[410px] border-b-[1px] relative bg-[#fff]">
-      {showImages.length > 1 ? (
+      {showImages.length > 0 ? (
         <Swiper
           slidesPerView={1}
           spaceBetween={0}
@@ -66,22 +72,6 @@ export default function FeedWriteImg({ images, setImages }: ImageProps) {
             </SwiperSlide>
           ))}
         </Swiper>
-      ) : showImages.length === 1 ? (
-        <div className="w-full h-full relative">
-          <Image
-            src={showImages[0]}
-            width={200}
-            height={200}
-            alt={"Upload-img"}
-            className="w-full h-full object-cover"
-          />
-          <button
-            className="text-sm flex-center bg-[#333] absolute top-[10px] right-[10px] text-[#fff] px-[10px] py-[6px] cursor-pointer rounded-[8px] z-50"
-            onClick={() => handleDeleteImg(0)}
-          >
-            <GoTrash /> 삭제
-          </button>
-        </div>
       ) : (
         <span className="text-[#878787] text-md flex-center flex-col">
           <GoAlert className="text-lg mb-[4px]" />

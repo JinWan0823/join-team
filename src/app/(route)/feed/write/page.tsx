@@ -4,25 +4,32 @@ import FeedWriteImg from "@/app/_components/feed/write/FeedWriteImg";
 import FeedTagWrap from "@/app/_components/feed/write/FeedTagWrap";
 import { useState } from "react";
 import { postImgData } from "@/app/_utils/axios";
+import imageCompression from "browser-image-compression";
 
 export default function Wrap() {
   const [tagInput, setTagInput] = useState(false);
   const [tag, setTag] = useState<string[]>([]);
   const [images, setImages] = useState<File[]>([]);
+  const [showImages, setShowImages] = useState<string[]>([]);
   const [text, setText] = useState("");
 
   const url = "http://localhost:8080/feed";
 
+  const options = {
+    maxSizeMB: 0.5,
+    maxWidthOrHeight: 520,
+  };
+
   const handleFeedData = async () => {
-    console.log(images);
     try {
       const formData = new FormData();
       formData.append("content", text);
       formData.append("hashTag", tag.join("\\"));
       if (images !== null) {
-        images.forEach((image) => {
-          formData.append(`images`, image);
-        });
+        for (const image of images) {
+          const compressionFile = await imageCompression(image, options);
+          formData.append(`images`, compressionFile);
+        }
       }
 
       await postImgData(url, formData);
@@ -33,7 +40,12 @@ export default function Wrap() {
 
   return (
     <section className="max-h-[calc(100vh-66px)] h-[calc(100vh-66px)] overflow-y-auto  pb-[56px] scroll-track">
-      <FeedWriteImg images={images} setImages={setImages} />
+      <FeedWriteImg
+        images={images}
+        setImages={setImages}
+        showImages={showImages}
+        setShowImages={setShowImages}
+      />
       <textarea
         name="feedWrite"
         className="w-full h-[180px] whitespace-pre-wrap resize-none p-[10px] border-b-[1px] outline-none"

@@ -28,6 +28,7 @@ export interface FeedData {
   _id: string;
   content: string;
   hashTag: string;
+  images: string[];
 }
 
 export interface ClubData {

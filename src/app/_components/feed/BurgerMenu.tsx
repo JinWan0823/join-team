@@ -31,7 +31,7 @@ export default function BurgerMenu({ dataId }: FeedHeaderProps) {
     <div className="text-lg cursor-pointer relative">
       <TbMenuDeep onClick={() => setToggleMenu((prev) => !prev)} />
       {toggleMenu && (
-        <div className="absolute bottom-[-4px] right-[0] text-sm translate-y-[100%] whitespace-nowrap shadow-xl tab-menu">
+        <div className="absolute bottom-[-4px] right-[0] text-sm translate-y-[100%] whitespace-nowrap shadow-xl tab-menu z-50">
           <ul className="bg-[#ebebeb] rounded-[4px]">
             <li className="py-[4px] px-[10px]">
               <Link href={`/feed/update/${dataId}`} className="flex-center">

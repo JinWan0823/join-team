@@ -13,7 +13,7 @@ export default function FeedCard({ data }: FeedCardProps) {
   return (
     <article className="pb-[20px]">
       <FeedHeader dataId={data._id} />
-      <FeedImg />
+      <FeedImg feedImg={data.images} />
       <FeedText text={data.content} hashTag={hashTagToArray} />
       <div className="p-[10px] flex items-center">
         <button className="mr-[4px]">

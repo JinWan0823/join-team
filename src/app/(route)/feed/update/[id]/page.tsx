@@ -3,7 +3,7 @@ import FeedWriteTag from "@/app/_components/feed/write/FeedWriteTag";
 import FeedWriteImg from "@/app/_components/feed/write/FeedWriteImg";
 import FeedTagWrap from "@/app/_components/feed/write/FeedTagWrap";
 import { useEffect, useState } from "react";
-import { getData, putData } from "@/app/_utils/axios";
+import { getData, putImgData } from "@/app/_utils/axios";
 import { FeedData } from "@/app/_utils/Interface";
 import { useParams, useRouter } from "next/navigation";
 
@@ -12,6 +12,7 @@ export default function Wrap() {
   const [tag, setTag] = useState<string[]>([]);
   const [text, setText] = useState("");
   const [images, setImages] = useState<File[]>([]);
+  const [showImages, setShowImages] = useState<string[]>([]);
 
   const params = useParams();
   const router = useRouter();
@@ -19,12 +20,15 @@ export default function Wrap() {
 
   const handleUpdateData = async () => {
     try {
-      const result = await putData(url, {
-        content: text,
-        hashTag: tag.join("\\"),
-        img: "",
+      const formData = new FormData();
+      formData.append("content", text);
+      formData.append("hashTag", tag.join("\\"));
+      const updatedImages = images.filter((image) => image.size > 0);
+      updatedImages.forEach((image) => {
+        formData.append(`images`, image);
       });
-      console.log(result);
+      await putImgData(url, formData);
+
       router.push("/myfeed");
     } catch (error) {
       console.log("Data Update Error : ", error);
@@ -35,8 +39,13 @@ export default function Wrap() {
     const fetchData = async () => {
       try {
         const result = await getData<FeedData>(url);
+
+        if (result.images.length > 0) {
+          setImages(result.images.map(() => new File([], "")));
+        }
         setText(result.content);
         setTag(result.hashTag.split("\\"));
+        setShowImages(result.images);
         console.log(result.hashTag);
         console.log(tag);
       } catch (error) {
@@ -48,7 +57,12 @@ export default function Wrap() {
 
   return (
     <section className="max-h-[calc(100vh-66px)] h-[calc(100vh-66px)] overflow-y-auto  pb-[56px] scroll-track">
-      <FeedWriteImg images={images} setImages={setImages} />
+      <FeedWriteImg
+        images={images}
+        setImages={setImages}
+        showImages={showImages}
+        setShowImages={setShowImages}
+      />
       <textarea
         name="feedWrite"
         className="w-full h-[180px] whitespace-pre-wrap resize-none p-[10px] border-b-[1px] outline-none"

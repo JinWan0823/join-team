@@ -17,7 +17,7 @@ export default function DeleteModal({
   }, []);
 
   return (
-    <div className="modal fixed position-center bg-[#fff] rounded-[10px] shadow-xl">
+    <div className="modal fixed position-center bg-[#fff] rounded-[10px] shadow-xl z-50">
       <div className="p-[10px] text-center py-[20px]">
         <p className="text-md">게시글을 정말 삭제하시겠어요?</p>
         <span className="text-sm text-[#878787]">

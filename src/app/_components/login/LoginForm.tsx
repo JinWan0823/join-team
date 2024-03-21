@@ -1,21 +1,23 @@
 "use client";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import Input from "./InputWrap";
-import { auth } from "@/app/firebase-config";
 import { useState } from "react";
 import LoginError from "./LoginError";
 import InputWrap from "./InputWrap";
 import { useSetRecoilState } from "recoil";
-import { userLoginState } from "@/app/_state/recoil";
+import { userInfoState, userLoginState } from "@/app/_state/recoil";
 import { postData } from "@/app/_utils/axios";
+import { UserData } from "@/app/_utils/Interface";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
   const url = "http://localhost:8080/login";
+  const router = useRouter();
 
   const setLoginInfo = useSetRecoilState(userLoginState);
+  const setUserInfo = useSetRecoilState(userInfoState);
 
   const handleMail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -53,8 +55,20 @@ export default function LoginForm() {
     }
 
     try {
-      const data = await postData(url, { username: email, password: pwd });
+      const data: UserData = await postData(url, {
+        username: email,
+        password: pwd,
+      });
+      console.log("data", data);
       setLoginInfo(true);
+      setUserInfo({
+        id: data._id,
+        username: data.username,
+        name: data.name,
+        thumbnail: data.thumbnail,
+        interestList: data.interestList,
+      });
+      router.push("/mypage");
     } catch (error) {
       console.error("Data Fetching Error : ", error);
       setLoginFailed(true);

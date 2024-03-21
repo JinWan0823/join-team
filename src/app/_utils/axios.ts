@@ -1,14 +1,9 @@
 import axios from "axios";
-export const getData = <T>(url: string, token?: string): Promise<T> => {
-  let headers;
-  if (token) {
-    headers = {
-      withCredentials: true,
-      Authorization: `Bearer ${token}`,
-    };
-  }
+export const getData = <T>(url: string): Promise<T> => {
   return axios
-    .get<T>(url, { headers })
+    .get<T>(url, {
+      withCredentials: true,
+    })
     .then((response) => response.data)
     .catch((error) => {
       throw error;

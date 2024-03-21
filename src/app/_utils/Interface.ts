@@ -41,3 +41,11 @@ export interface ClubData {
   joinedMember: number;
   maximumMember: number;
 }
+
+export interface UserData {
+  _id: string;
+  username: string;
+  name: string;
+  thumbnail: string;
+  interestList: string;
+}

@@ -1,13 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { putData } from "@/app/_utils/axios";
+import { useEffect, useState } from "react";
 import { BsPencil } from "react-icons/bs";
 
-export default function InfoComment() {
-  const [introComment, setIntroComment] = useState("간단한 자기소개입니다.");
+interface CommentProps {
+  comment: string;
+}
+
+export default function InfoComment({ comment }: CommentProps) {
+  const [introComment, setIntroComment] = useState("");
   const [introModify, setIntroModify] = useState(true);
 
-  const handleIntroComment = () => {
+  useEffect(() => {
+    setIntroComment(comment);
+  }, []);
+
+  const url = "http://localhost:8080/user/comment";
+
+  const handleIntroComment = async () => {
+    try {
+      const result = await putData(url, {
+        introComment: introComment,
+      });
+      console.log(result);
+      setIntroComment(introComment);
+    } catch (error) {
+      throw error;
+    }
     setIntroModify(true);
   };
 

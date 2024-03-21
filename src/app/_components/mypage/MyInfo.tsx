@@ -10,10 +10,10 @@ export default function MyInfo({ user }: UserDataProps) {
       <div className="flex items-center">
         <div className="thumb w-[85px] h-[85px] rounded-[50%] bg-[#333]" />
         <div className="ml-[20px]">
-          <p className="font-bold text-lg">{user.username}</p>
+          <p className="font-bold text-lg">{user.name}</p>
           <ul className="flex">
             <li className="mr-[8px] info-list">
-              피드 <span className="font-bold">0</span>
+              피드 <span className="font-bold">{user.feedCount}</span>
             </li>
             <li className="mr-[8px] info-list">
               팔로워 <span className="font-bold">0</span>

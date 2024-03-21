@@ -1,6 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
 
-export default function FeedThumb() {
+interface FeedThumbProps {
+  thumbnail: string;
+}
+
+export default function FeedThumb({ thumbnail }: FeedThumbProps) {
   return (
     <>
       <li>
@@ -8,7 +13,20 @@ export default function FeedThumb() {
           href={"/myfeed"}
           className="h-[140px] text-[#fff] bg-[#333] flex-center font-bold text-lg"
         >
-          IMG
+          {thumbnail ? (
+            <Image
+              src={thumbnail}
+              loading="lazy"
+              decoding="async"
+              data-nimg="1"
+              alt=""
+              width={200}
+              height={200}
+              style={{ width: "100%", height: "100%" }}
+            ></Image>
+          ) : (
+            ""
+          )}
         </Link>
       </li>
     </>

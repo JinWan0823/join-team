@@ -47,5 +47,7 @@ export interface UserData {
   username: string;
   name: string;
   thumbnail: string;
+  introComment: string;
   interestList: string;
+  feedCount: number;
 }

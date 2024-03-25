@@ -12,7 +12,6 @@ export default function Wrap() {
     const fetchData = async () => {
       try {
         const result = await getData<FeedData[]>(url);
-        console.log(result);
         setData(result);
       } catch (error) {
         console.error("Data Fetching Error : ", error);

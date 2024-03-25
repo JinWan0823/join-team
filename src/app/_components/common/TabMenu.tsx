@@ -1,13 +1,17 @@
 "use client";
+import { userLoginState } from "@/app/_state/recoil";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { GoPerson } from "react-icons/go";
 import { GoNote } from "react-icons/go";
 import { GoCommentDiscussion } from "react-icons/go";
 import { GoHome } from "react-icons/go";
+import { useRecoilValue } from "recoil";
 
 export default function TabMenu() {
   const pathName = usePathname();
+
   if (pathName === "/login" || pathName === "/signup") {
     return <></>;
   } else {
@@ -44,7 +48,7 @@ export default function TabMenu() {
           </li>
           <li>
             <Link
-              href={"/mypage"}
+              href={`/mypage`}
               className="flex flex-col justify-center items-center"
             >
               <GoPerson />

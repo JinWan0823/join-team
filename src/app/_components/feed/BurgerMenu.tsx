@@ -20,7 +20,6 @@ export default function BurgerMenu({ dataId }: FeedHeaderProps) {
     setDeleteModal(false);
     try {
       const result = await deleteData(url);
-      console.log(result);
       setUpdateStatus((prev) => !prev);
     } catch (error) {
       console.error("Data Fetching Error : ", error);

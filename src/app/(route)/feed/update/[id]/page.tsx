@@ -46,8 +46,6 @@ export default function Wrap() {
         setText(result.content);
         setTag(result.hashTag.split("\\"));
         setShowImages(result.images);
-        console.log(result.hashTag);
-        console.log(tag);
       } catch (error) {
         console.error("Data Fetching Error : ", error);
       }

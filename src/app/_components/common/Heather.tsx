@@ -1,14 +1,11 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Logo from "../logo";
-import { GoBell } from "react-icons/go";
-import { GoHeart } from "react-icons/go";
 import { GoSearch } from "react-icons/go";
 import Link from "next/link";
 
 export default function Heather() {
   const pathName = usePathname();
-
   if (
     pathName === "/login" ||
     pathName === "/signup" ||
@@ -22,16 +19,10 @@ export default function Heather() {
           <Logo />
         </Link>
         <ul className="flex-center text-xl text-[#333]">
-          <li className="mr-[14px]">
+          <li>
             <Link href={"/search"}>
               <GoSearch />
             </Link>
-          </li>
-          <li className="mr-[14px]">
-            <GoHeart />
-          </li>
-          <li>
-            <GoBell />
           </li>
         </ul>
       </div>

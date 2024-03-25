@@ -13,7 +13,6 @@ export default function Wrap() {
   useEffect(() => {
     const fetchData = async () => {
       const query = params.get("val");
-      console.log(query);
       let result;
       if (query) {
         result = await getData<ClubData[]>(`${url}?val=${query}`);

@@ -23,7 +23,6 @@ export default function InfoComment({ comment }: CommentProps) {
       const result = await putData(url, {
         introComment: introComment,
       });
-      console.log(result);
       setIntroComment(introComment);
     } catch (error) {
       throw error;

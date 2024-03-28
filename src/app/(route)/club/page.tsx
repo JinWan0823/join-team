@@ -1,6 +1,6 @@
 "use client";
 
-import { ClubData, ClubDetailData } from "@/app/_utils/Interface";
+import { ClubDetailData } from "@/app/_utils/Interface";
 import { getData } from "@/app/_utils/axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";

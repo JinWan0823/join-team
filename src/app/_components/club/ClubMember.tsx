@@ -4,11 +4,11 @@ import Member from "./Member";
 import { useRef, useState } from "react";
 import { MemberData } from "@/app/_utils/Interface";
 
-interface TeamMemberProps {
+interface ClubMemberProps {
   member: MemberData[];
 }
 
-export default function TeamMember({ member }: TeamMemberProps) {
+export default function ClubMember({ member }: ClubMemberProps) {
   const ref = useRef<HTMLUListElement>(null);
   const div = ref.current;
   const refId = useRef<number | null>(null);

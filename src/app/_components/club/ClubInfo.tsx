@@ -1,18 +1,18 @@
 import { FaMapMarkerAlt, FaRegCommentDots } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa";
 import { FaRegChartBar } from "react-icons/fa";
-interface TeamInfoProps {
+interface ClubInfoProps {
   title: string;
   location: string;
   joinedMember: number;
   maximumMember: number;
 }
-export default function TeamInfo({
+export default function ClubInfo({
   title,
   location,
   joinedMember,
   maximumMember,
-}: TeamInfoProps) {
+}: ClubInfoProps) {
   return (
     <div className="px-[10px] pt-[16px] rounded-t-[10px] w-full translate-y-[-10px] bg-[#f1f1f1]">
       <div className="flex justify-between items-center">

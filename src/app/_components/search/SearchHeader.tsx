@@ -14,8 +14,6 @@ export default function SearchHeader({ setSearchList }: SearchHeaderProps) {
   const [searchValue, setSearchValue] = useState("");
   const router = useRouter();
 
-  const handleBackClick = () => {};
-
   const handleSearch = (searchItem: string) => {
     let searchList = localStorage.getItem("latestSearch");
     if (!searchList) {
@@ -34,7 +32,7 @@ export default function SearchHeader({ setSearchList }: SearchHeaderProps) {
     localStorage.setItem("latestSearch", searchList);
     setSearchList(JSON.parse(searchList));
     setSearchValue("");
-    router.push(`/clubList?val=${searchValue}`);
+    router.push(`/club?val=${searchValue}`);
   };
 
   return (

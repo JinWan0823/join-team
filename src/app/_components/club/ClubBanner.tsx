@@ -1,4 +1,4 @@
-export default function TeamBanner() {
+export default function ClubBanner() {
   return (
     <>
       <div className="img-slide w-full h-[240px] bg-[#333] flex-center">

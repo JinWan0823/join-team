@@ -17,7 +17,6 @@ export default function FeedWriteImg({
   showImages,
   setShowImages,
 }: ImageProps) {
-  console.log(images);
   const handleAddImages = (e: ChangeEvent<HTMLInputElement>) => {
     const imageLists = e.target.files;
     let imageUrlLists = [...showImages];
@@ -39,7 +38,6 @@ export default function FeedWriteImg({
     }
   };
   const handleDeleteImg = (id: number) => {
-    console.log(images);
     setShowImages(showImages.filter((_, idx) => idx !== id));
     setImages(images.filter((_, idx) => idx !== id));
   };

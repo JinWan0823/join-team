@@ -9,7 +9,6 @@ interface FeedImgProsp {
 }
 
 export default function FeedImg({ feedImg }: FeedImgProsp) {
-  console.log(feedImg);
   return (
     <>
       <div className="w-full h-[380px] bg-[#333]">

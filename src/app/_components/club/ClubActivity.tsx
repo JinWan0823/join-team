@@ -4,11 +4,11 @@ import ActivityCard from "./ActivityCard";
 import { useRef, useState } from "react";
 import { ActivityInterface } from "@/app/_utils/Interface";
 
-interface TeamActivityProps {
+interface ClubActivityProps {
   activity: ActivityInterface[];
 }
 
-export default function TeamActivity({ activity }: TeamActivityProps) {
+export default function ClubActivity({ activity }: ClubActivityProps) {
   const ref = useRef<HTMLUListElement>(null);
   const div = ref.current;
   const refId = useRef<number | null>(null);

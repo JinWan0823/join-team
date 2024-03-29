@@ -31,7 +31,7 @@ export default function Wrap() {
 
   return (
     <section className="max-h-[calc(100vh-66px)] h-[calc(100vh-66px)] overflow-y-auto bg-[#f1f1f1] pb-[56px] scroll-track relative">
-      <ClubBanner />
+      <ClubBanner images={data.images} />
       <ClubInfo
         title={data.clubName}
         location={data.location}
@@ -41,7 +41,7 @@ export default function Wrap() {
       <div className="p-[10px]">
         <ClubInfoText text={data.information} />
         <ClubMember member={data.member} />
-        <ClubActivity activity={data.activity} />
+        {data.activity && <ClubActivity activity={data.activity} />}
         <button className="w-full text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF] ">
           참가 신청하기
         </button>

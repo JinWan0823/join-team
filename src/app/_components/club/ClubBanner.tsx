@@ -1,8 +1,20 @@
-export default function ClubBanner() {
+import Image from "next/image";
+
+interface ClubBannerProps {
+  images: string;
+}
+
+export default function ClubBanner({ images }: ClubBannerProps) {
   return (
     <>
       <div className="img-slide w-full h-[240px] bg-[#333] flex-center">
-        <h2 className="font-bold text-[#fff] text-xl">IMG</h2>
+        <Image
+          src={images}
+          alt="club-thumbnail"
+          width={420}
+          height={240}
+          className="w-full h-full object-cover"
+        />
       </div>
     </>
   );

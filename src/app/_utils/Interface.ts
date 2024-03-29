@@ -2,12 +2,12 @@ export interface ClubDetailData {
   _id: number;
   clubName: string;
   category: string;
-  thumbnail: string;
+  images: string;
   location: string;
   information: string;
   joinedMember: number;
   maximumMember: number;
-  activity: ActivityInterface[];
+  activity?: ActivityInterface[];
   member: MemberData[];
 }
 export interface ActivityInterface {

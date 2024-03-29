@@ -1,4 +1,4 @@
-import { ChangeEvent, SetStateAction, Dispatch, useState } from "react";
+import { ChangeEvent, SetStateAction, Dispatch } from "react";
 import { GoFileMedia, GoTrash, GoAlert } from "react-icons/go";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -77,16 +77,12 @@ export default function FeedWriteImg({
         </span>
       )}
       <div className="absolute bottom-[10px] left-[50%] translate-x-[-50%] w-[calc(100%-20px)] z-50 flex items-center justify-between">
-        <label
-          htmlFor="file"
-          className="text-sm flex-center bg-[#3D97FF] text-[#fff] px-[10px] py-[6px] cursor-pointer rounded-[8px] z-50"
-        >
+        <label className="text-sm flex-center bg-[#3D97FF] text-[#fff] px-[10px] py-[6px] cursor-pointer rounded-[8px] z-50">
           <GoFileMedia className="mr-[4px]" />
           파일선택
           <input
             type="file"
             multiple
-            id="file"
             accept="image/png, image/jpeg, image/jpg"
             className="hidden"
             onChange={handleAddImages}

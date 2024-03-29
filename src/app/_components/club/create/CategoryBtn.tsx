@@ -21,7 +21,7 @@ export default function CategoryBtn({
             카테고리 - {selectedCategory}
           </span>
         ) : (
-          "카테고리 선택"
+          "* 카테고리 선택"
         )}
       </p>
       <span>

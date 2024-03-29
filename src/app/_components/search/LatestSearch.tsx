@@ -41,7 +41,7 @@ export default function LatestSearch({
               key={idx}
               className="p-[8px] px-[20px] bg-[#f1f1f1] rounded-[20px] flex-center cursor-pointer"
             >
-              <Link href={"/"}>{item}</Link>
+              <Link href={`club/?val=${item}`}>{item}</Link>
               <button
                 className="ml-[4px]"
                 onClick={() => handleRemoveItem(item)}

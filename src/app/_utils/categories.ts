@@ -26,4 +26,15 @@ const interestCategories = [
   "내향인파티",
 ];
 
-export { hobbyCategories, interestCategories };
+const recommendCategories = [
+  "포틀럭파티",
+  "내향인파티",
+  "보드게임",
+  "만화",
+  "농구",
+  "러닝",
+  "맛집",
+  "카페",
+];
+
+export { hobbyCategories, interestCategories, recommendCategories };

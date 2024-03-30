@@ -23,3 +23,9 @@ export const DataUpdate = atom({
   key: "updateData",
   default: true,
 });
+
+export const LatestSearchState = atom({
+  key: "latestSearch",
+  default: [],
+  effects_UNSTABLE: [persistAtom],
+});

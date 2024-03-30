@@ -1,5 +1,6 @@
 "use client";
 import { ClubDetailData } from "@/app/_utils/Interface";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaMapMarkerAlt, FaRegCommentDots } from "react-icons/fa";
@@ -22,7 +23,15 @@ export default function ListCard({ data }: ListCardProps) {
           href={`/club/${data._id}`}
           className="flex items-center justify-between py-[10px] px-[8px]"
         >
-          <div className="lt w-[90px] h-[90px] rounded-[10px] bg-[#333]"></div>
+          <div className="lt w-[90px] h-[90px] rounded-[10px] bg-[#878787] overflow-hidden">
+            <Image
+              src={data.images}
+              alt="club-thumbnail"
+              width={90}
+              height={90}
+              className="w-full h-full object-cover"
+            />
+          </div>
           <div className="rt w-[calc(100%-100px)]">
             <span className="text-[12px] p-[1px] px-[6px] rounded-[8px] bg-[#b0d5ff] text-[#fff]">
               {data.category}

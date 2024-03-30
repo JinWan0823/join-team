@@ -2,15 +2,10 @@
 
 import React, { SetStateAction, useState, Dispatch } from "react";
 import { GoSearch } from "react-icons/go";
-import { MdArrowBackIosNew } from "react-icons/md";
-import BackBtn from "../common/BackBtn";
+import BackBtn from "./BackBtn";
 import { useRouter } from "next/navigation";
 
-interface SearchHeaderProps {
-  setSearchList: Dispatch<SetStateAction<string[]>>;
-}
-
-export default function SearchHeader({ setSearchList }: SearchHeaderProps) {
+export default function SearchHeader() {
   const [searchValue, setSearchValue] = useState("");
   const router = useRouter();
 
@@ -30,9 +25,8 @@ export default function SearchHeader({ setSearchList }: SearchHeaderProps) {
       searchList = JSON.stringify(trimmedArray);
     }
     localStorage.setItem("latestSearch", searchList);
-    setSearchList(JSON.parse(searchList));
-    setSearchValue("");
     router.push(`/club?val=${searchValue}`);
+    setSearchValue("");
   };
 
   return (

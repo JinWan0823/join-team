@@ -1,5 +1,10 @@
 import { useRecoilState } from "recoil";
-import { DataUpdate, userInfoState, userLoginState } from "./recoil";
+import {
+  DataUpdate,
+  LatestSearchState,
+  userInfoState,
+  userLoginState,
+} from "./recoil";
 import { useState } from "react";
 
 export const useLoginInfo = () => {
@@ -15,4 +20,9 @@ export const useUserInfo = () => {
 export const useUpdateData = () => {
   const [updateData, setUpdateData] = useState(DataUpdate);
   return [updateData, setUpdateData];
+};
+
+export const useLatestSearch = () => {
+  const [latestSearch, setLatestSearch] = useState(LatestSearchState);
+  return [latestSearch, setLatestSearch];
 };

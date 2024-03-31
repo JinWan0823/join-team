@@ -6,7 +6,7 @@ import { ClubDetailData } from "@/app/_utils/Interface";
 
 export default function ClubWrap() {
   const [data, setData] = useState<ClubDetailData[]>([]);
-  const url = "http://localhost:8080/club";
+  const url = "http://localhost:8080/club/myclub";
 
   useEffect(() => {
     const fetchData = async () => {

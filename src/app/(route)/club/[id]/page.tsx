@@ -6,19 +6,19 @@ import ClubInfo from "@/app/_components/club/ClubInfo";
 import ClubInfoText from "@/app/_components/club/ClubInfoText";
 import ClubMember from "@/app/_components/club/ClubMember";
 import { ClubDetailData } from "@/app/_utils/Interface";
-import { getData } from "@/app/_utils/axios";
+import { getData, postData } from "@/app/_utils/axios";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Wrap() {
   const [data, setData] = useState<ClubDetailData>();
   const params = useParams();
-  const url = `http://localhost:8080/club/${params.id}`;
+  const url = `http://localhost:8080/club`;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData<ClubDetailData>(url);
+        const result = await getData<ClubDetailData>(`${url}/${params.id}`);
         setData(result);
       } catch (error) {
         console.error("Data Fetching Error : ", error);
@@ -26,6 +26,15 @@ export default function Wrap() {
     };
     fetchData();
   }, []);
+
+  const handleJoinClub = async () => {
+    try {
+      const result = await postData(`${url}/join/${params.id}`, {});
+      console.log(result);
+    } catch (error) {
+      console.error("Data Fetching Error : ", error);
+    }
+  };
 
   if (!data) return null;
 
@@ -42,7 +51,10 @@ export default function Wrap() {
         <ClubInfoText text={data.information} />
         <ClubMember member={data.member} />
         {data.activity && <ClubActivity activity={data.activity} />}
-        <button className="w-full text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF] ">
+        <button
+          className="w-full text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF]"
+          onClick={() => handleJoinClub()}
+        >
           참가 신청하기
         </button>
       </div>

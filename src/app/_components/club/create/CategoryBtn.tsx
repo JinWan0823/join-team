@@ -3,7 +3,7 @@ import { CiCirclePlus } from "react-icons/ci";
 
 interface CategoryToggleProps {
   setCategoryToggle: Dispatch<SetStateAction<boolean>>;
-  selectedCategory: string;
+  selectedCategory: string[];
 }
 
 export default function CategoryBtn({
@@ -18,7 +18,7 @@ export default function CategoryBtn({
       <p className="whitespace-nowrap">
         {selectedCategory ? (
           <span className="text-[#3d97ff] font-bold">
-            카테고리 - {selectedCategory}
+            카테고리 - {selectedCategory.join(",")}
           </span>
         ) : (
           "* 카테고리 선택"

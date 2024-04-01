@@ -43,7 +43,9 @@ export default function Wrap() {
         {/* <InterestReset /> */}
       </div>
       <InfoTab />
-      {settingMenu && <Setting setSettingMenu={setSettingMenu} />}
+      {settingMenu && userData && (
+        <Setting setSettingMenu={setSettingMenu} user={userData} />
+      )}
     </section>
   );
 }

@@ -8,7 +8,7 @@ import { postImgData } from "@/app/_utils/axios";
 
 export default function WriteForm() {
   const [categoryToggle, setCategoryToggle] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
   const [images, setImages] = useState<File[]>([]);
   const [showImages, setShowImages] = useState("");
   const [clubName, setClubName] = useState("");
@@ -24,7 +24,7 @@ export default function WriteForm() {
     try {
       const formData = new FormData();
       formData.append("clubName", clubName);
-      formData.append("category", selectedCategory);
+      formData.append("category", selectedCategory.join(""));
       formData.append("information", information);
       if (images) {
         const compressionFile = await imageCompression(images[0], options);
@@ -65,8 +65,8 @@ export default function WriteForm() {
         {categoryToggle && (
           <Category
             setCategoryToggle={setCategoryToggle}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
+            selectedCategories={selectedCategory}
+            setSelectedCategories={setSelectedCategory}
           />
         )}
       </div>

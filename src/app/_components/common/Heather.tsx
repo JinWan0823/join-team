@@ -10,7 +10,7 @@ export default function Heather() {
   const pathName = usePathname();
   if (pathName === "/login" || pathName === "/signup") {
     return <></>;
-  } else if (pathName === "/") {
+  } else if (pathName === "/" || pathName === "/mypage") {
     return (
       <>
         <div className="w-full sticky top-0 p-[10px] bg-[#fff] flex justify-between items-center shadow-lg">

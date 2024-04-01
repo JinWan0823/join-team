@@ -2,29 +2,37 @@ import { useEffect, useState, SetStateAction, Dispatch } from "react";
 import { IoClose } from "react-icons/io5";
 import CategoryLi from "./CategoryLi";
 import { hobbyCategories, interestCategories } from "@/app/_utils/categories";
+import { usePathname } from "next/navigation";
+
 interface CategoryToggleProps {
   setCategoryToggle: Dispatch<SetStateAction<boolean>>;
-  selectedCategory: string;
-  setSelectedCategory: Dispatch<SetStateAction<string>>;
+  selectedCategories: string[]; // 변경된 부분: 배열로 변경
+  setSelectedCategories: Dispatch<SetStateAction<string[]>>; // 변경된 부분: 배열로 변경
 }
 
 export default function Category({
   setCategoryToggle,
-  selectedCategory,
-  setSelectedCategory,
+  selectedCategories, // 변경된 부분: 배열로 변경
+  setSelectedCategories, // 변경된 부분: 배열로 변경
 }: CategoryToggleProps) {
   const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  useEffect(() => {
-    console.log(selectedCategory);
-  }, [selectedCategory]);
+  const pathName = usePathname();
 
   const toggleCategory = (category: string) => {
-    setSelectedCategory(category);
+    // 기존에 선택된 카테고리가 있는지 확인하여 추가 또는 삭제
+
+    const isSelected = selectedCategories.includes(category);
+    setSelectedCategories((prevCategories) => {
+      if (isSelected) {
+        return prevCategories.filter((cat) => cat !== category);
+      } else {
+        return [...prevCategories, category];
+      }
+    });
   };
 
   return (
@@ -46,7 +54,7 @@ export default function Category({
           <ul className="flex items-center flex-wrap gap-2 mt-[10px]">
             {hobbyCategories.map((category, idx) => (
               <CategoryLi
-                selectedCategory={selectedCategory}
+                selected={selectedCategories.includes(category)} // 변경된 부분: 해당 카테고리가 선택되었는지 확인
                 key={idx}
                 onClick={() => toggleCategory(category)}
               >
@@ -61,7 +69,7 @@ export default function Category({
           <ul className="flex items-center flex-wrap gap-2 mt-[10px]">
             {interestCategories.map((category, idx) => (
               <CategoryLi
-                selectedCategory={selectedCategory}
+                selected={selectedCategories.includes(category)} // 변경된 부분: 해당 카테고리가 선택되었는지 확인
                 key={idx}
                 onClick={() => toggleCategory(category)}
               >

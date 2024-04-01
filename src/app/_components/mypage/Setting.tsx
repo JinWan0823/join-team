@@ -2,13 +2,17 @@
 
 import { Dispatch, useEffect, useState } from "react";
 import Logout from "../login/Logout";
+import ProfileUpdateWrap from "./ProfileUpdateWrap";
+import { UserData } from "@/app/_utils/Interface";
 
 interface SettingProps {
   setSettingMenu: Dispatch<React.SetStateAction<boolean>>;
+  user: UserData;
 }
 
-export default function Setting({ setSettingMenu }: SettingProps) {
+export default function Setting({ setSettingMenu, user }: SettingProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [profileUpdate, setProfileUpdate] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -24,10 +28,9 @@ export default function Setting({ setSettingMenu }: SettingProps) {
         >
           <ul className="overflow-hidden">
             <li className="py-[10px] border-b-[1px]">
-              <button>프로필 이미지 변경</button>
-            </li>
-            <li className="py-[10px] border-b-[1px]">
-              <button>기본 이미지로 변경</button>
+              <button onClick={() => setProfileUpdate(true)}>
+                프로필 수정
+              </button>
             </li>
             <li className="py-[10px] text-red-400 border-b-[1px] font-bold">
               <Logout />
@@ -37,6 +40,9 @@ export default function Setting({ setSettingMenu }: SettingProps) {
             </li>
           </ul>
         </div>
+        {profileUpdate && (
+          <ProfileUpdateWrap setProfileUpdate={setProfileUpdate} user={user} />
+        )}
       </div>
     </>
   );

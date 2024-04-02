@@ -4,6 +4,7 @@ import { Dispatch, useEffect, useState } from "react";
 import Logout from "../login/Logout";
 import ProfileUpdateWrap from "./ProfileUpdateWrap";
 import { UserData } from "@/app/_utils/Interface";
+import Link from "next/link";
 
 interface SettingProps {
   setSettingMenu: Dispatch<React.SetStateAction<boolean>>;
@@ -12,7 +13,6 @@ interface SettingProps {
 
 export default function Setting({ setSettingMenu, user }: SettingProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [profileUpdate, setProfileUpdate] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -28,9 +28,7 @@ export default function Setting({ setSettingMenu, user }: SettingProps) {
         >
           <ul className="overflow-hidden">
             <li className="py-[10px] border-b-[1px]">
-              <button onClick={() => setProfileUpdate(true)}>
-                프로필 수정
-              </button>
+              <Link href={"/mypage/update"}>프로필 수정</Link>
             </li>
             <li className="py-[10px] text-red-400 border-b-[1px] font-bold">
               <Logout />
@@ -40,9 +38,6 @@ export default function Setting({ setSettingMenu, user }: SettingProps) {
             </li>
           </ul>
         </div>
-        {profileUpdate && (
-          <ProfileUpdateWrap setProfileUpdate={setProfileUpdate} user={user} />
-        )}
       </div>
     </>
   );

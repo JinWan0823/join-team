@@ -60,7 +60,7 @@ export default function SignUpForm() {
         username: email,
         password: pwd,
         name: name,
-        interestList: interestList.join("/"),
+        interestList: interestList.join("\\"),
       });
       console.log(data);
     } catch (error) {

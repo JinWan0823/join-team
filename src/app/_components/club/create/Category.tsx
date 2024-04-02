@@ -6,33 +6,36 @@ import { usePathname } from "next/navigation";
 
 interface CategoryToggleProps {
   setCategoryToggle: Dispatch<SetStateAction<boolean>>;
-  selectedCategories: string[]; // 변경된 부분: 배열로 변경
-  setSelectedCategories: Dispatch<SetStateAction<string[]>>; // 변경된 부분: 배열로 변경
+  selectedCategories: string[];
+  setSelectedCategories: Dispatch<SetStateAction<string[]>>;
 }
 
 export default function Category({
   setCategoryToggle,
-  selectedCategories, // 변경된 부분: 배열로 변경
-  setSelectedCategories, // 변경된 부분: 배열로 변경
+  selectedCategories,
+  setSelectedCategories,
 }: CategoryToggleProps) {
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     setIsVisible(true);
+    console.log(selectedCategories);
   }, []);
 
   const pathName = usePathname();
 
   const toggleCategory = (category: string) => {
-    // 기존에 선택된 카테고리가 있는지 확인하여 추가 또는 삭제
-
-    const isSelected = selectedCategories.includes(category);
-    setSelectedCategories((prevCategories) => {
-      if (isSelected) {
-        return prevCategories.filter((cat) => cat !== category);
-      } else {
-        return [...prevCategories, category];
-      }
-    });
+    if (pathName !== "/mypage/update") {
+      setSelectedCategories([category]);
+    } else {
+      const isSelected = selectedCategories.includes(category);
+      setSelectedCategories((prevCategories) => {
+        if (isSelected) {
+          return prevCategories.filter((cat) => cat !== category);
+        } else {
+          return [...prevCategories, category];
+        }
+      });
+    }
   };
 
   return (

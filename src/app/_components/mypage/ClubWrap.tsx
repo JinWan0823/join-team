@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ListCard from "../main/ListCard";
 import { getData } from "@/app/_utils/axios";
 import { ClubDetailData } from "@/app/_utils/Interface";
+import NoClub from "./NoClub";
 
 export default function ClubWrap() {
   const [data, setData] = useState<ClubDetailData[]>([]);
@@ -13,6 +14,7 @@ export default function ClubWrap() {
       try {
         const result = await getData<ClubDetailData[]>(url);
         setData(result);
+        console.log(result);
       } catch (error) {
         console.error("Data Fetching Error : ", error);
       }
@@ -22,9 +24,11 @@ export default function ClubWrap() {
   }, []);
   return (
     <ul>
-      {data.map((item, idx) => (
-        <ListCard key={idx} data={item} />
-      ))}
+      {data.length === 0 ? (
+        <NoClub />
+      ) : (
+        data.map((item, idx) => <ListCard key={idx} data={item} />)
+      )}
     </ul>
   );
 }

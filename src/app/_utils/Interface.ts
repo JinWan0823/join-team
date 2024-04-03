@@ -1,5 +1,5 @@
 export interface ClubDetailData {
-  _id: number;
+  _id: string;
   clubName: string;
   category: string;
   images: string;
@@ -8,10 +8,16 @@ export interface ClubDetailData {
   joinedMember: number;
   maximumMember: number;
   activity?: ActivityInterface[];
-  member: MemberData[];
+  member: MemberProps[];
 }
+
+export interface MemberProps {
+  memberId: string;
+  name: string;
+}
+
 export interface ActivityInterface {
-  id: number;
+  _id: string;
   thumbnail: string;
   location: string;
   date: string;
@@ -19,7 +25,7 @@ export interface ActivityInterface {
   category: string;
 }
 export interface MemberData {
-  memberId: string;
+  _id: string;
   thumbnail: string;
   name: string;
 }
@@ -32,7 +38,7 @@ export interface FeedData {
 }
 
 export interface ClubData {
-  _id: number;
+  _id: string;
   clubName: string;
   category: string;
   thumbnail: string;

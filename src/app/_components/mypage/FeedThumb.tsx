@@ -20,9 +20,9 @@ export default function FeedThumb({ thumbnail }: FeedThumbProps) {
               decoding="async"
               data-nimg="1"
               alt=""
-              width={200}
-              height={200}
-              style={{ width: "100%", height: "100%" }}
+              width={140}
+              height={140}
+              className="w-full h-full"
             ></Image>
           ) : (
             ""

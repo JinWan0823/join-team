@@ -2,10 +2,10 @@
 import { FaAngleRight } from "react-icons/fa6";
 import Member from "./Member";
 import { useRef, useState } from "react";
-import { MemberData } from "@/app/_utils/Interface";
+import { MemberData, MemberProps } from "@/app/_utils/Interface";
 
 interface ClubMemberProps {
-  member: MemberData[];
+  member: MemberProps[];
 }
 
 export default function ClubMember({ member }: ClubMemberProps) {
@@ -66,12 +66,7 @@ export default function ClubMember({ member }: ClubMemberProps) {
         onMouseUp={handleMouseUp}
       >
         {member.map((item, idx) => (
-          <Member
-            key={idx}
-            memberId={item.memberId}
-            thumbnail={item.thumbnail}
-            name={item.name}
-          />
+          <Member key={idx} memberId={item.memberId} />
         ))}
       </ul>
     </div>

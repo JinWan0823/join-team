@@ -3,15 +3,21 @@ import { useEffect, useState } from "react";
 import ListCard from "./ListCard";
 import { getData } from "@/app/_utils/axios";
 import { ClubDetailData } from "@/app/_utils/Interface";
+import { joinTeamUrl } from "@/app/_utils/url";
 
-export default function ListWrap() {
+interface ListWrapProps {
+  category: string;
+}
+
+export default function ListWrap({ category }: ListWrapProps) {
   const [data, setData] = useState<ClubDetailData[]>([]);
-  const url = "http://localhost:8080/club";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData<ClubDetailData[]>(url);
+        const result = await getData<ClubDetailData[]>(
+          `${joinTeamUrl}/club/${category}`
+        );
         setData(result.slice(0, 3));
       } catch (error) {
         console.error("Data Fetching Error : ", error);

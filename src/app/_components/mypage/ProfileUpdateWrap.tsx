@@ -18,6 +18,7 @@ export default function ProfileUpdateWrap({ user }: ProfileUpdateProps) {
   const [images, setImages] = useState<File[]>([]);
   const [showImages, setShowImages] = useState(user.thumbnail);
   const [name, setName] = useState("");
+  const [introComment, setIntroComment] = useState("");
 
   const router = useRouter();
 
@@ -29,6 +30,7 @@ export default function ProfileUpdateWrap({ user }: ProfileUpdateProps) {
   useEffect(() => {
     setSelectedCategories(user.interestList.split("\\"));
     setName(user.name);
+    setIntroComment(user.introComment);
   }, []);
 
   const handleUpdateProfile = async () => {
@@ -36,6 +38,7 @@ export default function ProfileUpdateWrap({ user }: ProfileUpdateProps) {
     try {
       const formData = new FormData();
       formData.append("name", name);
+      formData.append("introComment", introComment);
       formData.append("interestList", selectedCategories.join("\\"));
       if (images.length > 0) {
         const compressionFile = await imageCompression(images[0], options);
@@ -68,6 +71,16 @@ export default function ProfileUpdateWrap({ user }: ProfileUpdateProps) {
             value={name}
             placeholder="이름을 입력해주세요."
             onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+
+        <div className="w-full mt-[20px]">
+          <p className="font-bold">소개</p>
+          <textarea
+            className="p-[4px] w-full h-[110px] whitespace-pre-wrap resize-none mt-[4px] border-[#3d97ff] border-[1px] outline-none focus:shadow-md"
+            value={introComment}
+            placeholder="간단한 소개글을 입력해주세요."
+            onChange={(e) => setIntroComment(e.target.value)}
           />
         </div>
 

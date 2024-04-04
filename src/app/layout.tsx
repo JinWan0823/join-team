@@ -4,6 +4,8 @@ import "./globals.css";
 import Heather from "./_components/common/Heather";
 import TabMenu from "./_components/common/TabMenu";
 import RecoilRootProvider from "./_components/RecoilRootProvider";
+import { Suspense } from "react";
+import LoadingSpinner from "./_components/common/LoadingSpinner";
 
 export const metadata: Metadata = {
   title: "Work Out",
@@ -23,7 +25,7 @@ export default function RootLayout({
         <RecoilRootProvider>
           <div className="w-[420px] mx-auto h-screen min-h-screen bg-[#fff] text-md relative">
             <Heather />
-            {children}
+            <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
             <TabMenu />
           </div>
         </RecoilRootProvider>

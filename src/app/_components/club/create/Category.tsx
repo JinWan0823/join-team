@@ -18,7 +18,6 @@ export default function Category({
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     setIsVisible(true);
-    console.log(selectedCategories);
   }, []);
 
   const pathName = usePathname();

@@ -9,6 +9,8 @@ export interface ClubDetailData {
   maximumMember: number;
   activity?: ActivityInterface[];
   member: MemberProps[];
+  sido: string;
+  gugun: string;
 }
 
 export interface MemberProps {

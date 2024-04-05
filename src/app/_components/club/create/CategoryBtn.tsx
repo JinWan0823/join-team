@@ -16,7 +16,7 @@ export default function CategoryBtn({
       onClick={() => setCategoryToggle(true)}
     >
       <p className="whitespace-nowrap">
-        {selectedCategory ? (
+        {selectedCategory.length !== 0 ? (
           <span className="text-[#3d97ff] font-bold">
             카테고리 - {selectedCategory.join(",")}
           </span>

@@ -69,6 +69,10 @@ export default function WriteForm() {
             setSelectedCategories={setSelectedCategory}
           />
         )}
+        <div className="select-box">
+          <select name="" id=""></select>
+          <select name="" id=""></select>
+        </div>
       </div>
       <button
         onClick={() => handleClubData()}

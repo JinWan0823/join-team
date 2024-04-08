@@ -2,18 +2,21 @@
 import { FaAngleRight } from "react-icons/fa6";
 import Member from "./Member";
 import { useRef, useState } from "react";
-import { MemberData, MemberProps } from "@/app/_utils/Interface";
+import { MemberProps } from "@/app/_utils/Interface";
+import TotalMember from "./TotalMember";
 
 interface ClubMemberProps {
   member: MemberProps[];
+  clubMaster: string;
 }
 
-export default function ClubMember({ member }: ClubMemberProps) {
+export default function ClubMember({ member, clubMaster }: ClubMemberProps) {
   const ref = useRef<HTMLUListElement>(null);
   const div = ref.current;
   const refId = useRef<number | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [previousX, SetPreviousX] = useState(0);
+  const [totalMemberToggle, setTotalMemberToggle] = useState(false);
   const tickEvent = useRef<{ start: Date; tickCnt: number }>({
     start: new Date(),
     tickCnt: 0,
@@ -50,25 +53,38 @@ export default function ClubMember({ member }: ClubMemberProps) {
   };
 
   return (
-    <div className="mt-[20px]">
-      <div className="flex justify-between items-center">
-        <h4 className="font-bold text-[#3D97FF]">가입 멤버</h4>
-        <button className="text-sm text-[#878787] flex-center">
-          더보기
-          <FaAngleRight />
-        </button>
+    <>
+      <div className="mt-[20px]">
+        <div className="flex justify-between items-center">
+          <h4 className="font-bold text-[#3D97FF]">가입 멤버</h4>
+          <button
+            onClick={() => setTotalMemberToggle(true)}
+            className="text-sm text-[#878787] flex-center"
+          >
+            더보기
+            <FaAngleRight />
+          </button>
+        </div>
+        <ul
+          ref={ref}
+          className="list mt-[10px] flex gap-4 overflow-x-auto row-scroll"
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+        >
+          {member.map(
+            (item, idx) =>
+              idx < 10 && <Member key={idx} memberId={item.memberId} />
+          )}
+        </ul>
       </div>
-      <ul
-        ref={ref}
-        className="list mt-[10px] flex gap-4 overflow-x-auto row-scroll"
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-      >
-        {member.map((item, idx) => (
-          <Member key={idx} memberId={item.memberId} />
-        ))}
-      </ul>
-    </div>
+      {totalMemberToggle && (
+        <TotalMember
+          member={member}
+          clubMaster={clubMaster}
+          setTotalMemberToggle={setTotalMemberToggle}
+        />
+      )}
+    </>
   );
 }

@@ -3,5 +3,9 @@ interface textProps {
 }
 
 export default function ClubInfoText({ text }: textProps) {
-  return <p className="text-[#333] ">{text}</p>;
+  return (
+    <p className="text-[#333] min-h-[200px] p-[10px] bg-[#dfdfdf] rounded-[10px] ">
+      {text}
+    </p>
+  );
 }

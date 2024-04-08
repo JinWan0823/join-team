@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaMapMarkerAlt, FaRegCommentDots } from "react-icons/fa";
+import CategoryBadge from "../common/categoryBadge";
 
 interface ListCardProps {
   data: ClubDetailData;
@@ -33,9 +34,7 @@ export default function ListCard({ data }: ListCardProps) {
             />
           </div>
           <div className="rt w-[calc(100%-100px)]">
-            <span className="text-[12px] p-[1px] px-[6px] rounded-[8px] bg-[#b0d5ff] text-[#fff]">
-              {data.category}
-            </span>
+            <CategoryBadge badge={data.category} />
             <p className="font-bold  mt-[4px]">{data.clubName}</p>
             <p className="text-sm text-[#878787] flex items-center">
               <FaMapMarkerAlt className="mr-[4px]" />

@@ -47,7 +47,14 @@ export default function MemberCard({ memberId, clubMaster }: MemberIdProps) {
           </div>
           <div className="w-[calc(100%-75px)]">
             <ul className="flex gap-1">
-              <CategoryBadge badge="" />
+              {memberData?.interestList.split("\\").map(
+                (item, idx) =>
+                  idx < 3 && (
+                    <li key={idx}>
+                      <CategoryBadge badge={item} />
+                    </li>
+                  )
+              )}
             </ul>
             <p className="mt-[4px] font-bold">
               {clubMaster === memberId ? "👑" : ""}

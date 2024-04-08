@@ -31,6 +31,7 @@ export interface MemberData {
   _id: string;
   thumbnail: string;
   name: string;
+  interestList: string;
 }
 
 export interface FeedData {

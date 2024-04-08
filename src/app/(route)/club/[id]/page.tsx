@@ -7,18 +7,20 @@ import ClubInfoText from "@/app/_components/club/ClubInfoText";
 import ClubMember from "@/app/_components/club/ClubMember";
 import { ClubDetailData } from "@/app/_utils/Interface";
 import { getData, postData } from "@/app/_utils/axios";
+import { joinTeamUrl } from "@/app/_utils/url";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Wrap() {
   const [data, setData] = useState<ClubDetailData>();
   const params = useParams();
-  const url = `http://localhost:8080/club`;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData<ClubDetailData>(`${url}/${params.id}`);
+        const result = await getData<ClubDetailData>(
+          `${joinTeamUrl}/club/${params.id}`
+        );
         setData(result);
       } catch (error) {
         console.error("Data Fetching Error : ", error);
@@ -29,7 +31,10 @@ export default function Wrap() {
 
   const handleJoinClub = async () => {
     try {
-      const result = await postData(`${url}/join/${params.id}`, {});
+      const result = await postData(
+        `${joinTeamUrl}/club/join/${params.id}`,
+        {}
+      );
       console.log(result);
     } catch (error) {
       console.error("Data Fetching Error : ", error);
@@ -49,7 +54,7 @@ export default function Wrap() {
       />
       <div className="p-[10px]">
         <ClubInfoText text={data.information} />
-        <ClubMember member={data.member} />
+        <ClubMember member={data.member} clubMaster={data.master} />
         {data.activity && <ClubActivity activity={data.activity} />}
         <button
           className="w-full text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF]"

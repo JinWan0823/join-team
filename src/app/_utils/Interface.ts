@@ -11,6 +11,7 @@ export interface ClubDetailData {
   member: MemberProps[];
   sido: string;
   gugun: string;
+  master: string;
 }
 
 export interface MemberProps {
@@ -30,6 +31,7 @@ export interface MemberData {
   _id: string;
   thumbnail: string;
   name: string;
+  interestList: string;
 }
 
 export interface FeedData {

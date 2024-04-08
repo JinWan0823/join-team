@@ -63,7 +63,7 @@ export default function Location({
         </div>
         <div className="mt-[20px]">
           <h3 className="text-md font-bold">구 · 군</h3>
-          <ul className="mt-[10px] grid grid-cols-4 gap-4">
+          <ul className="mt-[10px] grid grid-cols-4 gap-4 mb-[30px]">
             {sido
               ? regionData[sido as keyof typeof regionData].map((item, idx) => (
                   <li

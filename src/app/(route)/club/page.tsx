@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import ListCard from "@/app/_components/main/ListCard";
 import NoneSearchResult from "@/app/_components/search/NoneSearchResult";
+import { joinTeamUrl } from "@/app/_utils/url";
 
 export default function Wrap() {
-  const url = "http://localhost:8080/search";
   const [data, setData] = useState<ClubDetailData[]>([]);
   const params = useSearchParams();
 
@@ -18,9 +18,11 @@ export default function Wrap() {
       console.log(query);
       let result;
       if (query) {
-        result = await getData<ClubDetailData[]>(`${url}?val=${query}`);
+        result = await getData<ClubDetailData[]>(
+          `${joinTeamUrl}/search?val=${query}`
+        );
       } else {
-        result = await getData<ClubDetailData[]>(`${url}`);
+        result = await getData<ClubDetailData[]>(`${joinTeamUrl}/search`);
       }
       setData(result);
     };

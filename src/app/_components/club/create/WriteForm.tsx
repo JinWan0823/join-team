@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CategoryBtn from "./CategoryBtn";
 import ClubUploadIMG from "./WriteThumb";
 import Category from "./Category";
@@ -42,6 +42,10 @@ export default function WriteForm() {
       console.error("Data Fetching Error : ", error);
     }
   };
+
+  useEffect(() => {
+    setGugun("");
+  }, [sido]);
 
   return (
     <div className="min-h-full flex flex-col justify-between">

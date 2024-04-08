@@ -1,7 +1,7 @@
 import { MemberProps } from "@/app/_utils/Interface";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
-import CategoryBadge from "../common/categoryBadge";
+import CategoryBadge from "../common/CategoryBadge";
 import Link from "next/link";
 import MemberCard from "./MemberCard";
 

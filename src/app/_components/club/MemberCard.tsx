@@ -1,10 +1,10 @@
 import Link from "next/link";
-import CategoryBadge from "../common/categoryBadge";
 import { useEffect, useState } from "react";
 import { getData } from "@/app/_utils/axios";
 import { joinTeamUrl } from "@/app/_utils/url";
 import { MemberData } from "@/app/_utils/Interface";
 import Image from "next/image";
+import CategoryBadge from "../common/CategoryBadge";
 
 interface MemberIdProps {
   memberId: string;
@@ -47,15 +47,7 @@ export default function MemberCard({ memberId, clubMaster }: MemberIdProps) {
           </div>
           <div className="w-[calc(100%-75px)]">
             <ul className="flex gap-1">
-              <li>
-                <CategoryBadge badge="수영" />
-              </li>
-              <li>
-                <CategoryBadge badge="영화" />
-              </li>
-              <li>
-                <CategoryBadge badge="캠핑" />
-              </li>
+              <CategoryBadge badge="" />
             </ul>
             <p className="mt-[4px] font-bold">
               {clubMaster === memberId ? "👑" : ""}

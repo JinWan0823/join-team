@@ -7,17 +7,16 @@ import { getData } from "@/app/_utils/axios";
 import { UserData } from "@/app/_utils/Interface";
 import { IoIosSettings } from "react-icons/io";
 import Setting from "@/app/_components/mypage/Setting";
+import { joinTeamUrl } from "@/app/_utils/url";
 
 export default function Wrap() {
-  const url = "http://localhost:8080/user";
-
   const [userData, setUserData] = useState<UserData>();
   const [settingMenu, setSettingMenu] = useState<boolean>(false);
-
+  const endPoint = ``;
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData<UserData>(url);
+        const result = await getData<UserData>(`${joinTeamUrl}/user`);
         setUserData(result);
       } catch (err) {
         throw err;
@@ -42,7 +41,7 @@ export default function Wrap() {
 
         {/* <InterestReset /> */}
       </div>
-      <InfoTab />
+      <InfoTab endPoint={endPoint} />
       {settingMenu && userData && (
         <Setting setSettingMenu={setSettingMenu} user={userData} />
       )}

@@ -4,7 +4,6 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { UserData } from "@/app/_utils/Interface";
 import Category from "../club/create/Category";
 import { putImgData } from "@/app/_utils/axios";
-import { joinTeamUrl } from "@/app/_utils/url";
 import imageCompression from "browser-image-compression";
 import { useRouter } from "next/navigation";
 
@@ -44,10 +43,7 @@ export default function ProfileUpdateWrap({ user }: ProfileUpdateProps) {
         const compressionFile = await imageCompression(images[0], options);
         formData.append("images", compressionFile);
       }
-      const updateData = await putImgData(
-        `${joinTeamUrl}/user/profile`,
-        formData
-      );
+      const updateData = await putImgData(`/user/profile`, formData);
       console.log(updateData);
       router.push("/mypage");
     } catch (error) {

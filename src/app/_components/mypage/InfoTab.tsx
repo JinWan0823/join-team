@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import FeedWrap from "./FeedWrap";
 import ClubWrap from "./ClubWrap";
 import { getData } from "@/app/_utils/axios";
-import { joinTeamUrl } from "@/app/_utils/url";
 import { ClubDetailData, FeedData } from "@/app/_utils/Interface";
 
 interface InfoTabProps {
@@ -19,10 +18,10 @@ export default function InfoTab({ endPoint }: InfoTabProps) {
     const fetchData = async () => {
       try {
         const feedResult = (await getData(
-          `${joinTeamUrl}/feed/myfeed${endPoint}`
+          `/feed/myfeed${endPoint}`
         )) as FeedData[];
         const clubResult = (await getData(
-          `${joinTeamUrl}/club/myclub${endPoint}`
+          `/club/myclub${endPoint}`
         )) as ClubDetailData[];
 
         setFeedData(feedResult);

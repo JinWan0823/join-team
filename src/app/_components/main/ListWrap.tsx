@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import ListCard from "./ListCard";
 import { getData } from "@/app/_utils/axios";
 import { ClubDetailData } from "@/app/_utils/Interface";
-import { joinTeamUrl } from "@/app/_utils/url";
 
 interface ListWrapProps {
   category: string;
@@ -15,9 +14,7 @@ export default function ListWrap({ category }: ListWrapProps) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData<ClubDetailData[]>(
-          `${joinTeamUrl}/club/${category}`
-        );
+        const result = await getData<ClubDetailData[]>(`/club/${category}`);
         setData(result.slice(0, 3));
       } catch (error) {
         console.error("Data Fetching Error : ", error);

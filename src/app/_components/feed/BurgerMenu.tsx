@@ -14,12 +14,10 @@ export default function BurgerMenu({ dataId }: FeedHeaderProps) {
   const [deleteModal, setDeleteModal] = useState(false);
   const setUpdateStatus = useSetRecoilState(DataUpdate);
 
-  const url = `http://localhost:8080/feed/${dataId}`;
-
   const handleDeleteData = async () => {
     setDeleteModal(false);
     try {
-      const result = await deleteData(url);
+      const result = await deleteData(`/feed/${dataId}`);
       setUpdateStatus((prev) => !prev);
     } catch (error) {
       console.error("Data Fetching Error : ", error);

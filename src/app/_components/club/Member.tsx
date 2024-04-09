@@ -1,6 +1,5 @@
 import { MemberData } from "@/app/_utils/Interface";
 import { getData } from "@/app/_utils/axios";
-import { joinTeamUrl } from "@/app/_utils/url";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -14,7 +13,7 @@ export default function Member({ memberId }: MemberIdProps) {
   useEffect(() => {
     const fetchingMember = async () => {
       try {
-        const result = await getData(`${joinTeamUrl}/user/${memberId}`);
+        const result = await getData(`/user/${memberId}`);
         console.log(result);
         setMemberData(result as MemberData);
       } catch (error) {

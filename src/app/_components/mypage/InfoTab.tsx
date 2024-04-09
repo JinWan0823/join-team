@@ -6,7 +6,11 @@ import { getData } from "@/app/_utils/axios";
 import { joinTeamUrl } from "@/app/_utils/url";
 import { ClubDetailData, FeedData } from "@/app/_utils/Interface";
 
-export default function InfoTab() {
+interface InfoTabProps {
+  endPoint: string;
+}
+
+export default function InfoTab({ endPoint }: InfoTabProps) {
   const [toggleTab, setToggleTab] = useState(true);
   const [feedData, setFeedData] = useState<FeedData[]>();
   const [clubData, setClubData] = useState<ClubDetailData[]>();
@@ -15,10 +19,10 @@ export default function InfoTab() {
     const fetchData = async () => {
       try {
         const feedResult = (await getData(
-          `${joinTeamUrl}/feed/myfeed`
+          `${joinTeamUrl}/feed/myfeed${endPoint}`
         )) as FeedData[];
         const clubResult = (await getData(
-          `${joinTeamUrl}/club/myclub`
+          `${joinTeamUrl}/club/myclub${endPoint}`
         )) as ClubDetailData[];
 
         setFeedData(feedResult);

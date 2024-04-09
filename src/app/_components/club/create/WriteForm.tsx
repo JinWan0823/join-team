@@ -7,7 +7,6 @@ import imageCompression from "browser-image-compression";
 import { postImgData } from "@/app/_utils/axios";
 import LocationBtn from "./LocationBtn";
 import Location from "./Location";
-import { joinTeamUrl } from "@/app/_utils/url";
 import { useRouter } from "next/navigation";
 
 interface ResultType {
@@ -44,7 +43,7 @@ export default function WriteForm() {
         const compressionFile = await imageCompression(images[0], options);
         formData.append("images", compressionFile);
       }
-      const result = await postImgData(`${joinTeamUrl}/club`, formData);
+      const result = await postImgData(`/club`, formData);
       router.push(`/club/${(result as ResultType).insertedId}`);
     } catch (error) {
       console.error("Data Fetching Error : ", error);

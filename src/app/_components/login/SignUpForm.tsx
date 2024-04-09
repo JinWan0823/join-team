@@ -9,8 +9,6 @@ export default function SignUpForm() {
   const [email, setMail] = useState("");
   const [pwd, setPwd] = useState("");
   const [name, setName] = useState("");
-  const url = "http://localhost:8080/signup";
-
   const [interestList, setInterestList] = useState<string[]>([]);
 
   const [selectMenu, setSelectMenu] = useState<boolean>(false);
@@ -56,7 +54,7 @@ export default function SignUpForm() {
     e.preventDefault();
 
     try {
-      const data = await postData(url, {
+      const data = await postData("/signup", {
         username: email,
         password: pwd,
         name: name,

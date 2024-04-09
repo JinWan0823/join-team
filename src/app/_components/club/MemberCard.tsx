@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getData } from "@/app/_utils/axios";
-import { joinTeamUrl } from "@/app/_utils/url";
 import { MemberData } from "@/app/_utils/Interface";
 import Image from "next/image";
 import CategoryBadge from "../common/CategoryBadge";
@@ -16,7 +15,7 @@ export default function MemberCard({ memberId, clubMaster }: MemberIdProps) {
   useEffect(() => {
     const fetchingMember = async () => {
       try {
-        const result = await getData(`${joinTeamUrl}/user/${memberId}`);
+        const result = await getData(`/user/${memberId}`);
         console.log(result);
         setMemberData(result as MemberData);
       } catch (error) {

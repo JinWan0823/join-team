@@ -9,10 +9,11 @@ export default function Wrap() {
   const [data, setData] = useState<FeedData[]>();
   const updateStatus = useRecoilValue(DataUpdate);
 
+  const url = `http://localhost:8080/feed`;
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData<FeedData[]>(`/feed`);
+        const result = await getData<FeedData[]>(url);
         setData(result);
       } catch (error) {
         console.error("Data Fetching Error : ", error);

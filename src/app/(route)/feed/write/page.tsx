@@ -13,6 +13,8 @@ export default function Wrap() {
   const [showImages, setShowImages] = useState<string[]>([]);
   const [text, setText] = useState("");
 
+  const url = "http://localhost:8080/feed";
+
   const options = {
     maxSizeMB: 0.5,
     maxWidthOrHeight: 520,
@@ -30,7 +32,7 @@ export default function Wrap() {
         }
       }
 
-      await postImgData("/feed", formData);
+      await postImgData(url, formData);
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }

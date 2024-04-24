@@ -7,29 +7,37 @@ import ClubInfoText from "@/app/_components/club/ClubInfoText";
 import ClubMember from "@/app/_components/club/ClubMember";
 import { ClubDetailData } from "@/app/_utils/Interface";
 import { getData, postData } from "@/app/_utils/axios";
+import { joinTeamUrl } from "@/app/_utils/url";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Wrap() {
   const [data, setData] = useState<ClubDetailData>();
+  const [update, setUpdate] = useState(false);
   const params = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData<ClubDetailData>(`/club/${params.id}`);
+        const result = await getData<ClubDetailData>(
+          `${joinTeamUrl}/club/${params.id}`
+        );
         setData(result);
       } catch (error) {
         console.error("Data Fetching Error : ", error);
       }
     };
     fetchData();
-  }, []);
+  }, [update]);
 
   const handleJoinClub = async () => {
     try {
-      const result = await postData(`/club/join/${params.id}`, {});
+      const result = await postData(
+        `${joinTeamUrl}/club/join/${params.id}`,
+        {}
+      );
       console.log(result);
+      setUpdate((prev) => !prev);
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }

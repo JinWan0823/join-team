@@ -7,6 +7,7 @@ import { getData } from "@/app/_utils/axios";
 import { UserData } from "@/app/_utils/Interface";
 import { IoIosSettings } from "react-icons/io";
 import Setting from "@/app/_components/mypage/Setting";
+import { joinTeamUrl } from "@/app/_utils/url";
 
 export default function Wrap() {
   const [userData, setUserData] = useState<UserData>();
@@ -15,7 +16,7 @@ export default function Wrap() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData<UserData>(`/user`);
+        const result = await getData<UserData>(`${joinTeamUrl}/user`);
         setUserData(result);
       } catch (err) {
         throw err;

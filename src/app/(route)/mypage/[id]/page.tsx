@@ -4,6 +4,7 @@ import InfoTab from "@/app/_components/mypage/InfoTab";
 import MyInfo from "@/app/_components/mypage/MyInfo";
 import { UserData } from "@/app/_utils/Interface";
 import { getData } from "@/app/_utils/axios";
+import { joinTeamUrl } from "@/app/_utils/url";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -15,7 +16,9 @@ export default function Wrap() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData<UserData>(`/user/${params.id}`);
+        const result = await getData<UserData>(
+          `${joinTeamUrl}/user/${params.id}`
+        );
         setUserData(result);
       } catch (err) {
         throw err;

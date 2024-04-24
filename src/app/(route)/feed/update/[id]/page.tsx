@@ -27,7 +27,7 @@ export default function Wrap() {
       updatedImages.forEach((image) => {
         formData.append(`images`, image);
       });
-      await putImgData(`/feed/${params.id}`, formData);
+      await putImgData(url, formData);
 
       router.push("/myfeed");
     } catch (error) {
@@ -38,7 +38,7 @@ export default function Wrap() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData<FeedData>(`/feed/${params.id}`);
+        const result = await getData<FeedData>(url);
 
         if (result.images.length > 0) {
           setImages(result.images.map(() => new File([], "")));

@@ -4,9 +4,10 @@ import { IoIosLogOut } from "react-icons/io";
 export default function Logout() {
   const router = useRouter();
 
+  const url = "http://localhost:8080/logout";
   const handleLogout = async () => {
     try {
-      const result = await getData(`/logout`);
+      const result = await getData(url);
       router.push("/");
     } catch (error) {
       throw error;

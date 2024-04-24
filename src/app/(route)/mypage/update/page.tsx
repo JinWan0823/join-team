@@ -2,6 +2,7 @@
 import ProfileUpdateWrap from "@/app/_components/mypage/ProfileUpdateWrap";
 import { UserData } from "@/app/_utils/Interface";
 import { getData } from "@/app/_utils/axios";
+import { joinTeamUrl } from "@/app/_utils/url";
 import { useEffect, useState } from "react";
 
 export default function Wrap() {
@@ -9,7 +10,7 @@ export default function Wrap() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData<UserData>(`/user`);
+        const result = await getData<UserData>(`${joinTeamUrl}/user`);
         setUserData(result);
       } catch (err) {
         throw err;

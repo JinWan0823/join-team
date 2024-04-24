@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 
 export default function Wrap() {
   const [data, setData] = useState<ClubDetailData>();
+  const [update, setUpdate] = useState(false);
   const params = useParams();
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function Wrap() {
       }
     };
     fetchData();
-  }, []);
+  }, [update]);
 
   const handleJoinClub = async () => {
     try {
@@ -36,6 +37,7 @@ export default function Wrap() {
         {}
       );
       console.log(result);
+      setUpdate((prev) => !prev);
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }

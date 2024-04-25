@@ -8,6 +8,7 @@ export default function Logout() {
   const handleLogout = async () => {
     try {
       const result = await getData(url);
+      // localStorage.setItem("recoil-persist", "");
       router.push("/");
     } catch (error) {
       throw error;

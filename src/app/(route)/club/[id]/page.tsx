@@ -8,12 +8,14 @@ import ClubMember from "@/app/_components/club/ClubMember";
 import { ClubDetailData } from "@/app/_utils/Interface";
 import { getData, postData } from "@/app/_utils/axios";
 import { joinTeamUrl } from "@/app/_utils/url";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Wrap() {
   const [data, setData] = useState<ClubDetailData>();
   const [update, setUpdate] = useState(false);
+  const [chkMaster, setChkMaster] = useState(false);
   const params = useParams();
 
   useEffect(() => {
@@ -23,6 +25,8 @@ export default function Wrap() {
           `${joinTeamUrl}/club/${params.id}`
         );
         setData(result);
+
+        console.log(result);
       } catch (error) {
         console.error("Data Fetching Error : ", error);
       }
@@ -57,13 +61,26 @@ export default function Wrap() {
       <div className="p-[10px]">
         <ClubInfoText text={data.information} />
         <ClubMember member={data.member} clubMaster={data.master} />
-        {data.activity && <ClubActivity activity={data.activity} />}
-        <button
-          className="w-full text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF]"
-          onClick={() => handleJoinClub()}
-        >
-          참가 신청하기
-        </button>
+        <ClubActivity
+          activity={data.activity}
+          clubMaster={data.master}
+          setChkMaster={setChkMaster}
+        />
+        {chkMaster ? (
+          <Link
+            href={"/"}
+            className="w-full block text-center text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF]"
+          >
+            클럽 활동 추가하기
+          </Link>
+        ) : (
+          <button
+            className="w-full text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF]"
+            onClick={() => handleJoinClub()}
+          >
+            참가 신청하기
+          </button>
+        )}
       </div>
     </section>
   );

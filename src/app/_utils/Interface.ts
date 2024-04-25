@@ -7,7 +7,7 @@ export interface ClubDetailData {
   information: string;
   joinedMember: number;
   maximumMember: number;
-  activity?: ActivityInterface[];
+  activity: ActivityInterface[];
   member: MemberProps[];
   sido: string;
   gugun: string;

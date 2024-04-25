@@ -15,7 +15,6 @@ export default function Member({ memberId }: MemberIdProps) {
     const fetchingMember = async () => {
       try {
         const result = await getData(`${joinTeamUrl}/user/${memberId}`);
-        console.log(result);
         setMemberData(result as MemberData);
       } catch (error) {
         console.log("Data Fetching Error : ", error);

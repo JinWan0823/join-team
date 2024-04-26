@@ -68,7 +68,7 @@ export default function Wrap() {
         />
         {chkMaster ? (
           <Link
-            href={"/"}
+            href={`/club/clubActivity/${params.id}`}
             className="w-full block text-center text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF]"
           >
             클럽 활동 추가하기

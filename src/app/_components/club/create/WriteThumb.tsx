@@ -39,7 +39,7 @@ export default function ClubUploadIMG({
         ) : (
           <span className="text-[#878787] text-md flex-center flex-col">
             <GoAlert className="text-lg mb-[4px]" />
-            선택된 이미지가 없습니다.
+            대표 썸네일이 없습니다.
           </span>
         )}
       </div>

@@ -2,19 +2,23 @@
 
 import DatePicker from "@/app/_components/club/clubActivity/DatePicker";
 import DateWrap from "@/app/_components/club/clubActivity/DateWrap";
-import FeedWriteImg from "@/app/_components/feed/write/FeedWriteImg";
+import ClubUploadIMG from "@/app/_components/club/create/WriteThumb";
 import { ClubDetailData } from "@/app/_utils/Interface";
-import { getData } from "@/app/_utils/axios";
+import { getData, putImgData } from "@/app/_utils/axios";
 import { joinTeamUrl } from "@/app/_utils/url";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import imageCompression from "browser-image-compression";
+import { useRouter } from "next/navigation";
 
 export default function Wrap() {
   const [data, setData] = useState<ClubDetailData>();
   const [images, setImages] = useState<File[]>([]);
-  const [showImages, setShowImages] = useState<string[]>([]);
-  const [text, setText] = useState("");
+  const [showImages, setShowImages] = useState("");
+  const [content, setContent] = useState("");
+  const [activityName, setActivityName] = useState("");
   const params = useParams();
+  const router = useRouter();
 
   const [openDatePicker, setOpenDatePicker] = useState(false);
 
@@ -23,6 +27,34 @@ export default function Wrap() {
     month: new Date().getMonth() + 1,
     year: new Date().getFullYear(),
   });
+
+  const options = {
+    maxSizeMB: 0.5,
+    maxWidthOrHeight: 520,
+  };
+
+  const handleWriteActivity = async () => {
+    const date = `${dateInfo.year}-${dateInfo.month}-${dateInfo.date}`;
+    if (!images) {
+      return;
+    } else {
+      try {
+        const formData = new FormData();
+        formData.append("activityName", activityName);
+        formData.append("content", content);
+        formData.append("date", date);
+        const compressionFile = await imageCompression(images[0], options);
+        formData.append("images", compressionFile);
+        const result = await putImgData(
+          `${joinTeamUrl}/club/${params.id}`,
+          formData
+        );
+        router.push(`/club/${params.id}`);
+      } catch (error) {
+        console.error("Data Fetching Error : ", error);
+      }
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,17 +77,25 @@ export default function Wrap() {
       <div className="bg-[#ebebeb] p-[10px]">
         <p className="font-bold">{data.clubName}</p>
       </div>
-      <FeedWriteImg
-        images={images}
-        setImages={setImages}
-        showImages={showImages}
-        setShowImages={setShowImages}
-      />
+      <div className="p-[10px]">
+        <input
+          type="text"
+          className="w-full p-[4px] py-[6px] outline-none border-[1px] border-[#878787] rounded-[4px] focus:border-[#333]"
+          placeholder="제목을 입력해주세요."
+          onChange={(e) => setActivityName(e.target.value)}
+        />
+        <ClubUploadIMG
+          images={images}
+          setImages={setImages}
+          showImages={showImages}
+          setShowImages={setShowImages}
+        />
+      </div>
       <textarea
         name="feedWrite"
-        className="w-full h-[180px] whitespace-pre-wrap resize-none p-[10px] border-b-[1px] outline-none"
+        className="w-full h-[180px]  whitespace-pre-wrap resize-none p-[10px] border-y-[1px] outline-none"
         placeholder="내용을 입력해주세요."
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => setContent(e.target.value)}
       ></textarea>
       <DateWrap setOpenDatePicker={setOpenDatePicker} dateInfo={dateInfo} />
       {openDatePicker && (
@@ -65,6 +105,12 @@ export default function Wrap() {
           setDateInfo={setDateInfo}
         />
       )}
+      <button
+        className="absolute bottom-[70px] left-[50%] translate-x-[-50%] w-[calc(100%-10px)] text-[#fff] py-[10px] mt-[10px] rounded-[8px] bg-[#3D97FF]"
+        onClick={() => handleWriteActivity()}
+      >
+        저장하기
+      </button>
     </section>
   );
 }

@@ -7,8 +7,11 @@ export interface ClubDetailData {
   information: string;
   joinedMember: number;
   maximumMember: number;
-  activity?: ActivityInterface[];
+  activity: ActivityInterface[];
   member: MemberProps[];
+  sido: string;
+  gugun: string;
+  master: string;
 }
 
 export interface MemberProps {
@@ -28,6 +31,7 @@ export interface MemberData {
   _id: string;
   thumbnail: string;
   name: string;
+  interestList: string;
 }
 
 export interface FeedData {

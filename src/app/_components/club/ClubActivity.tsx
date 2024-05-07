@@ -1,14 +1,21 @@
 "use client";
 import { FaAngleRight, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 import ActivityCard from "./ActivityCard";
-import { useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { ActivityInterface } from "@/app/_utils/Interface";
+import NoneClubActivity from "./NoneClubActivity";
 
 interface ClubActivityProps {
   activity: ActivityInterface[];
+  clubMaster: string;
+  setChkMaster: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function ClubActivity({ activity }: ClubActivityProps) {
+export default function ClubActivity({
+  activity,
+  clubMaster,
+  setChkMaster,
+}: ClubActivityProps) {
   const ref = useRef<HTMLUListElement>(null);
   const div = ref.current;
   const refId = useRef<number | null>(null);
@@ -18,6 +25,18 @@ export default function ClubActivity({ activity }: ClubActivityProps) {
     start: new Date(),
     tickCnt: 0,
   });
+
+  useEffect(() => {
+    const userId = localStorage.getItem("recoil-persist");
+    if (userId) {
+      const userIdData = JSON.parse(userId);
+      console.log(userIdData.userInfo.id);
+
+      if (userIdData.userInfo.id === clubMaster) {
+        setChkMaster(true);
+      }
+    }
+  }, []);
 
   const handleMouseDown = (e: React.MouseEvent<HTMLUListElement>) => {
     setIsDragging(true);
@@ -49,13 +68,15 @@ export default function ClubActivity({ activity }: ClubActivityProps) {
     });
   };
   return (
-    <div className="mt-[40px]">
+    <div className="mt-[20px]">
       <div className="flex justify-between items-center">
         <h4 className="font-bold text-[#3D97FF]">클럽 활동</h4>
-        <button className="text-sm text-[#878787] flex-center">
-          더보기
-          <FaAngleRight />
-        </button>
+        {activity && (
+          <button className="text-sm text-[#878787] flex-center">
+            더보기
+            <FaAngleRight />
+          </button>
+        )}
       </div>
       <ul
         className="mt-[10px] flex overflow-x-auto row-scroll"
@@ -64,9 +85,11 @@ export default function ClubActivity({ activity }: ClubActivityProps) {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
       >
-        {activity.map((item, idx) => (
-          <ActivityCard key={idx} item={item} />
-        ))}
+        {activity ? (
+          activity.map((item, idx) => <ActivityCard key={idx} item={item} />)
+        ) : (
+          <NoneClubActivity />
+        )}
       </ul>
     </div>
   );

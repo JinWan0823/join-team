@@ -13,7 +13,11 @@ export default function FeedText({ text, hashTag }: FeedTextProps) {
     <div className="p-[10px]">
       <div className="hashtag flex flex-wrap ">
         {hashTag.map((item, idx) => (
-          <Link href={""} key={idx} className="mr-[4px] text-[#003783]">
+          <Link
+            href={`/club?val=${item}`}
+            key={idx}
+            className="mr-[4px] text-[#003783]"
+          >
             #{item}
           </Link>
         ))}

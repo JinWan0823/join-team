@@ -14,6 +14,7 @@ export default function MypageWrap() {
   const [userData, setUserData] = useState<UserData>();
   const [settingMenu, setSettingMenu] = useState<boolean>(false);
 
+  const endPoint = ``;
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,7 +44,7 @@ export default function MypageWrap() {
 
         {/* <InterestReset /> */}
       </div>
-      <InfoTab />
+      <InfoTab endPoint={endPoint} />
       {settingMenu && userData && (
         <Setting setSettingMenu={setSettingMenu} user={userData} />
       )}

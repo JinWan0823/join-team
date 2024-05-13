@@ -24,10 +24,10 @@ export default function MyInfo({ user }: UserDataProps) {
               피드 <span className="font-bold">{user.feedCount}</span>
             </li>
             <li className="mr-[8px] info-list">
-              팔로워 <span className="font-bold">0</span>
+              팔로워 <span className="font-bold">{user.followers.length}</span>
             </li>
             <li className="mr-[8px]">
-              팔로잉 <span className="font-bold">0</span>
+              팔로잉 <span className="font-bold">{user.followings.length}</span>
             </li>
           </ul>
         </div>

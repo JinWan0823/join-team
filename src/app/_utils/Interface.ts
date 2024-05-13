@@ -60,4 +60,6 @@ export interface UserData {
   introComment: string;
   interestList: string;
   feedCount: number;
+  followers: string[];
+  followings: string[];
 }

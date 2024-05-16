@@ -21,10 +21,10 @@ export interface MemberProps {
 
 export interface ActivityInterface {
   _id: string;
-  thumbnail: string;
+  images: string;
   location: string;
   date: string;
-  title: string;
+  activityName: string;
   category: string;
 }
 export interface MemberData {

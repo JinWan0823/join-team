@@ -4,17 +4,22 @@ import ActivityCard from "./ActivityCard";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { ActivityInterface } from "@/app/_utils/Interface";
 import NoneClubActivity from "./NoneClubActivity";
+import TotalActivity from "./clubActivity/TotalActivity";
 
 interface ClubActivityProps {
   activity: ActivityInterface[];
   clubMaster: string;
   setChkMaster: Dispatch<SetStateAction<boolean>>;
+  setClubActivityToggle: Dispatch<SetStateAction<boolean>>;
+  clubActivityToggle: boolean;
 }
 
 export default function ClubActivity({
   activity,
   clubMaster,
   setChkMaster,
+  setClubActivityToggle,
+  clubActivityToggle,
 }: ClubActivityProps) {
   const ref = useRef<HTMLUListElement>(null);
   const div = ref.current;
@@ -68,29 +73,37 @@ export default function ClubActivity({
     });
   };
   return (
-    <div className="mt-[20px]">
-      <div className="flex justify-between items-center">
-        <h4 className="font-bold text-[#3D97FF]">클럽 활동</h4>
-        {activity && (
-          <button className="text-sm text-[#878787] flex-center">
-            더보기
-            <FaAngleRight />
-          </button>
-        )}
+    <>
+      <div className="mt-[20px]">
+        <div className="flex justify-between items-center">
+          <h4 className="font-bold text-[#3D97FF]">클럽 활동</h4>
+          {activity && (
+            <button
+              className="text-sm text-[#878787] flex-center"
+              onClick={() => setClubActivityToggle(true)}
+            >
+              더보기
+              <FaAngleRight />
+            </button>
+          )}
+        </div>
+        <ul
+          className="mt-[10px] flex overflow-x-auto row-scroll"
+          ref={ref}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+        >
+          {activity ? (
+            activity.map((item, idx) => <ActivityCard key={idx} item={item} />)
+          ) : (
+            <NoneClubActivity />
+          )}
+        </ul>
       </div>
-      <ul
-        className="mt-[10px] flex overflow-x-auto row-scroll"
-        ref={ref}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-      >
-        {activity ? (
-          activity.map((item, idx) => <ActivityCard key={idx} item={item} />)
-        ) : (
-          <NoneClubActivity />
-        )}
-      </ul>
-    </div>
+      {clubActivityToggle && (
+        <TotalActivity setClubActivityToggle={setClubActivityToggle} />
+      )}
+    </>
   );
 }

@@ -1,22 +1,28 @@
 "use client";
 import { FaAngleRight } from "react-icons/fa6";
 import Member from "./Member";
-import { useRef, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { MemberProps } from "@/app/_utils/Interface";
 import TotalMember from "./TotalMember";
 
 interface ClubMemberProps {
   member: MemberProps[];
   clubMaster: string;
+  totalMemberToggle: boolean;
+  setTotalMemberToggle: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function ClubMember({ member, clubMaster }: ClubMemberProps) {
+export default function ClubMember({
+  member,
+  clubMaster,
+  totalMemberToggle,
+  setTotalMemberToggle,
+}: ClubMemberProps) {
   const ref = useRef<HTMLUListElement>(null);
   const div = ref.current;
   const refId = useRef<number | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [previousX, SetPreviousX] = useState(0);
-  const [totalMemberToggle, setTotalMemberToggle] = useState(false);
   const tickEvent = useRef<{ start: Date; tickCnt: number }>({
     start: new Date(),
     tickCnt: 0,

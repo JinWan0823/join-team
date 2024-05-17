@@ -17,6 +17,7 @@ export default function Wrap() {
   const [showImages, setShowImages] = useState("");
   const [content, setContent] = useState("");
   const [activityName, setActivityName] = useState("");
+  const [location, setLocation] = useState("");
   const params = useParams();
   const router = useRouter();
 
@@ -43,6 +44,7 @@ export default function Wrap() {
         formData.append("activityName", activityName);
         formData.append("content", content);
         formData.append("date", date);
+        formData.append("location", location);
         const compressionFile = await imageCompression(images[0], options);
         formData.append("images", compressionFile);
         const result = await putImgData(
@@ -105,6 +107,12 @@ export default function Wrap() {
           setDateInfo={setDateInfo}
         />
       )}
+      <input
+        type="text"
+        className="flex items-center justify-between w-full p-[10px] border-b-[1px] text-[#878787] cursor-pointer focus:outline-none"
+        placeholder="위치를 입력해주세요"
+        onChange={(e) => setLocation(e.target.value)}
+      ></input>
       <button
         className="absolute bottom-[70px] left-[50%] translate-x-[-50%] w-[calc(100%-10px)] text-[#fff] py-[10px] mt-[10px] rounded-[8px] bg-[#3D97FF]"
         onClick={() => handleWriteActivity()}

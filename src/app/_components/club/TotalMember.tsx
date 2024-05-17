@@ -1,8 +1,6 @@
 import { MemberProps } from "@/app/_utils/Interface";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
-import CategoryBadge from "../common/CategoryBadge";
-import Link from "next/link";
 import MemberCard from "./MemberCard";
 
 interface ClubMemberProps {
@@ -22,7 +20,7 @@ export default function TotalMember({
   }, []);
   return (
     <div
-      className={`w-full h-full bg-[#f6f6f6] z-[999] absolute top-[0] left-[0] overflow-hidden  ${
+      className={`w-full h-full bg-[#f6f6f6] z-[999] absolute top-[0] left-[0] overflow-hidden pb-[56px]  ${
         isVisible ? "category-visible" : "category-hidden"
       }`}
     >

@@ -18,6 +18,9 @@ export default function Wrap() {
   const [chkMaster, setChkMaster] = useState(false);
   const params = useParams();
 
+  const [clubActivityToggle, setClubActivityToggle] = useState(false);
+  const [totalMemberToggle, setTotalMemberToggle] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,7 +53,13 @@ export default function Wrap() {
   if (!data) return null;
 
   return (
-    <section className="max-h-[calc(100vh-66px)] h-[calc(100vh-66px)] overflow-y-auto bg-[#f1f1f1] pb-[56px] scroll-track relative">
+    <section
+      className={`max-h-[calc(100vh-66px)] h-[calc(100vh-66px)] bg-[#f1f1f1] pb-[56px] scroll-track relative  ${
+        clubActivityToggle || totalMemberToggle
+          ? "overflow-y-hidden h-[100vh]"
+          : "overflow-y-auto"
+      }`}
+    >
       <ClubBanner images={data.images} />
       <ClubInfo
         title={data.clubName}
@@ -60,11 +69,18 @@ export default function Wrap() {
       />
       <div className="p-[10px]">
         <ClubInfoText text={data.information} />
-        <ClubMember member={data.member} clubMaster={data.master} />
+        <ClubMember
+          member={data.member}
+          clubMaster={data.master}
+          totalMemberToggle={totalMemberToggle}
+          setTotalMemberToggle={setTotalMemberToggle}
+        />
         <ClubActivity
           activity={data.activity}
           clubMaster={data.master}
           setChkMaster={setChkMaster}
+          setClubActivityToggle={setClubActivityToggle}
+          clubActivityToggle={clubActivityToggle}
         />
         {chkMaster ? (
           <Link

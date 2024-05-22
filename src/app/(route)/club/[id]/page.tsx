@@ -53,51 +53,53 @@ export default function Wrap() {
   if (!data) return null;
 
   return (
-    <section
-      className={`max-h-[calc(100vh-66px)] h-[calc(100vh-66px)] bg-[#f1f1f1] pb-[56px] scroll-track relative  ${
-        clubActivityToggle || totalMemberToggle
-          ? "overflow-y-hidden h-[100vh]"
-          : "overflow-y-auto"
-      }`}
-    >
-      <ClubBanner images={data.images} />
-      <ClubInfo
-        title={data.clubName}
-        location={data.location}
-        joinedMember={data.joinedMember}
-        maximumMember={data.maximumMember}
-      />
-      <div className="p-[10px]">
-        <ClubInfoText text={data.information} />
-        <ClubMember
-          member={data.member}
-          clubMaster={data.master}
-          totalMemberToggle={totalMemberToggle}
-          setTotalMemberToggle={setTotalMemberToggle}
+    <div className="relative overflow-hidden">
+      <section
+        className={`max-h-[calc(100vh-66px)] h-[calc(100vh-66px)] bg-[#f1f1f1] pb-[56px] scroll-track  ${
+          clubActivityToggle || totalMemberToggle
+            ? "overflow-y-hidden h-[100vh]"
+            : "overflow-y-auto"
+        }`}
+      >
+        <ClubBanner images={data.images} />
+        <ClubInfo
+          title={data.clubName}
+          location={data.location}
+          joinedMember={data.joinedMember}
+          maximumMember={data.maximumMember}
         />
-        <ClubActivity
-          activity={data.activity}
-          clubMaster={data.master}
-          setChkMaster={setChkMaster}
-          setClubActivityToggle={setClubActivityToggle}
-          clubActivityToggle={clubActivityToggle}
-        />
-        {chkMaster ? (
-          <Link
-            href={`/club/clubActivity/${params.id}`}
-            className="w-full block text-center text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF]"
-          >
-            클럽 활동 추가하기
-          </Link>
-        ) : (
-          <button
-            className="w-full text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF]"
-            onClick={() => handleJoinClub()}
-          >
-            참가 신청하기
-          </button>
-        )}
-      </div>
-    </section>
+        <div className="p-[10px]">
+          <ClubInfoText text={data.information} />
+          <ClubMember
+            member={data.member}
+            clubMaster={data.master}
+            totalMemberToggle={totalMemberToggle}
+            setTotalMemberToggle={setTotalMemberToggle}
+          />
+          <ClubActivity
+            activity={data.activity}
+            clubMaster={data.master}
+            setChkMaster={setChkMaster}
+            setClubActivityToggle={setClubActivityToggle}
+            clubActivityToggle={clubActivityToggle}
+          />
+          {chkMaster ? (
+            <Link
+              href={`/club/clubActivity/${params.id}`}
+              className="w-full block text-center text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF]"
+            >
+              클럽 활동 추가하기
+            </Link>
+          ) : (
+            <button
+              className="w-full text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF]"
+              onClick={() => handleJoinClub()}
+            >
+              참가 신청하기
+            </button>
+          )}
+        </div>
+      </section>
+    </div>
   );
 }

@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import TotalActivityCard from "./TotalActivityCard";
+import InfiniteLoading from "../../common/InfiniteLoading";
 
 interface TotalMemberProps {
   setClubActivityToggle: Dispatch<SetStateAction<boolean>>;
@@ -66,6 +67,7 @@ export default function TotalActivity({
         {activity.map((item, idx) => (
           <TotalActivityCard key={idx} item={item} />
         ))}
+        <InfiniteLoading />
       </ul>
     </div>
   );

@@ -16,7 +16,7 @@ export default function TabMenu() {
     return <></>;
   } else {
     return (
-      <div className="w-full absolute bottom-0 p-[10px] bg-[#fff] border-t-2 z-50">
+      <div className="w-full absolute bottom-0 p-[10px] bg-[#fff] border-t-2 z-[9999]">
         <ul className="w-full grid grid-cols-5 gap-2 text-center">
           <li>
             <Link

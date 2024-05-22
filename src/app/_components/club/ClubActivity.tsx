@@ -95,14 +95,19 @@ export default function ClubActivity({
           onMouseUp={handleMouseUp}
         >
           {activity ? (
-            activity.map((item, idx) => <ActivityCard key={idx} item={item} />)
+            activity.map(
+              (item, idx) => idx < 3 && <ActivityCard key={idx} item={item} />
+            )
           ) : (
             <NoneClubActivity />
           )}
         </ul>
       </div>
       {clubActivityToggle && (
-        <TotalActivity setClubActivityToggle={setClubActivityToggle} />
+        <TotalActivity
+          setClubActivityToggle={setClubActivityToggle}
+          activity={activity}
+        />
       )}
     </>
   );

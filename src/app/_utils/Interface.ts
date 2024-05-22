@@ -26,6 +26,7 @@ export interface ActivityInterface {
   date: string;
   activityName: string;
   category: string;
+  content: string;
 }
 export interface MemberData {
   _id: string;

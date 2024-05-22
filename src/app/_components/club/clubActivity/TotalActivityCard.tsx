@@ -16,7 +16,7 @@ interface ActivityCardProps {
 export default function TotalActivityCard({ item }: ActivityCardProps) {
   return (
     <>
-      <li className="mt-[20px] rounded-[10px] overflow-hidden w-full bg-[#dfdfdf] first:mt-0">
+      <li className="mt-[20px] rounded-[10px] overflow-hidden w-full bg-[#eee] first:mt-0 shadow-lg card-shadow">
         <div className="w-full h-[370px]">
           <Image
             src={item.images}

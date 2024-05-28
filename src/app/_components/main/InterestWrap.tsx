@@ -9,7 +9,7 @@ export default function InterestWrap() {
         <h2 className="font-bold text-lg">취향 저격 클럽</h2>
         <p className="text-sm">회원님의 관심사에 어울리는 클럽을 확인하세요.</p>
         <ListWrap category={"recommend"} />
-        <MoreBtn />
+        <MoreBtn category={"interest"} />
       </section>
     </>
   );

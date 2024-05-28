@@ -8,7 +8,7 @@ export default function HotWrap() {
         <h2 className="font-bold text-lg">인기 클럽</h2>
         <p className="text-sm">회원님의 관심사에 어울리는 클럽을 확인하세요.</p>
         <ListWrap category={"hot"} />
-        <MoreBtn />
+        <MoreBtn category={"hot"} />
       </section>
     </>
   );

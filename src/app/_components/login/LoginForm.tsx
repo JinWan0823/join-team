@@ -8,6 +8,7 @@ import { userInfoState, userLoginState } from "@/app/_state/recoil";
 import { postData } from "@/app/_utils/axios";
 import { UserData } from "@/app/_utils/Interface";
 import { useRouter } from "next/navigation";
+import { joinTeamUrl } from "@/app/_utils/url";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -55,7 +56,7 @@ export default function LoginForm() {
     }
 
     try {
-      const data: UserData = await postData(url, {
+      const data: UserData = await postData(`${joinTeamUrl}/login`, {
         username: email,
         password: pwd,
       });

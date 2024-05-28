@@ -24,7 +24,6 @@ export default function InfoTab({ endPoint }: InfoTabProps) {
         const clubResult = (await getData(
           `${joinTeamUrl}/club/myclub${endPoint}`
         )) as ClubDetailData[];
-
         setFeedData(feedResult);
         setClubData(clubResult);
       } catch (error) {

@@ -1,7 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
 import ListCard from "../main/ListCard";
-import { getData } from "@/app/_utils/axios";
 import { ClubDetailData } from "@/app/_utils/Interface";
 import NoClub from "./NoClub";
 

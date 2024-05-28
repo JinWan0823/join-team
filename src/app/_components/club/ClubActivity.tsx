@@ -94,7 +94,7 @@ export default function ClubActivity({
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
         >
-          {activity ? (
+          {activity.length > 0 ? (
             activity.map(
               (item, idx) => idx < 3 && <ActivityCard key={idx} item={item} />
             )

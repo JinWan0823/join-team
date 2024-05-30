@@ -16,7 +16,7 @@ export default function ListCard({ data }: ListCardProps) {
   return (
     <>
       <li
-        className={`w-full bg-[#fff]  ${
+        className={`w-full bg-[#fff] ${
           pathName === "/" ? "mt-[10px] rounded-[4px]" : "border-b-[1px]"
         }`}
       >

@@ -12,8 +12,9 @@ export default function Wrap() {
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(2);
   const [hasMore, setHasMore] = useState(true);
+  const [isLowEntryCount, setIsLowEntryCount] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
-  const params = useParams(); // useRouter 추가
+  const params = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,21 +28,22 @@ export default function Wrap() {
         } else {
           setPage((prevPage) => prevPage + 1);
         }
+
+        if (result.length < 10) {
+          setIsLowEntryCount(true);
+        }
       } catch (error) {
         console.error("Initial Data Fetching Error: ", error);
       }
     };
 
     if (data.length === 0) {
-      // data가 비어있을 때만 fetchData 함수 호출
       fetchData();
     }
   }, []);
 
   useEffect(() => {
-    console.log(listRef.current);
     const handleScroll = () => {
-      console.log("dddd");
       if (listRef.current && hasMore && !isLoading) {
         const { scrollTop, scrollHeight, clientHeight } = listRef.current;
         if (scrollTop + clientHeight >= scrollHeight - 5) {
@@ -59,7 +61,7 @@ export default function Wrap() {
         listRef.current.removeEventListener("scroll", handleScroll);
       }
     };
-  }, [hasMore, isLoading]);
+  }, [hasMore, isLoading, params, params.id]);
 
   const fetchMoreData = async () => {
     console.log("데이터호출");
@@ -69,14 +71,14 @@ export default function Wrap() {
 
     try {
       const result = await getData<ClubDetailData[]>(
-        `${joinTeamUrl}/club/category/${params.id}?page=${page}` // 페이지 번호를 증가시킴
+        `${joinTeamUrl}/club/category/${params.id}?page=${page}`
       );
 
       if (result.length === 0) {
-        setHasMore(false); // 더 이상 로드할 데이터가 없으면 hasMore를 false로 설정
+        setHasMore(false);
       } else {
         setData((prev) => [...prev, ...result]);
-        setPage((prev) => prev + 1); // 페이지 번호를 증가시킴
+        setPage((prev) => prev + 1);
       }
       setIsLoading(false);
     } catch (error) {
@@ -104,6 +106,11 @@ export default function Wrap() {
       {!hasMore && (
         <p className="mt-[20px] text-sm text-center text-[#9e9e9e]">
           더 이상 불러올 활동이 없습니다.
+        </p>
+      )}
+      {isLowEntryCount && (
+        <p className="mt-[20px] text-sm text-center text-[#9e9e9e]">
+          관심 항목을 추가하고 더 많은 정보를 받아보세요.
         </p>
       )}
     </section>

@@ -3,13 +3,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { TbMenuDeep, TbPencil, TbTrash } from "react-icons/tb";
 import DeleteModal from "../modal/DeleteModal";
-import { FeedHeaderProps } from "./FeedHeader";
 import { deleteData } from "@/app/_utils/axios";
 import { useSetRecoilState } from "recoil";
 import { useUpdateData } from "@/app/_state/state";
 import { DataUpdate } from "@/app/_state/recoil";
 
-export default function BurgerMenu({ dataId }: FeedHeaderProps) {
+interface DataIdProps {
+  dataId: string;
+}
+
+export default function BurgerMenu({ dataId }: DataIdProps) {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const setUpdateStatus = useSetRecoilState(DataUpdate);

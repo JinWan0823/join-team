@@ -3,13 +3,14 @@ import FeedCard from "@/app/_components/feed/FeedCard";
 import { DataUpdate } from "@/app/_state/recoil";
 import { FeedData } from "@/app/_utils/Interface";
 import { getData } from "@/app/_utils/axios";
+import { joinTeamUrl } from "@/app/_utils/url";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 export default function Wrap() {
   const [data, setData] = useState<FeedData[]>();
   const updateStatus = useRecoilValue(DataUpdate);
 
-  const url = `http://localhost:8080/feed`;
+  const url = `${joinTeamUrl}/feed/myfeed`;
   useEffect(() => {
     const fetchData = async () => {
       try {

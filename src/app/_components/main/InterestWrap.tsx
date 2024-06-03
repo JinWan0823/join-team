@@ -1,4 +1,3 @@
-import ListCard from "./ListCard";
 import ListWrap from "./ListWrap";
 import MoreBtn from "./MoreBtn";
 

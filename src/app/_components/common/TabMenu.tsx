@@ -3,7 +3,7 @@ import { userLoginState } from "@/app/_state/recoil";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { GoPerson } from "react-icons/go";
+import { GoPerson, GoPlusCircle } from "react-icons/go";
 import { GoNote } from "react-icons/go";
 import { GoCommentDiscussion } from "react-icons/go";
 import { GoHome } from "react-icons/go";
@@ -36,7 +36,15 @@ export default function TabMenu() {
               <span className="text-sm">탐색</span>
             </Link>
           </li>
-          <li></li>
+          <li>
+            <Link
+              href={"/feed/write"}
+              className="flex flex-col justify-center items-center"
+            >
+              <GoPlusCircle />
+              <span className="text-sm">글쓰기</span>
+            </Link>
+          </li>
           <li>
             <Link
               href={"/feed/write"}

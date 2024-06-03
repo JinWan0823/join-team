@@ -40,6 +40,8 @@ export interface FeedData {
   content: string;
   hashTag: string;
   images: string[];
+  username: string;
+  thumbnail: string;
 }
 
 export interface ClubData {

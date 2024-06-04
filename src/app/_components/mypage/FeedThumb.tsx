@@ -3,14 +3,15 @@ import Link from "next/link";
 
 interface FeedThumbProps {
   thumbnail: string;
+  link: string;
 }
 
-export default function FeedThumb({ thumbnail }: FeedThumbProps) {
+export default function FeedThumb({ thumbnail, link }: FeedThumbProps) {
   return (
     <>
       <li>
         <Link
-          href={"/myfeed"}
+          href={`/myfeed?itemId=${link}`}
           className="h-[140px] text-[#fff] bg-[#333] flex-center font-bold text-lg"
         >
           {thumbnail ? (

@@ -37,6 +37,11 @@ ol {
     justify-content: center;
   }
 
+  .flex-between {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .position-center {
     top: 50%;
     left: 50%;

@@ -13,12 +13,8 @@ interface FeedCardProps {
 export default function FeedCard({ data }: FeedCardProps) {
   const hashTagToArray = data.hashTag.split("\\");
 
-  useEffect(() => {
-    console.log(data);
-  }, []);
-
   return (
-    <article className="pb-[20px]">
+    <article className="pb-[20px]" id={`${data._id}`}>
       <FeedHeader
         dataId={data._id}
         thumbnail={data.thumbnail}
@@ -30,7 +26,7 @@ export default function FeedCard({ data }: FeedCardProps) {
         <button className="mr-[4px]">
           <GoHeart className="text-lg" />
         </button>
-        <span>1,023</span>
+        <span>1111</span>
       </div>
     </article>
   );

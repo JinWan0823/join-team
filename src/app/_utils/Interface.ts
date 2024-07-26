@@ -66,3 +66,11 @@ export interface UserData {
   followers: string[];
   followings: string[];
 }
+
+export interface ChatListData {
+  _id: string;
+  clubTitle: string;
+  member: string[];
+  clubId: string;
+  thumb: string;
+}

@@ -1,19 +1,19 @@
+import Image from "next/image";
 import Link from "next/link";
-import { GoNote } from "react-icons/go";
 
 export default function NoClub() {
+  const noResult =
+    "https://jointeam.s3.ap-northeast-2.amazonaws.com/utill/Nosearch.avif";
+
   return (
     <>
       <div className="pt-[60px] flex flex-col justify-center items-center">
-        <GoNote className="text-[60px] text-[#787878]" />
-        <p className="text-[#878787] font-bold mt-[10px]">
-          아직 가입한 클럽이 없습니다.
-        </p>
+        <Image src={noResult} width={320} height={320} alt="error-img" />
         <Link
           href={"/search"}
-          className="mt-[10px] bg-[#3D97FF] text-[#fff] py-[6px] w-[120px] rounded-[6px] text-center"
+          className="mt-[10px] bg-[#3D97FF] text-[#fff] px-[16px] py-[12px]  rounded-[10px] text-center"
         >
-          가입하기
+          클럽 가입하기
         </Link>
       </div>
     </>

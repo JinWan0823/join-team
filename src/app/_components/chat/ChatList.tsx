@@ -6,6 +6,7 @@ import { ChatListData } from "@/app/_utils/Interface";
 import { joinTeamUrl } from "@/app/_utils/url";
 import { useEffect, useState } from "react";
 import { ImLab } from "react-icons/im";
+import NoClub from "../mypage/NoClub";
 
 export default function ChatList() {
   const [listData, setListData] = useState<ChatListData[]>([]);
@@ -28,9 +29,11 @@ export default function ChatList() {
 
   return (
     <ul>
-      {listData.length > 0
-        ? listData.map((item, idx) => <ChatCard key={idx} data={item} />)
-        : "가입한 클럽이 없습니다."}
+      {listData.length > 0 ? (
+        listData.map((item, idx) => <ChatCard key={idx} data={item} />)
+      ) : (
+        <NoClub />
+      )}
     </ul>
   );
 }

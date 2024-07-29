@@ -12,7 +12,7 @@ export default function ChatCard({ data }: DataProps) {
     <li>
       <Link
         className="w-full px-[16px] py-[16px] hover:bg-[#dfdfdf] first:border-t-[1px] border-b-[1px] border-[#dfdfdf] flex-between items-center"
-        href={"/chat"}
+        href={`/chat/${data._id}`}
       >
         <div className="thumb w-[56px] h-[56px] rounded-[10px] bg-[#333] overflow-hidden">
           <Image

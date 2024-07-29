@@ -47,7 +47,7 @@ export default function TabMenu() {
           </li>
           <li>
             <Link
-              href={"/chatlist"}
+              href={"/chat"}
               className="flex flex-col justify-center items-center"
             >
               <GoCommentDiscussion />

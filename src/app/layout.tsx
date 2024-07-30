@@ -6,6 +6,7 @@ import TabMenu from "./_components/common/TabMenu";
 import RecoilRootProvider from "./_components/RecoilRootProvider";
 import { Suspense } from "react";
 import LoadingSpinner from "./_components/common/LoadingSpinner";
+import { SocketProvider } from "./_components/SocketProvider";
 
 export const metadata: Metadata = {
   title: "Work Out",
@@ -23,11 +24,13 @@ export default function RootLayout({
     <html>
       <body className={noto.className}>
         <RecoilRootProvider>
-          <div className="w-[420px] mx-auto h-screen min-h-screen bg-[#fff] text-md relative">
-            <Heather />
-            <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
-            <TabMenu />
-          </div>
+          <SocketProvider>
+            <div className="w-[420px] mx-auto h-screen min-h-screen bg-[#fff] text-md relative">
+              <Heather />
+              <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
+              <TabMenu />
+            </div>
+          </SocketProvider>
         </RecoilRootProvider>
       </body>
     </html>

@@ -12,7 +12,11 @@ import { useRecoilValue } from "recoil";
 export default function TabMenu() {
   const pathName = usePathname();
 
-  if (pathName === "/login" || pathName === "/signup") {
+  if (
+    pathName === "/login" ||
+    pathName === "/signup" ||
+    pathName.startsWith("/chat/")
+  ) {
     return <></>;
   } else {
     return (

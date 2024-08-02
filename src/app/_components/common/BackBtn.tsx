@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { BiArrowBack } from "react-icons/bi";
 import { MdArrowBackIosNew } from "react-icons/md";
 
 export default function BackBtn() {
@@ -11,7 +12,8 @@ export default function BackBtn() {
 
   return (
     <button onClick={handleBackClick}>
-      <MdArrowBackIosNew className="text-xl" />
+      {/* <MdArrowBackIosNew className="text-xl" /> */}
+      <BiArrowBack className="text-xl" />{" "}
     </button>
   );
 }

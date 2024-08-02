@@ -8,7 +8,11 @@ import SearchHeader from "./SearchHeader";
 
 export default function Heather() {
   const pathName = usePathname();
-  if (pathName === "/login" || pathName === "/signup") {
+  if (
+    pathName === "/login" ||
+    pathName === "/signup" ||
+    pathName.startsWith("/chat/")
+  ) {
     return <></>;
   } else if (pathName === "/" || pathName === "/mypage") {
     return (

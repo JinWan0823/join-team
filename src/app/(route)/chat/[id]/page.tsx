@@ -12,13 +12,12 @@ export default function Wrap() {
   const params = useParams();
 
   useEffect(() => {
-    const roomId = params;
     if (socket) {
-      socket.emit("joinRoom", roomId);
+      socket.emit("joinRoom", params.id);
     }
 
     return () => {
-      socket?.emit("leaveRoom", roomId);
+      socket?.emit("leaveRoom", params.id);
     };
   }, [socket]);
 
@@ -26,7 +25,7 @@ export default function Wrap() {
     <section className="bg-[#777] max-h-[100vh] h-[100vh] relative">
       <ChatHeader />
       <ChatTextWrap />
-      <ChatInfut />
+      <ChatInfut roomId={params.id.toString()} />
     </section>
   );
 }

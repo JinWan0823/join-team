@@ -39,7 +39,7 @@ export default function Category({
 
   return (
     <div
-      className={`w-full h-full bg-[#f6f6f6] z-[999] absolute top-[0] left-[0] py-[20px] px-[10px] flex flex-col justify-between ${
+      className={`w-full h-full z-[99999] bg-[#f6f6f6] z-[999] absolute top-[0] left-[0] py-[20px] px-[10px] flex flex-col  ${
         isVisible ? "category-visible" : "category-hidden"
       }`}
     >
@@ -83,7 +83,7 @@ export default function Category({
       </div>
 
       <button
-        className="w-full rounded-[8px] py-[10px] text-[#fff] bg-[#3D97FF]"
+        className="w-full rounded-[8px] mt-[40px] py-[10px] text-[#fff] bg-[#3D97FF]"
         onClick={() => setCategoryToggle(false)}
       >
         저장하기

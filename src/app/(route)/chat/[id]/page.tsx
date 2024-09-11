@@ -19,6 +19,12 @@ export default function Wrap() {
     return () => {
       socket?.emit("leaveRoom", params.id);
     };
+  }, []);
+
+  useEffect(() => {
+    socket?.on("broadcast", (data) => {
+      console.log(data);
+    });
   }, [socket]);
 
   return (

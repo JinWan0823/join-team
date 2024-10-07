@@ -14,13 +14,15 @@ export default function NotFound() {
   return (
     <section className="max-h-[calc(100vh-66px)] h-[calc(100vh-66px)] overflow-y-auto  pb-[56px] scroll-track relative flex-center">
       <div className="flex justify-center items-center flex-col text-center">
-        <h2 className="font-bold text-[20px]">페이지를 찾을 수 없습니다!</h2>
-        <p className="my-[10px]">
+        <h2 className="font-bold text-[20px]  animate__animated animate__bounceIn">
+          페이지를 찾을 수 없습니다!
+        </h2>
+        <p className="my-[10px]  animate__animated animate__bounceIn">
           죄송합니다. 찾고 계신 페이지를 찾을 수 없습니다.
           <br />
           URL을 잘못 입력하셨나요? 맞춤법을 확인하세요.
         </p>
-        <div className="imgWarp">
+        <div className="imgWarp  animate__animated animate__bounceIn">
           <Image src={noResult} alt="error-404-img" width={300} height={300} />
         </div>
       </div>

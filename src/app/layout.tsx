@@ -7,6 +7,7 @@ import RecoilRootProvider from "./_components/RecoilRootProvider";
 import { Suspense } from "react";
 import LoadingSpinner from "./_components/common/LoadingSpinner";
 import { SocketProvider } from "./_components/SocketProvider";
+import "animate.css";
 
 export const metadata: Metadata = {
   title: "Work Out",

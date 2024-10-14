@@ -30,7 +30,7 @@ export default function Wrap() {
   return (
     <section className="bg-[#777] max-h-[100vh] h-[100vh] relative">
       <ChatHeader />
-      <ChatTextWrap />
+      <ChatTextWrap roomId={params.id.toString()} />
       <ChatInfut roomId={params.id.toString()} />
     </section>
   );

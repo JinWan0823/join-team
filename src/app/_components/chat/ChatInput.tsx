@@ -5,23 +5,23 @@ import { useSocket } from "../SocketProvider";
 
 interface ChatInputProps {
   roomId: string;
+  userId: string;
 }
 
-export default function ChatInfut({ roomId }: ChatInputProps) {
+export default function ChatInfut({ roomId, userId }: ChatInputProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [text, setText] = useState("");
   const socket = useSocket();
-  const userId = localStorage.getItem("recoil-persist");
 
   const sendMessage = (e: React.FormEvent<HTMLFormElement>) => {
+    console.log(userId);
     e.preventDefault();
-    if (text.trim() !== "" && userId) {
-      const userIdData = JSON.parse(userId);
+    if (text.trim() !== "") {
       const chatTime = new Date().toISOString();
       socket?.emit("message", {
         msg: text,
         room: roomId,
-        user: userIdData.userInfo.id,
+        user: userId,
         time: chatTime,
       });
       setText("");
@@ -41,7 +41,7 @@ export default function ChatInfut({ roomId }: ChatInputProps) {
 
   return (
     <>
-      <div className="w-full p-[10px] absolute bottom-0">
+      <div className="w-full p-[10px] absolute bottom-0 bg-[#777]">
         <form
           action="submit"
           onSubmit={sendMessage}

@@ -11,11 +11,19 @@ export default function ChatInfut({ roomId }: ChatInputProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [text, setText] = useState("");
   const socket = useSocket();
+  const userId = localStorage.getItem("recoil-persist");
 
   const sendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (text.trim() !== "") {
-      socket?.emit("message", { msg: text, room: roomId });
+    if (text.trim() !== "" && userId) {
+      const userIdData = JSON.parse(userId);
+      const chatTime = new Date().toISOString();
+      socket?.emit("message", {
+        msg: text,
+        room: roomId,
+        user: userIdData.userInfo.id,
+        time: chatTime,
+      });
       setText("");
     }
   };

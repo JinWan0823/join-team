@@ -22,12 +22,11 @@ export default function Wrap() {
     };
   }, []);
 
-  useEffect(() => {
-    socket?.on("broadcast", (data) => {
-      console.log(data);
-    });
-  }, [socket]);
-
+  // useEffect(() => {
+  //   socket?.on("message", (data) => {
+  //     console.log("data", data);
+  //   });
+  // }, [socket]);
   useEffect(() => {
     const user = localStorage.getItem("recoil-persist");
     if (user) {

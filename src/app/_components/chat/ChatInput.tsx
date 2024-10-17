@@ -14,14 +14,13 @@ export default function ChatInfut({ roomId, userId }: ChatInputProps) {
   const socket = useSocket();
 
   const sendMessage = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log(userId);
     e.preventDefault();
     if (text.trim() !== "") {
       const chatTime = new Date().toISOString();
       socket?.emit("message", {
-        msg: text,
-        room: roomId,
-        user: userId,
+        content: text,
+        parentRoom: roomId,
+        who: userId,
         time: chatTime,
       });
       setText("");

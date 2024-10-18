@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MemberChat from "./MemberChat";
 import MyChat from "./MyChat";
 import { getData } from "@/app/_utils/axios";
@@ -19,7 +19,10 @@ interface MessageTypes {
 
 export default function ChatTextWrap({ roomId, userId }: RoomIdProps) {
   const [messageData, setMessageData] = useState<MessageTypes[]>([]);
+  const [isInitialLoad, setIsInitialLoad] = useState(true); // 첫 로딩 여부
   const socket = useSocket();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     // 해당 방의 채팅 메시지 불러오기
     const fetchMessages = async () => {
@@ -49,6 +52,18 @@ export default function ChatTextWrap({ roomId, userId }: RoomIdProps) {
       socket?.off("message");
     };
   }, [roomId, socket]);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      if (isInitialLoad) {
+        messagesEndRef.current.scrollIntoView({ behavior: "auto" });
+        setIsInitialLoad(false);
+      } else {
+        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [messageData]);
+
   return (
     <>
       <div className=" p-[10px] overflow-y-scroll h-[calc(100%-46px)] pb-[150px] flex flex-col scroll-track ">
@@ -59,6 +74,7 @@ export default function ChatTextWrap({ roomId, userId }: RoomIdProps) {
             <MemberChat key={index} content={message.content} />
           )
         )}
+        <div ref={messagesEndRef}></div>
       </div>
     </>
   );

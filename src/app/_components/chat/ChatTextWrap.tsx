@@ -62,16 +62,39 @@ export default function ChatTextWrap({ roomId, userId }: RoomIdProps) {
         messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
       }
     }
+
+    console.log(messageData);
   }, [messageData]);
+
+  const formatTime = (dateString: string) => {
+    const date = new Date(dateString);
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+    const isPM = hours >= 12;
+
+    hours = hours % 12 || 12;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    const period = isPM ? "오후" : "오전";
+
+    return `${period} ${hours}:${formattedMinutes}`;
+  };
 
   return (
     <>
       <div className=" p-[10px] overflow-y-scroll h-[calc(100%-46px)] pb-[150px] flex flex-col scroll-track ">
         {messageData?.map((message, index) =>
           message.who === userId ? (
-            <MyChat key={index} content={message.content} />
+            <MyChat
+              key={index}
+              content={message.content}
+              time={formatTime(message.time)}
+            />
           ) : (
-            <MemberChat key={index} content={message.content} />
+            <MemberChat
+              key={index}
+              content={message.content}
+              time={formatTime(message.time)}
+            />
           )
         )}
         <div ref={messagesEndRef}></div>

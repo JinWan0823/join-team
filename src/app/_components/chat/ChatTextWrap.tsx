@@ -10,11 +10,17 @@ interface RoomIdProps {
   userId: string;
 }
 
+interface UserInfoTypes {
+  name: string;
+  thumbnail: string;
+}
+
 interface MessageTypes {
   content: string;
   parentRoom: string;
   time: string;
   who: string;
+  userInfo: UserInfoTypes;
 }
 
 export default function ChatTextWrap({ roomId, userId }: RoomIdProps) {
@@ -111,6 +117,7 @@ export default function ChatTextWrap({ roomId, userId }: RoomIdProps) {
               <MemberChat
                 content={message.content}
                 time={formatTime(message.time)}
+                userInfo={message.userInfo}
               />
             )}
           </div>

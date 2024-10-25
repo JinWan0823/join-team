@@ -1,3 +1,4 @@
+import { formatTime } from "@/app/_utils/formatTime";
 import { ChatListData } from "@/app/_utils/Interface";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,7 +30,9 @@ export default function ChatCard({ data }: DataProps) {
             <span className="inline-flex items-center mr-[4px]">
               <FaUsers /> {data.member.length}
             </span>
-            <span>오후 3:38</span>
+            <span>
+              {data.lastMessageTime ? formatTime(data.lastMessageTime) : ""}
+            </span>
           </p>
         </div>
       </Link>

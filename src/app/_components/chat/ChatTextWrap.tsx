@@ -53,10 +53,16 @@ export default function ChatTextWrap({ roomId, userId }: RoomIdProps) {
           setMessageData((prevMessages) => [...prevMessages, newMessage]);
         }
       });
+      socket.on("userJoined", (newMessage: MessageTypes) => {
+        if (newMessage.parentRoom === roomId) {
+          setMessageData((prevMessages) => [...prevMessages, newMessage]);
+        }
+      });
     }
 
     return () => {
       socket?.off("message");
+      socket?.off("userJoined");
     };
   }, [roomId, socket]);
 
@@ -72,28 +78,6 @@ export default function ChatTextWrap({ roomId, userId }: RoomIdProps) {
 
     console.log(messageData);
   }, [messageData]);
-
-  // const formatTime = (dateString: string) => {
-  //   const date = new Date(dateString);
-  //   let hours = date.getHours();
-  //   const minutes = date.getMinutes();
-  //   const isPM = hours >= 12;
-
-  //   hours = hours % 12 || 12;
-  //   const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-  //   const period = isPM ? "오후" : "오전";
-
-  //   return `${period} ${hours}:${formattedMinutes}`;
-  // };
-
-  // const formatDate = (dateString: string) => {
-  //   const date = new Date(dateString);
-  //   const year = date.getFullYear();
-  //   const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  //   const day = date.getDate().toString().padStart(2, "0");
-
-  //   return `${year}-${month}-${day}`; // YYYY-MM-DD 형식으로 변환
-  // };
 
   return (
     <div className="p-[10px] overflow-y-scroll h-[calc(100%-46px)] pb-[150px] flex flex-col scroll-track">

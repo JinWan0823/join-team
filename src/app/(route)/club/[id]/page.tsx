@@ -1,5 +1,6 @@
 "use client";
 
+import { useSocket } from "@/app/_components/SocketProvider";
 import ClubActivity from "@/app/_components/club/ClubActivity";
 import ClubBanner from "@/app/_components/club/ClubBanner";
 import ClubInfo from "@/app/_components/club/ClubInfo";
@@ -20,6 +21,8 @@ export default function Wrap() {
 
   const [clubActivityToggle, setClubActivityToggle] = useState(false);
   const [totalMemberToggle, setTotalMemberToggle] = useState(false);
+
+  const socket = useSocket();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,8 +46,14 @@ export default function Wrap() {
         `${joinTeamUrl}/club/join/${params.id}`,
         {}
       );
-      console.log(result);
       setUpdate((prev) => !prev);
+      const chatTime = new Date().toISOString();
+      socket?.emit("userJoined", {
+        content: "system 메세지",
+        parentRoom: params.id.toString(),
+        who: "신규유저",
+        time: chatTime,
+      });
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }

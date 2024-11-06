@@ -17,21 +17,13 @@ export default function Wrap() {
   const [data, setData] = useState<ClubDetailData>();
   const [update, setUpdate] = useState(false);
   const [chkMaster, setChkMaster] = useState(false);
-  const [userId, setUserId] = useState("");
+
   const params = useParams();
 
   const [clubActivityToggle, setClubActivityToggle] = useState(false);
   const [totalMemberToggle, setTotalMemberToggle] = useState(false);
 
   const socket = useSocket();
-
-  useEffect(() => {
-    const user = localStorage.getItem("recoil-persist");
-    if (user) {
-      const userIdData = JSON.parse(user);
-      setUserId(userIdData.userInfo.id);
-    }
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,12 +43,13 @@ export default function Wrap() {
 
   const handleJoinClub = async () => {
     try {
-      // const result = await postData(
-      //   `${joinTeamUrl}/club/join/${params.id}`
-      // );
-      // setUpdate((prev) => !prev);
+      const result = await postData(
+        `${joinTeamUrl}/club/join/${params.id}`,
+        {}
+      );
+      setUpdate((prev) => !prev);
 
-      // const roomId = await getData(`${joinTeamUrl}/club/join/${params.id}`);
+      const roomId = await getData(`${joinTeamUrl}/club/join/${params.id}`);
 
       const chatTime = new Date().toISOString();
       socket?.emit("userJoined", {

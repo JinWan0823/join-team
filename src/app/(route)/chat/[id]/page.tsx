@@ -13,6 +13,7 @@ export default function Wrap() {
 
   const [userId, setUserId] = useState("");
   useEffect(() => {
+    console.log(params.id);
     if (socket) {
       socket.emit("joinRoom", params.id);
     }

@@ -5,6 +5,7 @@ import { getData } from "@/app/_utils/axios";
 import { joinTeamUrl } from "@/app/_utils/url";
 import { useSocket } from "../SocketProvider";
 import { formatDate, formatTime } from "@/app/_utils/formatTime";
+import { v4 as uuidv4 } from "uuid";
 
 interface RoomIdProps {
   roomId: string;
@@ -17,6 +18,7 @@ interface UserInfoTypes {
 }
 
 interface MessageTypes {
+  _id: string;
   content: string;
   parentRoom: string;
   time: string;
@@ -50,12 +52,19 @@ export default function ChatTextWrap({ roomId, userId }: RoomIdProps) {
     if (socket) {
       socket.on("message", (newMessage: MessageTypes) => {
         if (newMessage.parentRoom === roomId) {
-          setMessageData((prevMessages) => [...prevMessages, newMessage]);
+          setMessageData((prevMessages) => [
+            ...prevMessages,
+            { ...newMessage, _id: newMessage._id || uuidv4() }, // 임시 ID 생성
+          ]);
         }
       });
+
       socket.on("userJoined", (newMessage: MessageTypes) => {
         if (newMessage.parentRoom === roomId) {
-          setMessageData((prevMessages) => [...prevMessages, newMessage]);
+          setMessageData((prevMessages) => [
+            ...prevMessages,
+            { ...newMessage, _id: newMessage._id || uuidv4() }, // 임시 ID 생성
+          ]);
         }
       });
     }

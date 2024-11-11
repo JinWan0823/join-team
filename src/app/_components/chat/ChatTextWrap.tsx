@@ -6,6 +6,7 @@ import { joinTeamUrl } from "@/app/_utils/url";
 import { useSocket } from "../SocketProvider";
 import { formatDate, formatTime } from "@/app/_utils/formatTime";
 import { v4 as uuidv4 } from "uuid";
+import SystemMessage from "./SystemMessage";
 
 interface RoomIdProps {
   roomId: string;
@@ -24,6 +25,7 @@ interface MessageTypes {
   time: string;
   who: string;
   userInfo: UserInfoTypes;
+  userId: string;
 }
 
 export default function ChatTextWrap({ roomId, userId }: RoomIdProps) {
@@ -107,6 +109,8 @@ export default function ChatTextWrap({ roomId, userId }: RoomIdProps) {
                 content={message.content}
                 time={formatTime(message.time)}
               />
+            ) : message.who === "System Message" ? (
+              <SystemMessage userId={message.userId} />
             ) : (
               <MemberChat
                 content={message.content}

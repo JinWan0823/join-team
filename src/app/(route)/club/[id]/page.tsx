@@ -17,12 +17,19 @@ export default function Wrap() {
   const [data, setData] = useState<ClubDetailData>();
   const [update, setUpdate] = useState(false);
   const [chkMaster, setChkMaster] = useState(false);
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    const user = localStorage.getItem("recoil-persist");
+    if (user) {
+      const userIdData = JSON.parse(user);
+      setUserId(userIdData.userInfo.id);
+    }
+  }, []);
 
   const params = useParams();
-
   const [clubActivityToggle, setClubActivityToggle] = useState(false);
   const [totalMemberToggle, setTotalMemberToggle] = useState(false);
-
   const socket = useSocket();
 
   useEffect(() => {
@@ -49,14 +56,13 @@ export default function Wrap() {
       );
       setUpdate((prev) => !prev);
 
-      const roomId = await getData(`${joinTeamUrl}/club/join/${params.id}`);
-
       const chatTime = new Date().toISOString();
       socket?.emit("userJoined", {
         content: "system 메세지",
         parentRoom: params.id.toString(),
-        who: "System Message", // 시스템 메시지로 통일
+        who: "System Message",
         time: chatTime,
+        userId: userId,
       });
       console.log("가입완료");
     } catch (error) {

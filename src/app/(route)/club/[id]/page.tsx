@@ -18,6 +18,7 @@ export default function Wrap() {
   const [update, setUpdate] = useState(false);
   const [chkMaster, setChkMaster] = useState(false);
   const [userId, setUserId] = useState("");
+  const [joinedMember, setJoinedMember] = useState(false);
 
   useEffect(() => {
     const user = localStorage.getItem("recoil-persist");
@@ -33,20 +34,28 @@ export default function Wrap() {
   const socket = useSocket();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await getData<ClubDetailData>(
-          `${joinTeamUrl}/club/${params.id}`
-        );
-        setData(result);
+    if (userId) {
+      const fetchData = async () => {
+        try {
+          const result = await getData<ClubDetailData>(
+            `${joinTeamUrl}/club/${params.id}`
+          );
+          setData(result);
+          console.log(result);
 
-        console.log(result);
-      } catch (error) {
-        console.error("Data Fetching Error : ", error);
-      }
-    };
-    fetchData();
-  }, [update]);
+          const isUserJoined = result.member.some(
+            (member) => member.memberId === userId
+          );
+          setJoinedMember(isUserJoined);
+          console.log("User joined:", isUserJoined);
+          console.log("User ID:", userId);
+        } catch (error) {
+          console.error("Data Fetching Error:", error);
+        }
+      };
+      fetchData();
+    }
+  }, [update, userId]);
 
   const handleJoinClub = async () => {
     try {
@@ -103,17 +112,19 @@ export default function Wrap() {
             setClubActivityToggle={setClubActivityToggle}
             clubActivityToggle={clubActivityToggle}
           />
-          {chkMaster ? (
+          {chkMaster && (
             <Link
               href={`/club/clubActivity/${params.id}`}
               className="w-full block text-center text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF]"
             >
               클럽 활동 추가하기
             </Link>
-          ) : (
+          )}
+
+          {!joinedMember && (
             <button
               className="w-full text-[#fff] py-[10px] mt-[40px] rounded-[8px] bg-[#3D97FF]"
-              onClick={() => handleJoinClub()}
+              onClick={handleJoinClub}
             >
               참가 신청하기
             </button>

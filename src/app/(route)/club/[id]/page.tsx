@@ -23,8 +23,23 @@ export default function Wrap() {
   useEffect(() => {
     const user = localStorage.getItem("recoil-persist");
     if (user) {
-      const userIdData = JSON.parse(user);
-      setUserId(userIdData.userInfo.id);
+      try {
+        const userIdData = JSON.parse(user);
+        if (
+          userIdData &&
+          Object.keys(userIdData).length > 0 &&
+          userIdData.userInfo?.id
+        ) {
+          setUserId(userIdData.userInfo.id);
+        } else {
+          console.log(
+            "User info가 빈 객체이거나 예상한 구조가 아닙니다:",
+            userIdData
+          );
+        }
+      } catch (error) {
+        console.error("User data parsing error:", error);
+      }
     }
   }, []);
 
@@ -34,28 +49,19 @@ export default function Wrap() {
   const socket = useSocket();
 
   useEffect(() => {
-    if (userId) {
-      const fetchData = async () => {
-        try {
-          const result = await getData<ClubDetailData>(
-            `${joinTeamUrl}/club/${params.id}`
-          );
-          setData(result);
-          console.log(result);
-
-          const isUserJoined = result.member.some(
-            (member) => member.memberId === userId
-          );
-          setJoinedMember(isUserJoined);
-          console.log("User joined:", isUserJoined);
-          console.log("User ID:", userId);
-        } catch (error) {
-          console.error("Data Fetching Error:", error);
-        }
-      };
-      fetchData();
-    }
-  }, [update, userId]);
+    const fetchData = async () => {
+      try {
+        const result = await getData<ClubDetailData>(
+          `${joinTeamUrl}/club/${params.id}`
+        );
+        setData(result);
+        console.log(result);
+      } catch (error) {
+        console.error("Data Fetching Error:", error);
+      }
+    };
+    fetchData();
+  }, [update]);
 
   const handleJoinClub = async () => {
     try {

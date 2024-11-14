@@ -1,14 +1,23 @@
+import { userInfoState, userLoginState } from "@/app/_state/recoil";
 import { getData } from "@/app/_utils/axios";
+import { joinTeamUrl } from "@/app/_utils/url";
 import { useRouter } from "next/navigation";
-import { IoIosLogOut } from "react-icons/io";
+import { useResetRecoilState } from "recoil";
+
 export default function Logout() {
   const router = useRouter();
+  const resetLoginInfo = useResetRecoilState(userLoginState);
+  const resetUserInfo = useResetRecoilState(userInfoState);
 
-  const url = "http://localhost:8080/logout";
   const handleLogout = async () => {
     try {
-      const result = await getData(url);
-      // localStorage.setItem("recoil-persist", "");
+      const result = await getData(`${joinTeamUrl}/logout`);
+
+      resetLoginInfo();
+      resetUserInfo();
+
+      localStorage.removeItem("recoil-persist");
+
       router.push("/");
     } catch (error) {
       throw error;

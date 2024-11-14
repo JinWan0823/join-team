@@ -31,17 +31,17 @@ export default function ClubActivity({
     tickCnt: 0,
   });
 
-  useEffect(() => {
-    const userId = localStorage.getItem("recoil-persist");
-    if (userId) {
-      const userIdData = JSON.parse(userId);
-      console.log(userIdData.userInfo.id);
+  // useEffect(() => {
+  //   const userId = localStorage.getItem("recoil-persist");
+  //   if (userId) {
+  //     const userIdData = JSON.parse(userId);
+  //     console.log(userIdData.userInfo.id);
 
-      if (userIdData.userInfo.id === clubMaster) {
-        setChkMaster(true);
-      }
-    }
-  }, []);
+  //     if (userIdData.userInfo.id === clubMaster) {
+  //       setChkMaster(true);
+  //     }
+  //   }
+  // }, []);
 
   const handleMouseDown = (e: React.MouseEvent<HTMLUListElement>) => {
     setIsDragging(true);

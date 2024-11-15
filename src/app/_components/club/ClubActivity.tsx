@@ -12,6 +12,7 @@ interface ClubActivityProps {
   setChkMaster: Dispatch<SetStateAction<boolean>>;
   setClubActivityToggle: Dispatch<SetStateAction<boolean>>;
   clubActivityToggle: boolean;
+  userId: string;
 }
 
 export default function ClubActivity({
@@ -20,6 +21,7 @@ export default function ClubActivity({
   setChkMaster,
   setClubActivityToggle,
   clubActivityToggle,
+  userId,
 }: ClubActivityProps) {
   const ref = useRef<HTMLUListElement>(null);
   const div = ref.current;
@@ -31,17 +33,11 @@ export default function ClubActivity({
     tickCnt: 0,
   });
 
-  // useEffect(() => {
-  //   const userId = localStorage.getItem("recoil-persist");
-  //   if (userId) {
-  //     const userIdData = JSON.parse(userId);
-  //     console.log(userIdData.userInfo.id);
-
-  //     if (userIdData.userInfo.id === clubMaster) {
-  //       setChkMaster(true);
-  //     }
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (clubMaster === userId) {
+      setChkMaster(true);
+    }
+  }, []);
 
   const handleMouseDown = (e: React.MouseEvent<HTMLUListElement>) => {
     setIsDragging(true);

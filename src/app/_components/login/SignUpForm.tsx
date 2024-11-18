@@ -4,16 +4,23 @@ import { FaChevronDown } from "react-icons/fa6";
 import SelectInterest from "./SelectInterest";
 import InputWrap from "./InputWrap";
 import { postData } from "@/app/_utils/axios";
+import { joinTeamUrl } from "@/app/_utils/url";
+import ErrorMessage from "../common/ErrorMessage";
+import { AxiosError } from "axios";
+
+interface ErrorResponseData {
+  message: string;
+}
 
 export default function SignUpForm() {
   const [email, setMail] = useState("");
   const [pwd, setPwd] = useState("");
   const [name, setName] = useState("");
-  const url = "http://localhost:8080/signup";
 
   const [interestList, setInterestList] = useState<string[]>([]);
-
   const [selectMenu, setSelectMenu] = useState<boolean>(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleMail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMail(e.target.value);
@@ -56,7 +63,7 @@ export default function SignUpForm() {
     e.preventDefault();
 
     try {
-      const data = await postData(url, {
+      const data = await postData(`${joinTeamUrl}/signup`, {
         username: email,
         password: pwd,
         name: name,
@@ -64,12 +71,20 @@ export default function SignUpForm() {
       });
       console.log(data);
     } catch (error) {
-      console.error("Data Fetching Error : ", error);
+      const axiosError = error as AxiosError<ErrorResponseData>;
+      console.error("Data Fetching Error : ", axiosError);
+      setError(true);
+      setErrorMessage(
+        axiosError.response?.data?.message || "Unknown error occurred"
+      );
     }
   };
 
+  const joinCompleted = () => {};
+
   return (
     <form>
+      {error && <ErrorMessage message={errorMessage} setError={setError} />}
       <InputWrap
         inputType="text"
         holder="ex) withgo@gmail.com"

@@ -7,6 +7,7 @@ import { postData } from "@/app/_utils/axios";
 import { joinTeamUrl } from "@/app/_utils/url";
 import ErrorMessage from "../common/ErrorMessage";
 import { AxiosError } from "axios";
+import SuccessMessage from "../common/SuccessMessage";
 
 interface ErrorResponseData {
   message: string;
@@ -16,9 +17,10 @@ export default function SignUpForm() {
   const [email, setMail] = useState("");
   const [pwd, setPwd] = useState("");
   const [name, setName] = useState("");
-
   const [interestList, setInterestList] = useState<string[]>([]);
   const [selectMenu, setSelectMenu] = useState<boolean>(false);
+
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -70,6 +72,7 @@ export default function SignUpForm() {
         interestList: interestList.join("\\"),
       });
       console.log(data);
+      setSuccess(true);
     } catch (error) {
       const axiosError = error as AxiosError<ErrorResponseData>;
       console.error("Data Fetching Error : ", axiosError);
@@ -80,11 +83,10 @@ export default function SignUpForm() {
     }
   };
 
-  const joinCompleted = () => {};
-
   return (
     <form>
       {error && <ErrorMessage message={errorMessage} setError={setError} />}
+      {success && <SuccessMessage />}
       <InputWrap
         inputType="text"
         holder="ex) withgo@gmail.com"

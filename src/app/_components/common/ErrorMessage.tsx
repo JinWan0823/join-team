@@ -13,7 +13,7 @@ export default function ErrorMessage({ message, setError }: MessageProps) {
 
   return (
     <div className="w-full h-full absolute top-0 left-0 bg-[#333333d1] z-[9999] flex-center">
-      <div className="w-[calc(100%-20px)]  bg-[#fff] rounded-[12px] overflow-hidden text-center">
+      <div className="w-[calc(100%-20px)]  bg-[#fff] rounded-[12px] overflow-hidden text-center animate__animated animate__bounceIn">
         <div className="top w-full p-[10px] bg-[#3d97ff]">
           <p className="font-bold text-[#fff]">ERROR</p>
         </div>

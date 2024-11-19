@@ -42,6 +42,7 @@ export interface FeedData {
   images: string[];
   username: string;
   thumbnail: string;
+  date: string;
 }
 
 export interface ClubData {

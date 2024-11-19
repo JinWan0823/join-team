@@ -2,17 +2,20 @@
 import { usePathname } from "next/navigation";
 import BurgerMenu from "./BurgerMenu";
 import Image from "next/image";
+import { formatDate } from "@/app/_utils/formatTime";
 
 interface FeedHeaderProps {
   dataId: string;
   thumbnail: string;
   name: string;
+  date: string;
 }
 
 export default function FeedHeader({
   thumbnail,
   name,
   dataId,
+  date,
 }: FeedHeaderProps) {
   const pathName = usePathname();
 
@@ -34,7 +37,7 @@ export default function FeedHeader({
           </div>
           <div className="info ml-[8px]">
             <p className="leading-4">{name}</p>
-            <span className="text-[#878787] text-sm">2월 8일</span>
+            <span className="text-[#878787] text-sm">{formatDate(date)}</span>
           </div>
         </div>
         {pathName === "/feed" ? (

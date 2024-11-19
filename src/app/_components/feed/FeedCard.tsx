@@ -19,6 +19,7 @@ export default function FeedCard({ data }: FeedCardProps) {
         dataId={data._id}
         thumbnail={data.thumbnail}
         name={data.username}
+        date={data.date}
       />
       <FeedImg feedImg={data.images} />
       <FeedText text={data.content} hashTag={hashTagToArray} />

@@ -18,7 +18,6 @@ export default function LoginPage() {
         <Logo />
       </div>
       <LoginForm />
-      {/* <GoogleLogin /> */}
       <Link href="/signup" className="underline mt-[10px]">
         회원가입
       </Link>

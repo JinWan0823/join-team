@@ -4,7 +4,7 @@ import FeedHeader from "./FeedHeader";
 import FeedImg from "./FeedImg";
 import FeedText from "./FeedText";
 import { FeedData } from "@/app/_utils/Interface";
-import { useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 
 interface FeedCardProps {
   data: FeedData;

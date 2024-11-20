@@ -22,7 +22,7 @@ export default function Wrap() {
       const query = params.get("val");
       console.log(query);
       try {
-        let result;
+        let result: FeedData[];
         if (query) {
           result = await getData<FeedData[]>(
             `${joinTeamUrl}/feed?val=${query}?page=1`
@@ -76,7 +76,7 @@ export default function Wrap() {
     setIsLoading(true);
 
     try {
-      let result;
+      let result: FeedData[];
       const query = params.get("val");
       if (query) {
         result = await getData<FeedData[]>(

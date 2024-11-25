@@ -5,6 +5,7 @@ import FeedImg from "./FeedImg";
 import FeedText from "./FeedText";
 import { FeedData } from "@/app/_utils/Interface";
 import { Dispatch, SetStateAction, useEffect } from "react";
+import LikedBtn from "./LikedBtn";
 
 interface FeedCardProps {
   data: FeedData;
@@ -23,12 +24,7 @@ export default function FeedCard({ data }: FeedCardProps) {
       />
       <FeedImg feedImg={data.images} />
       <FeedText text={data.content} hashTag={hashTagToArray} />
-      <div className="p-[10px] flex items-center">
-        <button className="mr-[4px]">
-          <GoHeart className="text-lg" />
-        </button>
-        <span>1111</span>
-      </div>
+      <LikedBtn feedId={data._id} />
     </article>
   );
 }

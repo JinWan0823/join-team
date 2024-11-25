@@ -29,7 +29,7 @@ export default function Wrap() {
           setPage((prevPage) => prevPage + 1);
         }
 
-        if (result.length < 10) {
+        if (result.length < 11) {
           setIsLowEntryCount(true);
         }
       } catch (error) {
@@ -104,12 +104,12 @@ export default function Wrap() {
       </ul>
       {isLoading && <InfiniteLoading />}
       {!hasMore && (
-        <p className="mt-[20px] text-sm text-center text-[#9e9e9e]">
+        <p className="mt-[12px] mb-[12px] text-sm text-center text-[#9e9e9e]">
           더 이상 불러올 활동이 없습니다.
         </p>
       )}
       {isLowEntryCount && (
-        <p className="mt-[20px] text-sm text-center text-[#9e9e9e]">
+        <p className="mb-[12px] text-sm text-center text-[#9e9e9e]">
           관심 항목을 추가하고 더 많은 정보를 받아보세요.
         </p>
       )}

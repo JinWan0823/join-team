@@ -43,6 +43,7 @@ export interface FeedData {
   username: string;
   thumbnail: string;
   date: string;
+  likedBy: string[];
 }
 
 export interface ClubData {

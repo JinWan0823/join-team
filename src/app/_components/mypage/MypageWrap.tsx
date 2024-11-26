@@ -7,9 +7,11 @@ import { getData } from "@/app/_utils/axios";
 import { UserData } from "@/app/_utils/Interface";
 import { IoIosSettings } from "react-icons/io";
 import Setting from "@/app/_components/mypage/Setting";
+import { useRouter } from "next/navigation";
 
 export default function MypageWrap() {
   const url = "http://localhost:8080/user";
+  const router = useRouter();
 
   const [userData, setUserData] = useState<UserData>();
   const [settingMenu, setSettingMenu] = useState<boolean>(false);
@@ -19,8 +21,10 @@ export default function MypageWrap() {
     const fetchData = async () => {
       try {
         const result = await getData<UserData>(url);
+        console.log(result);
         setUserData(result);
       } catch (err) {
+        console.log(err);
         throw err;
       }
     };

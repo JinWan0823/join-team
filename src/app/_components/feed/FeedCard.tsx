@@ -21,6 +21,7 @@ export default function FeedCard({ data }: FeedCardProps) {
         thumbnail={data.thumbnail}
         name={data.username}
         date={data.date}
+        writer={data.writer}
       />
       <FeedImg feedImg={data.images} />
       <FeedText text={data.content} hashTag={hashTagToArray} />

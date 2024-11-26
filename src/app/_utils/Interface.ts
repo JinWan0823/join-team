@@ -44,6 +44,7 @@ export interface FeedData {
   thumbnail: string;
   date: string;
   likedBy: string[];
+  writer: string;
 }
 
 export interface ClubData {

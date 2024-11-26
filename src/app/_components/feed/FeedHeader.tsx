@@ -5,7 +5,7 @@ import Image from "next/image";
 import { formatDate } from "@/app/_utils/formatTime";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getData, postData } from "@/app/_utils/axios";
+import { getData, postData, putData } from "@/app/_utils/axios";
 import { joinTeamUrl } from "@/app/_utils/url";
 
 interface FeedHeaderProps {
@@ -29,6 +29,7 @@ export default function FeedHeader({
 }: FeedHeaderProps) {
   const pathName = usePathname();
   const [follow, setFollow] = useState(false);
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     const followFetching = async () => {
@@ -39,7 +40,21 @@ export default function FeedHeader({
       setFollow(result.isFollowing);
     };
     followFetching();
-  }, []);
+  }, [update]);
+
+  const handleFeedFollow = async () => {
+    await putData(`${joinTeamUrl}/user/follow/${writer}`, {});
+    setUpdate((prev) => !prev);
+  };
+
+  // const handleFollow = async () => {
+  //   try {
+  //     const result = await putData(`${joinTeamUrl}/user/follow${endPoint}`, {});
+  //     setUpdateFollow((prev) => !prev);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <>
@@ -65,12 +80,18 @@ export default function FeedHeader({
           </div>
         </div>
         {pathName === "/feed" ? (
-          follow ? (
-            <button className="bg-[#3D97FF] text-[#fff]  py-[2px] px-[4px] rounded-[4px] text-sm">
+          !follow ? (
+            <button
+              onClick={handleFeedFollow}
+              className="bg-[#3D97FF] text-[#fff]  py-[2px] px-[4px] rounded-[4px] text-sm"
+            >
               팔로우
             </button>
           ) : (
-            <button className="bg-[#333] text-[#fff]  py-[2px] px-[4px] rounded-[4px] text-sm">
+            <button
+              onClick={handleFeedFollow}
+              className="bg-[#333] text-[#fff]  py-[2px] px-[4px] rounded-[4px] text-sm"
+            >
               언팔
             </button>
           )

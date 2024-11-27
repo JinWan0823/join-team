@@ -30,13 +30,18 @@ export default function FeedHeader({
   const pathName = usePathname();
   const [follow, setFollow] = useState(false);
   const [update, setUpdate] = useState(false);
+  const [myFeed, setMyFeed] = useState(false);
 
   useEffect(() => {
+    const user = localStorage.getItem("recoil-persist");
+    const userData = JSON.parse(user || "{}");
+    if (userData?.userInfo?.id === writer) {
+      setMyFeed(true);
+    }
     const followFetching = async () => {
       const result: followProps = await postData(`${joinTeamUrl}/user/follow`, {
         followId: writer,
       });
-      console.log(result);
       setFollow(result.isFollowing);
     };
     followFetching();
@@ -46,15 +51,6 @@ export default function FeedHeader({
     await putData(`${joinTeamUrl}/user/follow/${writer}`, {});
     setUpdate((prev) => !prev);
   };
-
-  // const handleFollow = async () => {
-  //   try {
-  //     const result = await putData(`${joinTeamUrl}/user/follow${endPoint}`, {});
-  //     setUpdateFollow((prev) => !prev);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   return (
     <>
@@ -80,7 +76,9 @@ export default function FeedHeader({
           </div>
         </div>
         {pathName === "/feed" ? (
-          !follow ? (
+          myFeed ? (
+            <BurgerMenu dataId={dataId} />
+          ) : !follow ? (
             <button
               onClick={handleFeedFollow}
               className="bg-[#3D97FF] text-[#fff]  py-[2px] px-[4px] rounded-[4px] text-sm"
@@ -90,9 +88,9 @@ export default function FeedHeader({
           ) : (
             <button
               onClick={handleFeedFollow}
-              className="bg-[#333] text-[#fff]  py-[2px] px-[4px] rounded-[4px] text-sm"
+              className="bg-[#909090] text-[#fff]  py-[2px] px-[4px] rounded-[4px] text-sm"
             >
-              언팔
+              팔로잉
             </button>
           )
         ) : (

@@ -5,6 +5,7 @@ import FeedTagWrap from "@/app/_components/feed/write/FeedTagWrap";
 import { useState } from "react";
 import { postImgData } from "@/app/_utils/axios";
 import imageCompression from "browser-image-compression";
+import { useRouter } from "next/navigation";
 
 export default function Wrap() {
   const [tagInput, setTagInput] = useState(false);
@@ -13,6 +14,7 @@ export default function Wrap() {
   const [showImages, setShowImages] = useState<string[]>([]);
   const [text, setText] = useState("");
 
+  const router = useRouter();
   const url = "http://localhost:8080/feed";
 
   const options = {
@@ -31,8 +33,8 @@ export default function Wrap() {
           formData.append(`images`, compressionFile);
         }
       }
-
       await postImgData(url, formData);
+      router.push("/myfeed");
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }

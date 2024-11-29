@@ -57,7 +57,7 @@ export default function FeedHeader({
       <div className="bg-[#fff] flex items-center justify-between p-[10px]">
         <div className="flex-center">
           <div className="thumb w-[52px] h-[52px] bg-[#333] rounded-[50%] overflow-hidden">
-            <Link href={`/mypage/${writer}`}>
+            <Link href={`/mypage/${myFeed ? "" : writer}`}>
               <Image
                 src={thumbnail}
                 loading="lazy"

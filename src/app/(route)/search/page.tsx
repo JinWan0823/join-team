@@ -13,7 +13,7 @@ export default function Wrap() {
   }, []);
 
   return (
-    <section className="max-h-[calc(100vh)] h-[calc(100vh)] overflow-y-auto  pb-[56px] scroll-track relative">
+    <section className="max-h-[calc(100vh-66px)] h-[calc(100vh)] overflow-y-auto  pb-[56px] scroll-track relative">
       {latestSearch.length === 0 ? (
         <></>
       ) : (

@@ -1,11 +1,26 @@
 import { UserData } from "@/app/_utils/Interface";
 import Image from "next/image";
+import { useState } from "react";
+import FollowMember from "./FollowMember";
 
 interface UserDataProps {
   user: UserData;
 }
 
 export default function MyInfo({ user }: UserDataProps) {
+  const [totalMemberToggle, setTotalMemberToggle] = useState(false);
+  const [memberCategory, setMemberCategory] = useState("");
+  const [follow, setFollow] = useState<string[]>([]);
+
+  const handleMoreViewBtn = (category: string) => {
+    console.log(user);
+    setTotalMemberToggle(true);
+    setMemberCategory(category);
+    category === "팔로워"
+      ? setFollow(user.followers)
+      : setFollow(user.followings);
+  };
+
   return (
     <>
       <div className="flex items-center">
@@ -24,14 +39,27 @@ export default function MyInfo({ user }: UserDataProps) {
               피드 <span className="font-bold">{user.feedCount}</span>
             </li>
             <li className="mr-[8px] info-list">
-              팔로워 <span className="font-bold">{user.followers.length}</span>
+              <button onClick={() => handleMoreViewBtn("팔로워")}>
+                팔로워
+                <span className="font-bold">{user.followers.length}</span>
+              </button>
             </li>
             <li className="mr-[8px]">
-              팔로잉 <span className="font-bold">{user.followings.length}</span>
+              <button onClick={() => handleMoreViewBtn("팔로잉")}>
+                팔로잉{" "}
+                <span className="font-bold">{user.followings.length}</span>
+              </button>
             </li>
           </ul>
         </div>
       </div>
+      {totalMemberToggle && (
+        <FollowMember
+          setTotalMemberToggle={setTotalMemberToggle}
+          memberCategory={memberCategory}
+          follow={follow}
+        />
+      )}
     </>
   );
 }

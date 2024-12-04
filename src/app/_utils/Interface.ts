@@ -12,6 +12,7 @@ export interface ClubDetailData {
   sido: string;
   gugun: string;
   master: string;
+  lastMessageTime: string;
 }
 
 export interface MemberProps {

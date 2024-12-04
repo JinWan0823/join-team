@@ -19,7 +19,6 @@ export default function Thumbnail({ masterId }: ThumbnailProps) {
         const result = await getData<UserResponse>(
           `${joinTeamUrl}/user/${masterId}`
         );
-        console.log("dddddd", result);
         setMasterThumb(result.thumbnail);
       } catch (error) {
         console.log(error);

@@ -62,9 +62,11 @@ export default function ClubPage({
       <ClubBanner images={data.images} />
       <ClubInfo
         title={data.clubName}
-        location={data.location}
-        joinedMember={data.joinedMember}
-        maximumMember={data.maximumMember}
+        location={`${data.sido} ${data.gugun}`}
+        joinedMember={data.member.length}
+        activityCount={data.activity.length}
+        lastMessageTime={data.lastMessageTime}
+        masterId={data.master}
       />
       <div className="p-[10px]">
         <ClubInfoText text={data.information} />

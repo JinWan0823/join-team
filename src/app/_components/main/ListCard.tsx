@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaMapMarkerAlt, FaRegCommentDots } from "react-icons/fa";
 import CategoryBadge from "../common/CategoryBadge";
+import { getTimeAgo } from "@/app/_utils/formatTime";
 
 interface ListCardProps {
   data: ClubDetailData;
@@ -12,6 +13,7 @@ interface ListCardProps {
 
 export default function ListCard({ data }: ListCardProps) {
   const pathName = usePathname();
+  console.log(data);
 
   return (
     <>
@@ -37,11 +39,11 @@ export default function ListCard({ data }: ListCardProps) {
             <CategoryBadge badge={data.category} />
             <p className="font-bold  mt-[4px]">{data.clubName}</p>
             <p className="text-sm text-[#878787] flex items-center">
-              <FaMapMarkerAlt className="mr-[4px]" />
-              {data.location}
+              <span className="mr-[4px]">&#128205;</span>
+              {data.sido} {data.gugun}
               <span className="flex items-center ml-[4px] text-[#b0d5ff]">
-                <FaRegCommentDots className="mr-[4px]" />
-                4시간 전 대화
+                <span className="mr-[4px]">&#128172;</span>
+                {getTimeAgo(data.lastMessageTime)}
               </span>
             </p>
           </div>

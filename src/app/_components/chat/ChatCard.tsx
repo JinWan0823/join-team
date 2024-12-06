@@ -1,4 +1,4 @@
-import { formatTime } from "@/app/_utils/formatTime";
+import { getTimeAgo } from "@/app/_utils/formatTime";
 import { ChatListData } from "@/app/_utils/Interface";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,7 +31,7 @@ export default function ChatCard({ data }: DataProps) {
               <FaUsers /> {data.member.length}
             </span>
             <span>
-              {data.lastMessageTime ? formatTime(data.lastMessageTime) : ""}
+              {data.lastMessageTime ? getTimeAgo(data.lastMessageTime) : ""}
             </span>
           </p>
         </div>

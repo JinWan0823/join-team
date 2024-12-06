@@ -18,6 +18,7 @@ export default function ListWrap({ category }: ListWrapProps) {
         const result = await getData<ClubDetailData[]>(
           `${joinTeamUrl}/club/${category}`
         );
+        console.log(result);
         setData(result.slice(0, 3));
       } catch (error) {
         console.error("Data Fetching Error : ", error);

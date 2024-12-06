@@ -78,5 +78,6 @@ export interface ChatListData {
   clubId: string;
   thumb: string;
   date: string;
+  lastMessage: string;
   lastMessageTime: string;
 }

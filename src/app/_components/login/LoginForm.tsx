@@ -14,7 +14,7 @@ export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
-  const url = "http://localhost:8080/login";
+
   const router = useRouter();
 
   const setLoginInfo = useSetRecoilState(userLoginState);

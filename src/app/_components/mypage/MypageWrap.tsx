@@ -8,9 +8,9 @@ import { UserData } from "@/app/_utils/Interface";
 import { IoIosSettings } from "react-icons/io";
 import Setting from "@/app/_components/mypage/Setting";
 import { useRouter } from "next/navigation";
+import { joinTeamUrl } from "@/app/_utils/url";
 
 export default function MypageWrap() {
-  const url = "http://localhost:8080/user";
   const router = useRouter();
 
   const [userData, setUserData] = useState<UserData>();
@@ -20,7 +20,7 @@ export default function MypageWrap() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData<UserData>(url);
+        const result = await getData<UserData>(`${joinTeamUrl}/user`);
         console.log(result);
         setUserData(result);
       } catch (err) {

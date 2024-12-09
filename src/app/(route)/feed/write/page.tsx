@@ -6,6 +6,7 @@ import { useState } from "react";
 import { postImgData } from "@/app/_utils/axios";
 import imageCompression from "browser-image-compression";
 import { useRouter } from "next/navigation";
+import { joinTeamUrl } from "@/app/_utils/url";
 
 export default function Wrap() {
   const [tagInput, setTagInput] = useState(false);
@@ -15,8 +16,6 @@ export default function Wrap() {
   const [text, setText] = useState("");
 
   const router = useRouter();
-  const url = "http://localhost:8080/feed";
-
   const options = {
     maxSizeMB: 0.5,
     maxWidthOrHeight: 520,
@@ -33,7 +32,7 @@ export default function Wrap() {
           formData.append(`images`, compressionFile);
         }
       }
-      await postImgData(url, formData);
+      await postImgData(`${joinTeamUrl}/feed`, formData);
       router.push("/myfeed");
     } catch (error) {
       console.error("Data Fetching Error : ", error);

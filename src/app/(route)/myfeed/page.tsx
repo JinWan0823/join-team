@@ -11,14 +11,13 @@ export default function Wrap() {
   const [data, setData] = useState<FeedData[]>();
   const updateStatus = useRecoilValue(DataUpdate);
   const queryId = useSearchParams();
-  const url = `${joinTeamUrl}/feed/myfeed`;
 
   useEffect(() => {
     const scrollFeedId = queryId.get("itemId");
 
     const fetchData = async () => {
       try {
-        const result = await getData<FeedData[]>(url);
+        const result = await getData<FeedData[]>(`${joinTeamUrl}/feed/myfeed`);
         setData(result);
         if (scrollFeedId) {
           scrollToId(scrollFeedId);

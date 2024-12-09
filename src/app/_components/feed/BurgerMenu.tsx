@@ -5,8 +5,8 @@ import { TbMenuDeep, TbPencil, TbTrash } from "react-icons/tb";
 import DeleteModal from "../modal/DeleteModal";
 import { deleteData } from "@/app/_utils/axios";
 import { useSetRecoilState } from "recoil";
-import { useUpdateData } from "@/app/_state/state";
 import { DataUpdate } from "@/app/_state/recoil";
+import { joinTeamUrl } from "@/app/_utils/url";
 
 interface DataIdProps {
   dataId: string;
@@ -17,12 +17,10 @@ export default function BurgerMenu({ dataId }: DataIdProps) {
   const [deleteModal, setDeleteModal] = useState(false);
   const setUpdateStatus = useSetRecoilState(DataUpdate);
 
-  const url = `http://localhost:8080/feed/${dataId}`;
-
   const handleDeleteData = async () => {
     setDeleteModal(false);
     try {
-      const result = await deleteData(url);
+      const result = await deleteData(`${joinTeamUrl}/feed/${dataId}`);
       setUpdateStatus((prev) => !prev);
     } catch (error) {
       console.error("Data Fetching Error : ", error);

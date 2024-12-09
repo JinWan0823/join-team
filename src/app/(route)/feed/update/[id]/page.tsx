@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { getData, putImgData } from "@/app/_utils/axios";
 import { FeedData } from "@/app/_utils/Interface";
 import { useParams, useRouter } from "next/navigation";
+import { joinTeamUrl } from "@/app/_utils/url";
 
 export default function Wrap() {
   const [tagInput, setTagInput] = useState(false);
@@ -16,7 +17,6 @@ export default function Wrap() {
 
   const params = useParams();
   const router = useRouter();
-  const url = `http://localhost:8080/feed/${params.id}`;
 
   const handleUpdateData = async () => {
     try {
@@ -27,7 +27,7 @@ export default function Wrap() {
       updatedImages.forEach((image) => {
         formData.append(`images`, image);
       });
-      await putImgData(url, formData);
+      await putImgData(`${joinTeamUrl}/feed/${params.id}`, formData);
 
       router.push("/myfeed");
     } catch (error) {
@@ -38,7 +38,9 @@ export default function Wrap() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData<FeedData>(url);
+        const result = await getData<FeedData>(
+          `${joinTeamUrl}/feed/${params.id}`
+        );
 
         if (result.images.length > 0) {
           setImages(result.images.map(() => new File([], "")));

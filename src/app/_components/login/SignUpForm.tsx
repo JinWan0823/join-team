@@ -8,6 +8,7 @@ import { joinTeamUrl } from "@/app/_utils/url";
 import ErrorMessage from "../common/ErrorMessage";
 import { AxiosError } from "axios";
 import SuccessMessage from "../common/SuccessMessage";
+import { UserData } from "@/app/_utils/Interface";
 
 interface ErrorResponseData {
   message: string;
@@ -71,7 +72,15 @@ export default function SignUpForm() {
         name: name,
         interestList: interestList.join("\\"),
       });
-      console.log(data);
+      console.log("회원가입 성공 : ", data);
+
+      const loginData: UserData = await postData(`${joinTeamUrl}/login`, {
+        username: email,
+        password: pwd,
+      });
+
+      console.log("로그인 성공 : ", loginData);
+
       setSuccess(true);
     } catch (error) {
       const axiosError = error as AxiosError<ErrorResponseData>;

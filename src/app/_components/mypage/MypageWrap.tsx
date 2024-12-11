@@ -9,6 +9,7 @@ import { IoIosSettings } from "react-icons/io";
 import Setting from "@/app/_components/mypage/Setting";
 import { useRouter } from "next/navigation";
 import { joinTeamUrl } from "@/app/_utils/url";
+import { AxiosError } from "axios";
 
 export default function MypageWrap() {
   const router = useRouter();
@@ -24,8 +25,10 @@ export default function MypageWrap() {
         console.log(result);
         setUserData(result);
       } catch (err) {
-        console.log(err);
-        throw err;
+        const error = err as AxiosError;
+        if (error.response?.status === 401) {
+          router.push("/login");
+        }
       }
     };
 

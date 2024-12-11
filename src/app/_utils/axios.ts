@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export const getData = <T>(url: string): Promise<T> => {
   return axios
     .get<T>(url, {

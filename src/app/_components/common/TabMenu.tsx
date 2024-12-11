@@ -1,13 +1,10 @@
 "use client";
-import { userLoginState } from "@/app/_state/recoil";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import { GoPerson, GoPlusCircle } from "react-icons/go";
 import { GoNote } from "react-icons/go";
 import { GoCommentDiscussion } from "react-icons/go";
 import { GoHome } from "react-icons/go";
-import { useRecoilValue } from "recoil";
 
 export default function TabMenu() {
   const pathName = usePathname();

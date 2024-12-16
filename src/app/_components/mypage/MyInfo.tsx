@@ -24,13 +24,16 @@ export default function MyInfo({ user }: UserDataProps) {
   return (
     <>
       <div className="flex items-center">
-        <div className="thumb w-[85px] h-[85px] rounded-[50%] bg-[#333] overflow-hidden">
+        <div
+          className="relative thumb w-[85px] rounded-[50%] overflow-hidden"
+          style={{ aspectRatio: "1/1" }}
+        >
           <Image
             alt="user-thumbnail"
             src={user.thumbnail}
-            width={85}
-            height={85}
-            className="w-full h-full object-cover"
+            fill
+            sizes="85px"
+            className="object-cover"
           />
         </div>
         <div className="ml-[20px]">

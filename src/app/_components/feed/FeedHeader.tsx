@@ -56,17 +56,17 @@ export default function FeedHeader({
     <>
       <div className="bg-[#fff] flex items-center justify-between p-[10px]">
         <div className="flex-center">
-          <div className="thumb w-[52px] h-[52px] bg-[#333] rounded-[50%] overflow-hidden">
+          <div
+            className="relative thumb w-[52px] rounded-[50%] overflow-hidden"
+            style={{ aspectRatio: "1/1" }}
+          >
             <Link href={`/mypage/${myFeed ? "" : writer}`}>
               <Image
                 src={thumbnail}
-                loading="lazy"
-                decoding="async"
-                data-nimg="1"
                 alt="activity-thumb"
-                width={52}
-                height={52}
-                className="w-full h-full object-cover "
+                fill
+                sizes="52px"
+                className="object-cover "
               />
             </Link>
           </div>

@@ -12,18 +12,16 @@ export default function FeedThumb({ thumbnail, link }: FeedThumbProps) {
       <li>
         <Link
           href={`/myfeed?itemId=${link}`}
-          className="h-[140px] text-[#fff] bg-[#333] flex-center font-bold text-lg"
+          className="relative w-[140px] text-[#fff] flex-center font-bold text-lg"
+          style={{ aspectRatio: "1/1" }}
         >
           {thumbnail ? (
             <Image
               src={thumbnail}
-              loading="lazy"
-              decoding="async"
-              data-nimg="1"
-              alt=""
-              width={140}
-              height={140}
-              className="w-full h-full"
+              alt="feed-thumbnail"
+              fill
+              sizes="140px"
+              className="object-cover"
             ></Image>
           ) : (
             ""

@@ -14,15 +14,15 @@ export default function ActivityCard({ item }: ActivityCardProps) {
   return (
     <>
       <li className="bg-[#fff] p-[10px] flex rounded-[4px] activity-card items-center">
-        <div className="thumb w-[70px] h-[70px] rounded-[10px] bg-[#333] overflow-hidden">
+        <div
+          className="relative thumb w-[70px] rounded-[10px] overflow-hidden"
+          style={{ aspectRatio: "1/1" }}
+        >
           <Image
             src={item.images}
-            loading="lazy"
-            decoding="async"
-            data-nimg="1"
             alt="activity-thumb"
-            width={70}
-            height={70}
+            fill
+            sizes="70px"
             className="w-full h-full object-cover "
           />
         </div>

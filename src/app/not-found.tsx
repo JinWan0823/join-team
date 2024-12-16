@@ -21,8 +21,16 @@ export default function NotFound() {
           <br />
           URL을 잘못 입력하셨나요? 맞춤법을 확인하세요.
         </p>
-        <div className="imgWarp  animate__animated animate__bounceIn">
-          <Image src={noResult} alt="error-404-img" width={300} height={300} />
+        <div
+          className="relative w-[300px] imgWarp animate__animated animate__bounceIn"
+          style={{ aspectRatio: "1/1" }}
+        >
+          <Image
+            src={noResult}
+            alt="error-404-img"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
     </section>

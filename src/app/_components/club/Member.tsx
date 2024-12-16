@@ -27,14 +27,17 @@ export default function Member({ memberId }: MemberIdProps) {
   return (
     <>
       <li className="member">
-        <div className="thumb w-[40px] h-[40px] rounded-[50%] bg-[#333] overflow-hidden">
+        <div
+          className="relative thumb w-[40px] rounded-[50%] overflow-hidden"
+          style={{ aspectRatio: "1/1" }}
+        >
           {memberData && (
             <Image
               src={memberData.thumbnail}
               alt="member-thumbnail"
-              width={40}
-              height={40}
-              className="w-full h-full object-cover"
+              fill
+              sizes="40px"
+              className="object-cover"
             />
           )}
         </div>

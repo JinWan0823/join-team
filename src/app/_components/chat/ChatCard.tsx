@@ -15,16 +15,20 @@ export default function ChatCard({ data }: DataProps) {
         className="w-full p-[12px] px-[8px] hover:bg-[#dfdfdf] first:border-t-[1px] border-b-[1px] border-[#dfdfdf] flex-between items-center"
         href={`/chat/${data.clubId}`}
       >
-        <div className="thumb w-[56px] h-[56px] rounded-[10px] bg-[#333] overflow-hidden">
+        <div
+          className="relative thumb w-[66px] bg-[#333] rounded-[10px] overflow-hidden"
+          style={{ aspectRatio: "1/1" }}
+        >
           <Image
             src={data.thumb}
             alt="club-thumbnail"
-            width={56}
-            height={56}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="66px"
+            quality={100}
           />
         </div>
-        <div className="w-[calc(100%-64px)]">
+        <div className="w-[calc(100%-72px)]">
           <h4 className="font-bold w-full">{data.clubTitle}</h4>
           <span className="block text-sm text-[#919191] text-line-1">
             {data.lastMessage}

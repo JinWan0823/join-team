@@ -33,14 +33,17 @@ export default function MemberCard({ memberId, clubMaster }: MemberIdProps) {
           href={`/mypage/${memberId}`}
           className="flex items-center justify-between"
         >
-          <div className="thumb w-[65px] h-[65px] rounded-[50%] overflow-hidden">
+          <div
+            className="relative thumb w-[65px] rounded-[50%] overflow-hidden"
+            style={{ aspectRatio: "1/1" }}
+          >
             {memberData && (
               <Image
                 src={memberData.thumbnail}
                 alt="member-thumbnail"
-                width={65}
-                height={65}
-                className="w-full h-full object-cover"
+                fill
+                sizes="65px"
+                className="object-cover"
               />
             )}
           </div>

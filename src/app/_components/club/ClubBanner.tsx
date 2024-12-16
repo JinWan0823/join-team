@@ -7,12 +7,14 @@ interface ClubBannerProps {
 export default function ClubBanner({ images }: ClubBannerProps) {
   return (
     <>
-      <div className="img-slide w-full h-[240px] bg-[#333] flex-center">
+      <div
+        className="relative img-slide w-full wflex-center"
+        style={{ aspectRatio: "16/9" }}
+      >
         <Image
           src={images}
           alt="club-thumbnail"
-          width={420}
-          height={240}
+          fill
           className="w-full h-full object-cover"
         />
       </div>

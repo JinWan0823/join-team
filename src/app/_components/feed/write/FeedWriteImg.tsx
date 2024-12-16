@@ -52,13 +52,16 @@ export default function FeedWriteImg({
         >
           {showImages.map((image, idx) => (
             <SwiperSlide key={idx}>
-              <div className="w-full h-full relative">
+              <div
+                className="w-full h-full relative"
+                style={{ aspectRatio: "1/1" }}
+              >
                 <Image
                   src={image}
-                  width={200}
-                  height={200}
+                  fill
+                  sizes="100vw"
                   alt={"Upload-img"}
-                  className="w-full h-full object-cover"
+                  className="object-cover"
                 />
                 <button
                   className="text-sm flex-center bg-[#333] absolute top-[10px] right-[10px] text-[#fff] px-[10px] py-[6px] cursor-pointer rounded-[8px] z-50"

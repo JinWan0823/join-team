@@ -16,14 +16,13 @@ interface ActivityCardProps {
 export default function TotalActivityCard({ item }: ActivityCardProps) {
   return (
     <>
-      <li className="mt-[20px] rounded-[10px] overflow-hidden w-full bg-[#eee] first:mt-0 shadow-lg card-shadow">
-        <div className="w-full h-[370px]">
+      <li className="mt-[20px] rounded-[10px] overflow-hidden w-full first:mt-0 shadow-lg card-shadow">
+        <div className="w-full relative" style={{ aspectRatio: "1/1" }}>
           <Image
             src={item.images}
             alt={`club-activity`}
-            width={398}
-            height={370}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
           />
         </div>
         <div className="p-[10px]">

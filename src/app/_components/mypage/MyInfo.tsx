@@ -30,6 +30,7 @@ export default function MyInfo({ user }: UserDataProps) {
             src={user.thumbnail}
             width={85}
             height={85}
+            className="w-full h-full object-cover"
           />
         </div>
         <div className="ml-[20px]">

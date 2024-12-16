@@ -8,7 +8,7 @@ import { postImgData } from "@/app/_utils/axios";
 import LocationBtn from "./LocationBtn";
 import Location from "./Location";
 import { joinTeamUrl } from "@/app/_utils/url";
-import { useRouter } from "next/navigation";
+import SuccessMessage from "../../common/SuccessMessage";
 
 interface ResultType {
   insertedId: string;
@@ -25,7 +25,8 @@ export default function WriteForm() {
   const [sido, setSido] = useState("");
   const [gugun, setGugun] = useState("");
 
-  const router = useRouter();
+  const [success, setSuccess] = useState(false);
+  const [routeId, setRouteId] = useState("");
 
   const options = {
     maxSizeMB: 0.5,
@@ -45,7 +46,9 @@ export default function WriteForm() {
         formData.append("images", compressionFile);
       }
       const result = await postImgData(`${joinTeamUrl}/club`, formData);
-      router.push(`/club/${(result as ResultType).insertedId}`);
+
+      setRouteId(`/club/${(result as ResultType).insertedId}`);
+      setSuccess(true);
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }
@@ -57,6 +60,7 @@ export default function WriteForm() {
 
   return (
     <div className="min-h-full flex flex-col justify-between">
+      {success && <SuccessMessage type={routeId} />}
       <div className="text-sm">
         <div className="p-[10px]">
           <input

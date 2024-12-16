@@ -24,7 +24,7 @@ export default function SystemMessage({ userId }: UserIdPros) {
   }, []);
 
   return (
-    <div className="text-sm text-center my-[30px] text-[#fff] bg-[#333] rounded-[12px] py-[2px]">
+    <div className="text-sm text-center mt-[12px] text-[#fff] bg-[#333] rounded-[12px] py-[2px]">
       <p>{userName}님이 채팅에 참여했습니다.</p>
     </div>
   );

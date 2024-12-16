@@ -1,4 +1,8 @@
 export const formatTime = (dateString: string) => {
+  if (!dateString) {
+    return "채팅 없음";
+  }
+
   const date = new Date(dateString);
   let hours = date.getHours();
   const minutes = date.getMinutes();

@@ -33,9 +33,7 @@ export default function ChatCard({ data }: DataProps) {
             <span className="inline-flex items-center mr-[4px]">
               <FaUsers /> {data.member.length}
             </span>
-            <span>
-              {data.lastMessageTime ? getTimeAgo(data.lastMessageTime) : ""}
-            </span>
+            <span>{getTimeAgo(data.lastMessageTime)}</span>
           </p>
         </div>
       </Link>

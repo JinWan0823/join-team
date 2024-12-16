@@ -5,6 +5,7 @@ interface MessageTypeProsp {
 }
 
 export default function SuccessMessage({ type }: MessageTypeProsp) {
+  console.log(type);
   return (
     <div className="w-full h-full absolute top-0 left-0 bg-[#333333d1] z-[9999] flex-center">
       <div className="w-[calc(100%-20px)]  bg-[#fff] rounded-[12px] overflow-hidden text-center animate__animated animate__bounceIn">
@@ -16,7 +17,7 @@ export default function SuccessMessage({ type }: MessageTypeProsp) {
         </p>
 
         <Link
-          href={`/${type === "signup" ? "" : type}`}
+          href={type === "signup" ? "/" : `/club/${type.replace("club/", "")}`}
           className="inline-block bg-[#3d97ff] text-[#fff] font-bold w-[calc(100%-20px)] py-[4px] rounded-[4px] mb-[10px]"
         >
           확인

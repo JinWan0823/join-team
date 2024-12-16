@@ -13,6 +13,7 @@ export interface ClubDetailData {
   gugun: string;
   master: string;
   lastMessageTime: string;
+  isJoined: boolean;
 }
 
 export interface MemberProps {

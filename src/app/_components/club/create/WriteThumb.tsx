@@ -27,14 +27,17 @@ export default function ClubUploadIMG({
 
   return (
     <>
-      <div className="my-[10px] w-full flex-center text-xl h-[210px] border-b-[1px] relative bg-[#fff] rounded-[8px] overflow-hidden border-[1px] border-[#878787]">
+      <div
+        className="relative my-[10px] w-full flex-center text-xl h-[210px] border-b-[1px] relative bg-[#fff] rounded-[8px] overflow-hidden border-[1px] border-[#878787]"
+        style={{ aspectRatio: "1/1" }}
+      >
         {showImages ? (
           <Image
             src={showImages}
-            width={200}
-            height={200}
+            fill
+            sizes="100vw"
             alt={"Upload-img"}
-            className="w-full h-full object-cover"
+            className="object-cover"
           ></Image>
         ) : (
           <span className="text-[#878787] text-md flex-center flex-col">

@@ -32,7 +32,7 @@ export default function Location({
 
   return (
     <div
-      className={`w-full h-full bg-[#f6f6f6] z-[999] absolute top-[0] left-[0] py-[20px] px-[10px] flex flex-col justify-between ${
+      className={`w-full h-full bg-[#f6f6f6] z-[9999999999999] absolute top-[0] left-[0] py-[20px] px-[10px] flex flex-col justify-between ${
         isVisible ? "category-visible" : "category-hidden"
       }`}
     >

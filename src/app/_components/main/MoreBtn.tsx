@@ -10,7 +10,7 @@ export default function MoreBtn({ category }: MoreBtnProps) {
     <>
       <Link
         href={`club/category/${category}`}
-        className="w-full text-[#fff] py-[10px] mt-[10px] rounded-[8px] bg-[#3D97FF] flex-center"
+        className="w-full text-[#fff] py-[10px] mt-[20px] rounded-[8px] bg-[#3D97FF] flex-center"
       >
         <CiCirclePlus />
         더보기

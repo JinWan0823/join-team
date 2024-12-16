@@ -24,12 +24,15 @@ export default function ProfileImg({
   return (
     <>
       <div className="relative inline-block">
-        <div className="overflow-hidden w-[220px] h-[220px] rounded-[40px]">
+        <div
+          className="relative overflow-hidden w-[220px] rounded-[40px]"
+          style={{ aspectRatio: "1/1" }}
+        >
           <Image
             src={showImages}
             alt="user-thumbnail"
-            width={220}
-            height={220}
+            fill
+            sizes="220px"
             className="w-full h-full object-cover"
           ></Image>
         </div>

@@ -19,20 +19,24 @@ export default function ListCard({ data }: ListCardProps) {
     <>
       <li
         className={`w-full bg-[#fff] ${
-          pathName === "/" ? "mt-[10px] rounded-[4px]" : "border-b-[1px]"
+          pathName === "/" ? "mt-[20px] rounded-[4px]" : "border-b-[1px]"
         }`}
       >
         <Link
           href={`/club/${data._id}`}
-          className="flex items-center justify-between py-[10px] px-[8px]"
+          className={`flex items-center justify-between ${
+            pathName !== "/" && "p-[10px]"
+          }`}
         >
-          <div className="lt w-[90px] h-[90px] rounded-[10px] bg-[#878787] overflow-hidden">
+          <div
+            className="lt w-[90px] relative bg-[#878787] rounded-[10px] overflow-hidden"
+            style={{ aspectRatio: "1/1" }}
+          >
             <Image
               src={data.images}
               alt="club-thumbnail"
-              width={90}
-              height={90}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
           </div>
           <div className="rt w-[calc(100%-100px)]">

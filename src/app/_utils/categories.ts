@@ -29,14 +29,13 @@ const interestCategories = [
 ];
 
 const recommendCategories = [
-  "포틀럭파티",
-  "내향인파티",
+  "백패킹",
+  "풋살",
+  "배드민턴",
   "보드게임",
-  "만화",
+  "친목",
   "농구",
-  "러닝",
-  "맛집",
-  "카페",
+  "영화",
 ];
 
 const locationCategory = [

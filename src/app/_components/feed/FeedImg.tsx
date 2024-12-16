@@ -30,13 +30,14 @@ export default function FeedImg({ feedImg }: FeedImgProsp) {
         >
           {feedImg.map((image, idx) => (
             <SwiperSlide key={idx}>
-              <div className="w-full h-full relative">
+              <div className="w-full relative" style={{ aspectRatio: "3/4" }}>
                 <Image
                   src={image}
-                  width={420}
-                  height={380}
+                  fill
+                  sizes="100vw"
                   alt={`Feed-img-${idx}`}
-                  className="w-full h-full object-cover"
+                  className="object-cover"
+                  quality={100}
                 />
               </div>
             </SwiperSlide>

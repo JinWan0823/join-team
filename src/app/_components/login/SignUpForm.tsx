@@ -95,7 +95,7 @@ export default function SignUpForm() {
   return (
     <form>
       {error && <ErrorMessage message={errorMessage} setError={setError} />}
-      {success && <SuccessMessage />}
+      {success && <SuccessMessage type={"signup"} />}
       <InputWrap
         inputType="text"
         holder="ex) withgo@gmail.com"

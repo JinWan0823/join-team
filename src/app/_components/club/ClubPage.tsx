@@ -39,13 +39,7 @@ export default function ClubPage({
           `${joinTeamUrl}/club/${params}`
         );
         setData(result);
-
-        if (userId.length > 0) {
-          const isUserJoined = result.member.some(
-            (member) => member.memberId === userId
-          );
-          setJoinedMember(isUserJoined);
-        }
+        setJoinedMember(result.isJoined);
       } catch (error) {
         console.error("Data Fetching Error:", error);
       }

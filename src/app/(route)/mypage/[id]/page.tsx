@@ -2,20 +2,21 @@
 import InfoComment from "@/app/_components/mypage/InfoComment";
 import InfoTab from "@/app/_components/mypage/InfoTab";
 import MyInfo from "@/app/_components/mypage/MyInfo";
-import { userInfoState } from "@/app/_state/recoil";
 import { UserData } from "@/app/_utils/Interface";
 import { getData, putData } from "@/app/_utils/axios";
 import { joinTeamUrl } from "@/app/_utils/url";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
 import { LuCheck } from "react-icons/lu";
+
+interface FollowStatus {
+  isFollowing: boolean;
+}
 
 export default function Wrap() {
   const [userData, setUserData] = useState<UserData>();
   const [updateFollow, setUpdateFollow] = useState(false);
   const [chkFollow, setChkFollow] = useState(false);
-  const userId = useRecoilValue(userInfoState);
   const params = useParams();
   const endPoint = `/${params.id}`;
 
@@ -35,7 +36,10 @@ export default function Wrap() {
           `${joinTeamUrl}/user/${params.id}`
         );
         setUserData(result);
-        if (result.followers.includes(userId.id)) {
+        const isFollowing = await getData<FollowStatus>(
+          `${joinTeamUrl}/user/isfollow/${params.id}`
+        );
+        if (isFollowing.isFollowing) {
           setChkFollow(true);
           console.log("팔로중");
         } else {

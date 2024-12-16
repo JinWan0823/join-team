@@ -21,6 +21,12 @@ export const formatDate = (dateString: string) => {
 };
 
 export const getTimeAgo = (timeStamp: string) => {
+  console.log(timeStamp);
+
+  if (!timeStamp) {
+    return `채팅 없음`;
+  }
+
   const now = new Date();
   const messageTime = new Date(timeStamp);
 

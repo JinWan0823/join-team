@@ -12,6 +12,7 @@ export default function NoResultImg() {
         height={320}
         alt="error-img"
         className="animate__animated animate__bounceIn"
+        priority
       />
     </>
   );

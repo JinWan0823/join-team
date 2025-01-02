@@ -12,6 +12,8 @@ interface ListWrapProps {
 export default function ListWrap({ category }: ListWrapProps) {
   const [data, setData] = useState<ClubDetailData[]>([]);
 
+  console.log(joinTeamUrl);
+
   useEffect(() => {
     const fetchData = async () => {
       try {

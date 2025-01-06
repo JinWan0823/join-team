@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { io as ClientIO, Socket } from "socket.io-client";
+import { joinTeamUrl } from "../_utils/url";
 
 interface SocketContextType {
   socket: Socket | null;
@@ -36,7 +37,7 @@ export const SocketProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    const socketInstance = ClientIO("http://localhost:8080");
+    const socketInstance = ClientIO(joinTeamUrl);
     socketInstance.on("connect", async () => {
       setIsConnected(true);
     });

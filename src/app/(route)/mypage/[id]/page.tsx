@@ -41,10 +41,8 @@ export default function Wrap() {
         );
         if (isFollowing.isFollowing) {
           setChkFollow(true);
-          console.log("팔로중");
         } else {
           setChkFollow(false);
-          console.log("팔로취소했음");
         }
       } catch (error) {
         console.log(error);

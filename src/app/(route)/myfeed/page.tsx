@@ -30,10 +30,8 @@ export default function Wrap() {
   }, [updateStatus]);
 
   const scrollToId = (id: string) => {
-    console.log(id);
     const element = document.getElementById(id);
     if (element) {
-      console.log(element);
       element.scrollIntoView({ behavior: "smooth" });
     }
   };

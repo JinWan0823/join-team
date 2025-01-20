@@ -65,7 +65,6 @@ export default function Wrap() {
           `${joinTeamUrl}/club/${params.id}`
         );
         setData(result);
-        console.log(result);
       } catch (error) {
         console.error("Data Fetching Error : ", error);
       }

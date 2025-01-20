@@ -38,12 +38,10 @@ export default function SelectInterest({
     }
 
     if (interestList.length === 3) {
-      console.log(interestList);
       return;
     }
 
     setInterestList((prev) => [...prev, list]);
-    console.log(interestList);
   };
   return (
     <div className="absolute left-0 bottom-0 bg-[#333333d6] z-50 w-full h-full flex items-end overflow-hidden">

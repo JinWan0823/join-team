@@ -25,7 +25,6 @@ export default function ClubJoinBtn({ params, setUpdate, userId }: BtnProps) {
         time: chatTime,
         userId: userId,
       });
-      console.log("가입완료");
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }

@@ -25,8 +25,6 @@ export const formatDate = (dateString: string) => {
 };
 
 export const getTimeAgo = (timeStamp: string) => {
-  console.log(timeStamp);
-
   if (!timeStamp) {
     return `채팅 없음`;
   }

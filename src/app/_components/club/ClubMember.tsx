@@ -36,10 +36,6 @@ export default function ClubMember({
 
   const handleMouseUp = (e: React.MouseEvent<HTMLUListElement>) => {
     setIsDragging(false);
-    console.log(
-      `${(+new Date() - +tickEvent.current.start) / 1000}초`,
-      tickEvent.current.tickCnt
-    );
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLUListElement>) => {

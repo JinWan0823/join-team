@@ -7,13 +7,9 @@ import { getData } from "@/app/_utils/axios";
 import { UserData } from "@/app/_utils/Interface";
 import { IoIosSettings } from "react-icons/io";
 import Setting from "@/app/_components/mypage/Setting";
-import { useRouter } from "next/navigation";
 import { joinTeamUrl } from "@/app/_utils/url";
-import { AxiosError } from "axios";
 
 export default function MypageWrap() {
-  const router = useRouter();
-
   const [userData, setUserData] = useState<UserData>();
   const [settingMenu, setSettingMenu] = useState<boolean>(false);
 
@@ -22,13 +18,9 @@ export default function MypageWrap() {
     const fetchData = async () => {
       try {
         const result = await getData<UserData>(`${joinTeamUrl}/user`);
-        console.log(result);
         setUserData(result);
       } catch (err) {
-        const error = err as AxiosError;
-        if (error.response?.status === 401) {
-          router.push("/login");
-        }
+        console.error("Data Fetching Error : ", err);
       }
     };
 

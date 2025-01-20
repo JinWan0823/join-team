@@ -13,7 +13,6 @@ export default function MyInfo({ user }: UserDataProps) {
   const [follow, setFollow] = useState<string[]>([]);
 
   const handleMoreViewBtn = (category: string) => {
-    console.log(user);
     setTotalMemberToggle(true);
     setMemberCategory(category);
     category === "팔로워"

@@ -1,7 +1,8 @@
 import axios from "axios";
+import apiClient from "./apiclient";
 
 export const getData = <T>(url: string): Promise<T> => {
-  return axios
+  return apiClient
     .get<T>(url, {
       withCredentials: true,
     })
@@ -16,10 +17,9 @@ export const postData = async <T>(
   formData: object
 ): Promise<T> => {
   try {
-    const response = await axios.post<T>(url, formData, {
+    const response = await apiClient.post<T>(url, formData, {
       withCredentials: true,
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     throw error;
@@ -31,13 +31,12 @@ export const postImgData = async <T>(
   formData: object
 ): Promise<T> => {
   try {
-    const response = await axios.post<T>(url, formData, {
+    const response = await apiClient.post<T>(url, formData, {
       withCredentials: true,
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     throw error;
@@ -46,10 +45,9 @@ export const postImgData = async <T>(
 
 export const putData = async <T>(url: string, formData: object): Promise<T> => {
   try {
-    const response = await axios.put<T>(url, formData, {
+    const response = await apiClient.put<T>(url, formData, {
       withCredentials: true,
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     throw error;
@@ -61,13 +59,12 @@ export const putImgData = async <T>(
   formData: object
 ): Promise<T> => {
   try {
-    const response = await axios.put<T>(url, formData, {
+    const response = await apiClient.put<T>(url, formData, {
       withCredentials: true,
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     throw error;
@@ -76,10 +73,9 @@ export const putImgData = async <T>(
 
 export const deleteData = async <T>(url: string): Promise<T> => {
   try {
-    const response = await axios.delete<T>(url, {
+    const response = await apiClient.delete<T>(url, {
       withCredentials: true,
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     throw error;

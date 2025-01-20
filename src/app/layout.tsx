@@ -4,10 +4,10 @@ import "./globals.css";
 import Heather from "./_components/common/Heather";
 import TabMenu from "./_components/common/TabMenu";
 import RecoilRootProvider from "./_components/RecoilRootProvider";
-import { Suspense } from "react";
-import LoadingSpinner from "./_components/common/LoadingSpinner";
 import { SocketProvider } from "./_components/SocketProvider";
 import "animate.css";
+import ClientSideLoadingSpinner from "./_components/common/ClientSideLoadingSpinner";
+import UserError from "./_components/common/UserError";
 
 export const metadata: Metadata = {
   title: "Work Out",
@@ -28,7 +28,9 @@ export default function RootLayout({
           <SocketProvider>
             <div className="w-[420px] mx-auto h-screen min-h-screen bg-[#fff] text-md relative">
               <Heather />
-              <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
+              <ClientSideLoadingSpinner />
+              <UserError />
+              {children}
               <TabMenu />
             </div>
           </SocketProvider>

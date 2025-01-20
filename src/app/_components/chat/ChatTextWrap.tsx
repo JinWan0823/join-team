@@ -86,8 +86,6 @@ export default function ChatTextWrap({ roomId, userId }: RoomIdProps) {
         messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
       }
     }
-
-    console.log(messageData);
   }, [messageData]);
 
   return (

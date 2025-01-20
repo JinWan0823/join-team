@@ -20,7 +20,6 @@ export default function Wrap() {
         userIdData.userInfo?.id
       ) {
         setUserId(userIdData.userInfo.id);
-        console.log(userIdData.userInfo.id);
       }
     }
   }, []);

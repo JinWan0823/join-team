@@ -64,7 +64,6 @@ export default function Wrap() {
   }, [hasMore, isLoading, params, params.id]);
 
   const fetchMoreData = async () => {
-    console.log("데이터호출");
     if (isLoading) return;
 
     setIsLoading(true);

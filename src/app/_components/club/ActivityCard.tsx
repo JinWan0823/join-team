@@ -1,6 +1,5 @@
 import { ActivityInterface } from "@/app/_utils/Interface";
 import Image from "next/image";
-import { useEffect } from "react";
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 interface ActivityCardProps {
@@ -8,9 +7,6 @@ interface ActivityCardProps {
 }
 
 export default function ActivityCard({ item }: ActivityCardProps) {
-  useEffect(() => {
-    console.log(item);
-  }, []);
   return (
     <>
       <li className="bg-[#fff] p-[10px] flex rounded-[4px] activity-card items-center">

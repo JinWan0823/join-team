@@ -29,3 +29,11 @@ export const LatestSearchState = atom({
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
+
+export const errorState = atom({
+  key: "errorState",
+  default: {
+    isError: false,
+    message: "",
+  },
+});

@@ -13,7 +13,6 @@ interface ListCardProps {
 
 export default function ListCard({ data }: ListCardProps) {
   const pathName = usePathname();
-  console.log(data);
 
   return (
     <>

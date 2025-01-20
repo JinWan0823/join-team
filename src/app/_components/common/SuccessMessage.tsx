@@ -5,7 +5,6 @@ interface MessageTypeProsp {
 }
 
 export default function SuccessMessage({ type }: MessageTypeProsp) {
-  console.log(type);
   return (
     <div className="w-full h-full absolute top-0 left-0 bg-[#333333d1] z-[9999] flex-center">
       <div className="w-[calc(100%-20px)]  bg-[#fff] rounded-[12px] overflow-hidden text-center animate__animated animate__bounceIn">

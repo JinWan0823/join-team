@@ -12,15 +12,12 @@ interface ListWrapProps {
 export default function ListWrap({ category }: ListWrapProps) {
   const [data, setData] = useState<ClubDetailData[]>([]);
 
-  console.log(joinTeamUrl);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await getData<ClubDetailData[]>(
           `${joinTeamUrl}/club/${category}`
         );
-        console.log(result);
         setData(result.slice(0, 3));
       } catch (error) {
         console.error("Data Fetching Error : ", error);

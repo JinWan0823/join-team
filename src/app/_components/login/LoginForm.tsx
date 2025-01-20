@@ -60,7 +60,6 @@ export default function LoginForm() {
         username: email,
         password: pwd,
       });
-      console.log("data", data);
       setLoginInfo(true);
       setUserInfo({
         id: data._id,

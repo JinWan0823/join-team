@@ -72,14 +72,11 @@ export default function SignUpForm() {
         name: name,
         interestList: interestList.join("\\"),
       });
-      console.log("회원가입 성공 : ", data);
 
       const loginData: UserData = await postData(`${joinTeamUrl}/login`, {
         username: email,
         password: pwd,
       });
-
-      console.log("로그인 성공 : ", loginData);
 
       setSuccess(true);
     } catch (error) {

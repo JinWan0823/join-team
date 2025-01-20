@@ -12,7 +12,6 @@ export default function FeedImg({ feedImg }: FeedImgProsp) {
   const [imgNum, setImgNum] = useState(1);
 
   const handleSwiperChange = (swiper: any) => {
-    console.log(swiper);
     setImgNum(swiper.activeIndex + 1);
   };
 

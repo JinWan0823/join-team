@@ -34,7 +34,6 @@ export default function ProfileUpdateWrap({ user }: ProfileUpdateProps) {
   }, []);
 
   const handleUpdateProfile = async () => {
-    console.log(images);
     try {
       const formData = new FormData();
       formData.append("name", name);
@@ -48,7 +47,6 @@ export default function ProfileUpdateWrap({ user }: ProfileUpdateProps) {
         `${joinTeamUrl}/user/profile`,
         formData
       );
-      console.log(updateData);
       router.push("/mypage");
     } catch (error) {
       console.log("Data Fetching Error : ", error);

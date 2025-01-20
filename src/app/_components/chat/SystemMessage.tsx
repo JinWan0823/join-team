@@ -14,7 +14,6 @@ export default function SystemMessage({ userId }: UserIdPros) {
     try {
       const fetchData = async () => {
         const result = await getData<UserData>(`${joinTeamUrl}/user/${userId}`);
-        console.log(result.name);
         setUserName(result.name);
       };
       fetchData();

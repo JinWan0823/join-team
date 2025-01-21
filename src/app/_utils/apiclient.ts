@@ -11,7 +11,6 @@ export const setErrorUpdater = (
 
 const apiClient = axios.create({
   baseURL: joinTeamUrl,
-  withCredentials: true,
 });
 
 apiClient.interceptors.response.use(

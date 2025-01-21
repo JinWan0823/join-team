@@ -17,9 +17,7 @@ export const postData = async <T>(
   formData: object
 ): Promise<T> => {
   try {
-    const response = await apiClient.post<T>(url, formData, {
-      withCredentials: true,
-    });
+    const response = await apiClient.post<T>(url, formData);
     return response.data;
   } catch (error) {
     throw error;

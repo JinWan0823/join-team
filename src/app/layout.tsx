@@ -30,7 +30,6 @@ export default function RootLayout({
           <SocketProvider>
             <div className="w-[420px] mx-auto h-screen min-h-screen bg-[#fff] text-md relative">
               <Heather />
-              <ClientSideLoadingSpinner />
               <UserError />
               <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
               <TabMenu />
